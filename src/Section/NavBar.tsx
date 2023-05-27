@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return(
     <section className="Navbar bg-G">
@@ -5,8 +7,9 @@ function Navbar() {
       <button>CONTACT</button>
       <button>ABOUT</button>
       <button>CAREER</button>
-    </section>
-  )
+      <Link to="/Career">Career</Link>
+      </section>
+    )
 }
 
 export default Navbar

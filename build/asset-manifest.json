@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Zoro/static/css/main.c0f3f265.css",
-    "main.js": "/Zoro/static/js/main.8efbe3a8.js",
-    "index.html": "/Zoro/index.html",
-    "main.c0f3f265.css.map": "/Zoro/static/css/main.c0f3f265.css.map",
-    "main.8efbe3a8.js.map": "/Zoro/static/js/main.8efbe3a8.js.map"
+    "main.css": "/Akash-Kumar-Website/static/css/main.e622d656.css",
+    "main.js": "/Akash-Kumar-Website/static/js/main.95cdd0ee.js",
+    "index.html": "/Akash-Kumar-Website/index.html",
+    "main.e622d656.css.map": "/Akash-Kumar-Website/static/css/main.e622d656.css.map",
+    "main.95cdd0ee.js.map": "/Akash-Kumar-Website/static/js/main.95cdd0ee.js.map"
   },
   "entrypoints": [
-    "static/css/main.c0f3f265.css",
-    "static/js/main.8efbe3a8.js"
+    "static/css/main.e622d656.css",
+    "static/js/main.95cdd0ee.js"
   ]
 }
