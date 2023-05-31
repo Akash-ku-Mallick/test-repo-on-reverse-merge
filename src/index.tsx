@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 
-import './App.css';
 
-import App from './App';
+import Home from './pages/Home';
 import Admin from './pages/Admin';
 import Career from './pages/Career';
+import { Members } from './pages/Members'
 import ErrorPage from './pages/ErrorPage';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
     errorElement: <ErrorPage />,
   },
   {
@@ -25,6 +25,11 @@ const router = createBrowserRouter([
   {
     path: "/Career",
     element: <Career />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/Members",
+    element: <Members />,
     errorElement: <ErrorPage />,
   },
 ]);

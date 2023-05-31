@@ -1,3 +1,8 @@
+/* Get Analytics 
+  Authentication
+  */
+
+
 function Admin () {
     return(
         <div id='Admin'>
