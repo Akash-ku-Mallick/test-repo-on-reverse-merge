@@ -1,30 +1,275 @@
 import './App.css';
+import {Outlook, LinkedIn, Dribbble, Github, Gmail} from '../vectors/index'
+import { easeInOut, spring, useAnimation, useInView } from 'framer-motion';
+import { lazy, useEffect, useRef, useState } from 'react';
+import { Tooltip } from 'react-tooltip';
+import { motion, useScroll } from 'framer-motion';
 
-import Navbar from '../Section/NavBar';
-import Hero from '../Section/Hero';
-import Context from '../Section/Context';
-import Contact from '../Section/Contact';
-import Footer from '../Section/Footer';
+import Logo64 from '../icons64'
+// import MetalBlob from '../Components/MetalBlob'
+
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
 
 
+import {gsap} from 'gsap';
+import ScrollTrigger from 'gsap'
+import ScrollSmoother from 'gsap'
 
-function Home() {
+
+import Intro from '../Section/Intro';
+import Wave from '../vectors/waving';
+import { Link } from 'react-router-dom';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, OrthographicCamera } from '@react-three/drei';
+
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+export default function Home() {
+
   return (
     <div className="App">
+        <Intro />
         <Navbar />
+        <div className='container' >
         <Hero />
-        <Context /> 
-        <Contact />
+        <Context1 /> 
+        <Context2 /> 
         <Footer />
+        </div>
       </div>
   );
 }
 
-export default Home;
 
-/* 
+/* ______________Codes above this section is CONTAINER OF HOMe SCREEN_______________
+___________________Bellow code can be written as a moduler formart
+ but for now I am keeping them as 
+ a single file to reduce Confusion_____________________________________ */
 
 
-<Context />  is Project and members 
+// _______________ Hero _________________   ------Start
 
-*/
+
+export function Hero() {
+  
+  return(
+    <section id="Hero" className='Hero panel' >
+      <div className='heroText'> 
+      <span className='Heroline1'><Wave/> Hello !!!</span> 
+      <br/> 
+      <span className='Heroline2'>I am your Friendly </span>
+      <br/> 
+      <span className='Heroline3'>
+      <span>{"<"}</span>
+       developer 
+      <span>{"/>"}</span>
+      </span> 
+      </div>
+      {/* <Canvas>
+      <OrbitControls />
+      <MetalBlob />
+      </Canvas> */}
+    </section>
+  )
+}
+
+// _______________ Hero _________________   ------End
+
+
+export function Contact() {
+  let rev: string = ''
+  function sendForm() {
+    // let x = document.querySelector('.RatingForm')
+    // let a = x?.querySelector('.in')
+    console.log("Sent")
+  }
+  // export function StarRating() {
+//   const [value, setValue] = useState(2);
+//   return (
+//     <>
+//     <Box>
+//       <Rating
+//         name="simple-controlled"
+//         value={value}
+//         onChange={(event, newValue) => {
+//           setValue(newValue);
+//         }}
+//       />
+//     </Box>
+//     <label className='reviewVal'></label>
+//     </>
+//   );
+// }
+  return(
+    <section id='Contact' className='Contact'>
+      <form className='RatingForm'>
+        <input className='f in' name='Name' type='text' placeholder='Enter Your Name..'></input>
+        <input name='Mail' type='text' placeholder='Enter Your E-mail ID..'></input>
+        <textarea name='comment' placeholder='Tell me something...'></textarea>
+        <Rating name="no-value" value={null} />
+        <label></label>
+        <button onClick={sendForm}>SEND</button>
+      </form>
+    </section>
+  )
+}
+
+// _______________ Context 1 _________________   ------Start
+
+export function Context1() {
+
+  return(
+    <section id='Context' className='Context panel'>
+      <div className="ProjectCarosol">
+        <div className="blueDiv a">
+          <div className="prjs"><h1>p1</h1></div>
+        </div>
+        <div className="redDiv a">
+          <div className="prjs"><h1>p1</h1></div>
+        </div>
+        <div className="greenDiv a">
+          <div className="prjs"><h1>p1</h1></div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// _______________ Context 1 _________________   ------End
+
+
+// _______________ Context 2 _________________   ------Start
+
+export function Context2() {
+
+  return(
+    <section id='Context' className='Context panel'>
+      <div className="ProjectCarosol">
+        <div className="blueDiv a">
+          <div className="prjs"><h1>p1</h1></div>
+        </div>
+        <div className="redDiv a">
+          <div className="prjs"><h1>p1</h1></div>
+        </div>
+        <div className="greenDiv a">
+          <div className="prjs"><h1>p1</h1></div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// _______________ Context 2 _________________   ------End
+
+
+// _______________Footer_________________   ------Start
+
+
+export function Footer() {
+  const footerRef = useRef(null);
+  const SocialAnimete = useAnimation();
+
+  const footerInView: boolean = useInView(footerRef);
+
+  useEffect(()=>{
+    if(footerInView) {
+      SocialAnimete.start('originMount') 
+    }
+    else {
+      SocialAnimete.start('sideMount') 
+    }
+  },[footerInView])
+
+
+    return (
+      <section id="Footer" className="Footer panel" ref={footerRef}>
+        <Contact />
+        <motion.div
+          className="Socials SoLinkCol"
+          variants={{
+            sideMount: { opacity: 1 },
+            originMount: { opacity: 0 },
+          }}
+          animate={SocialAnimete}
+          transition={{ duration: 0.5, delay: 0.1, type: "spring" }}
+        >
+          <SocialLinks />
+        </motion.div>
+        <div className='grid'>
+          <div className='bordR'>
+          <h3>Services</h3>
+          </div>
+          <div className='bordR'>
+          <h3>Works</h3>
+          </div>
+          <div className='bordR'>
+          <h3>Links</h3>
+          <div className="Socials SoLinkRow">
+          <SocialLinks />
+        </div>
+          </div>
+        </div>
+        
+        <span className="copyright">
+          Copyright reserved under Akash kumar Mallick
+        </span>
+        <Tooltip
+          id="Footer-tooltip" style={{}}/>
+      </section>
+    );
+  }
+
+
+export function SocialLinks() {
+  return (
+    <>
+      <a href="linkedin" data-tooltip-id="Footer-tooltip" data-tooltip-html="Hello<br />Let's connect<br /> through Linkedin<br /> It will be fun" ><LinkedIn /></a>
+        <a href="Outlook" data-tooltip-id="Footer-tooltip" data-tooltip-html="Hello<br />Want to send <br />an e-mail<br /> Just tap here" ><Outlook /></a>
+        <a href="Dribbble" data-tooltip-id="Footer-tooltip" data-tooltip-html="Hello<br />Check out my mockups<br /> and designes<br /> on Dtibbble<br />Thank You" ><Dribbble /></a>
+        <a href="Github" data-tooltip-id="Footer-tooltip" data-tooltip-html="Hello<br />Check my current work <br />by visiting directly <br />to my Github Page <br /> Don't forget to follw me there" ><Github /></a>
+        <a href="Gmail" data-tooltip-id="Footer-tooltip" data-tooltip-html="Hello<br />Mail or Meet can be arrenged <br />" ><Gmail /></a>
+    </>
+  )
+}
+
+
+//  _______________Footer_________________   ------End
+
+
+
+// _______________ Exports _________________   ------
+ 
+
+
+
+function Header() {
+  return (
+    <section className="Header">
+      <Logo64 />
+      <a href="https://akash-ku-mallick.github.io/Akash-Kumar-Website/">
+        <h3>Akash Kumar</h3> </a>
+    </section>
+  );
+}
+
+function Navbar() {
+  return(
+    <section className="Navbar">
+      <Header />
+      <a href="#Context"><button>CONTEXT</button></a>
+      <a href="#Contact"><button>CONTACT</button></a>
+      <button>ABOUT</button>
+      <Link to="/Akash-Kumar/Working">PROJECTS</Link>
+      </section>
+    )
+}
+
+export function WorkNavBar() {
+  return(
+    <section className="Navbar">
+      <Link to="/Akash-Kumar">Home</Link>
+      </section>
+    )
+}

@@ -1,13 +1,17 @@
 {
   "files": {
-    "main.css": "/Akash-Kumar/static/css/main.cddb7e7c.css",
-    "main.js": "/Akash-Kumar/static/js/main.49a3791c.js",
+    "main.css": "/Akash-Kumar/static/css/main.02d4eda3.css",
+    "main.js": "/Akash-Kumar/static/js/main.68f57eb0.js",
+    "static/js/856.218b7c6d.chunk.js": "/Akash-Kumar/static/js/856.218b7c6d.chunk.js",
+    "static/js/338.853658c3.chunk.js": "/Akash-Kumar/static/js/338.853658c3.chunk.js",
     "index.html": "/Akash-Kumar/index.html",
-    "main.cddb7e7c.css.map": "/Akash-Kumar/static/css/main.cddb7e7c.css.map",
-    "main.49a3791c.js.map": "/Akash-Kumar/static/js/main.49a3791c.js.map"
+    "main.02d4eda3.css.map": "/Akash-Kumar/static/css/main.02d4eda3.css.map",
+    "main.68f57eb0.js.map": "/Akash-Kumar/static/js/main.68f57eb0.js.map",
+    "856.218b7c6d.chunk.js.map": "/Akash-Kumar/static/js/856.218b7c6d.chunk.js.map",
+    "338.853658c3.chunk.js.map": "/Akash-Kumar/static/js/338.853658c3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cddb7e7c.css",
-    "static/js/main.49a3791c.js"
+    "static/css/main.02d4eda3.css",
+    "static/js/main.68f57eb0.js"
   ]
 }

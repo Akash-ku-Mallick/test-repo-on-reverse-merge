@@ -11,7 +11,7 @@ return (<svg
       >
         <ellipse cx="32" cy="61" opacity=".3" rx="19" ry="3" />
 
-        <g id='icon'>
+        <g className='icon'>
         <path
           fill="#ffa1ac"
           d="M16,27v10.966c0,8.843,7.168,16.012,16.012,16.012c8.843,0,16.012-7.168,16.012-16.012V27H16z"

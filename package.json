@@ -4,6 +4,14 @@
   "private": true,
   "homepage": "https://akash-ku-mallick.github.io/Akash-Kumar/",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.5",
+    "@react-three/drei": "^9.72.1",
+    "@react-three/fiber": "^8.13.0",
+    "@splinetool/r3f-spline": "^1.0.2",
+    "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/runtime": "^0.9.357",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,9 +21,15 @@
     "@types/react-dom": "^18.2.4",
     "firebase": "^9.22.1",
     "framer-motion": "^10.12.16",
+    "framer-motion-3d": "^10.12.16",
+    "gsap": "^3.12.1",
+    "leva": "^0.9.34",
     "react": "^18.2.0",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.4.4",
     "react-scripts": "5.0.1",
+    "react-tooltip": "^5.13.1",
     "three": "^0.152.2",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -47,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-anchor-link-smooth-scroll": "^1.0.2",
     "gh-pages": "^5.0.0",
     "netlify-cli": "^15.1.1",
     "react-router-dom": "^6.11.2"
