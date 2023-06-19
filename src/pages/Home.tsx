@@ -27,15 +27,19 @@ import { OrbitControls, OrthographicCamera } from '@react-three/drei';
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function Home() {
+  const appRef = useRef(null)
+  const x = useInView(appRef, {margin: '90% 0% 0% 0%'})
+  useEffect(()=>{console.log(x)},[x])
 
   return (
     <div className="App">
         <Intro />
         <Navbar />
-        <div className='container' >
+        <div className='container'>
         <Hero />
         <Context1 /> 
-        <Context2 /> 
+        <Context2 />
+        <Blogs /> 
         <Footer />
         </div>
       </div>
@@ -104,6 +108,7 @@ export function Contact() {
 // }
   return(
     <section id='Contact' className='Contact'>
+      <Comments />
       <form className='RatingForm'>
         <input className='f in' name='Name' type='text' placeholder='Enter Your Name..'></input>
         <input name='Mail' type='text' placeholder='Enter Your E-mail ID..'></input>
@@ -115,6 +120,29 @@ export function Contact() {
     </section>
   )
 }
+
+
+//___________________________________
+
+
+export function Comments() {
+  return (
+    <div id='CommentContainer'>
+      <div className='commentUI'>
+        <div className='flexRow'> 
+          <img></img>
+          <label>Anupam </label>
+          <div className='jselfRight'>
+            <img></img>
+            <label>3.5</label>
+          </div>
+        </div>
+        <p>I have nothing to say</p>
+      </div>
+    </div>
+  )
+}
+
 
 // _______________ Context 1 _________________   ------Start
 
@@ -145,7 +173,7 @@ export function Context1() {
 export function Context2() {
 
   return(
-    <section id='Context' className='Context panel'>
+    <section id='Context2' className='Context panel'>
       <div className="ProjectCarosol">
         <div className="blueDiv a">
           <div className="prjs"><h1>p1</h1></div>
@@ -163,6 +191,19 @@ export function Context2() {
 
 // _______________ Context 2 _________________   ------End
 
+// _______________ Blogs _________________   ------Start
+
+export function Blogs() {
+
+  return(
+    <section id='Blogs' className='Context panel'>
+        blogs
+    </section>
+  )
+}
+
+// _______________ Blogs _________________   ------End
+
 
 // _______________Footer_________________   ------Start
 
@@ -171,9 +212,10 @@ export function Footer() {
   const footerRef = useRef(null);
   const SocialAnimete = useAnimation();
 
-  const footerInView: boolean = useInView(footerRef);
+  const footerInView: boolean = useInView(footerRef, {margin: '0% 0% -50% 0%'});
 
   useEffect(()=>{
+    SocialAnimete.stop()
     if(footerInView) {
       SocialAnimete.start('originMount') 
     }
@@ -189,26 +231,26 @@ export function Footer() {
         <motion.div
           className="Socials SoLinkCol"
           variants={{
-            sideMount: { opacity: 1 },
-            originMount: { opacity: 0 },
+            sideMount: { opacity: 1, bottom: 0 },
+            originMount: { opacity: 1, bottom: '-50vh' },
           }}
           animate={SocialAnimete}
           transition={{ duration: 0.5, delay: 0.1, type: "spring" }}
         >
           <SocialLinks />
         </motion.div>
-        <div className='grid'>
-          <div className='bordR'>
+        <div className='flexRow'>
+          <div className='bordR footdesc'>
           <h3>Services</h3>
           </div>
-          <div className='bordR'>
+          <div className='bordR footdesc'>
           <h3>Works</h3>
           </div>
-          <div className='bordR'>
+          <div className='bordR footdesc'>
           <h3>Links</h3>
           <div className="Socials SoLinkRow">
           <SocialLinks />
-        </div>
+          </div>
           </div>
         </div>
         
@@ -239,7 +281,7 @@ export function SocialLinks() {
 
 
 
-// _______________ Exports _________________   ------
+
  
 
 
@@ -258,10 +300,11 @@ function Navbar() {
   return(
     <section className="Navbar">
       <Header />
-      <a href="#Context"><button>CONTEXT</button></a>
-      <a href="#Contact"><button>CONTACT</button></a>
-      <button>ABOUT</button>
-      <Link to="/Akash-Kumar/Working">PROJECTS</Link>
+      <button><a href="#Context">CONTEXT</a></button>
+      <button><a href="#Context2">CONTEXT2</a></button>
+      <button><a href="#Blogs">Blogs</a></button>
+      <button><a href="#Contact">CONTACT</a></button>
+      <button><Link to="/Akash-Kumar/Working">PROJECTS</Link></button>
       </section>
     )
 }
@@ -273,3 +316,6 @@ export function WorkNavBar() {
       </section>
     )
 }
+
+
+// _______________ Exports _________________   ------

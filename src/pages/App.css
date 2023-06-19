@@ -20,20 +20,15 @@ body {
   overflow-y: hidden;
 }
 
-@media only screen and (max-width: 600px) {
-  body {
-    background-color: lightblue;
-  }
-}
 
 button {
   aspect-ratio: 85/45;
-  width: 9vw;
+  height: 7vh;
   min-width: 45px;
+  max-width: 85px;
   background-color: rgba(177, 177, 177, 0.733);
-  border-radius: 17%;
-  border-bottom-right-radius: 3%;
-  font-size: 70%;
+  border-radius: 6%;
+  font-size: 2vh;
   transition: all 125ms ease-in-out;
   text-align: center;
   border: 0em rgba(255, 255, 255, 0);
@@ -41,11 +36,11 @@ button {
 
 button:hover {
   scale: 110%;
-  background-color: rgb(42, 68, 92);
-  color: rgb(255, 255, 255);
-  border-bottom-right-radius: 17%;
-  border-top-left-radius: 3%;
+  background-color: rgb(255, 255, 255);
+  color: rgb(48, 31, 31);
+  border: 2px solid rgb(48, 31, 31);
 }
+
 
 
 .App {
@@ -71,7 +66,7 @@ button:hover {
 }
 
 .panel {
-  scroll-snap-align: center;
+  scroll-snap-align: start;
   height: 100vh;
   
 }
@@ -192,6 +187,32 @@ Canvas {
   height: 70vh;
   width: 100vw;
   padding-top: 10vh;
+  display: flex;
+  flex-direction: row;
+  margin-inline: 3%;
+}
+
+#CommentContainer {
+  position: relative;
+  height: 80%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.commentUI {
+  position: relative;
+  height: 20%;
+  width: 70%;
+  margin-inline-start: 5%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(185, 185, 185);
+  padding: 5%;
+  border-radius:  3% 2% 3% 2%;
 }
 
 .Footer {
@@ -218,14 +239,6 @@ Canvas {
   max-height: 100%;
 }
 
-.button {
-  height: 20rem;
-  width: 35rem;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  background-color: rgb(64, 64, 64);
-}
 
 
 .ErrorPage {
@@ -328,99 +341,13 @@ Canvas {
   flex-direction: row;
 }
 
-.flexRow {
+.flexcol {
   display: flex;
   flex-direction: column;
 }
 
-.grid{
-  display: grid;
-}
-
-
-
-
-
-.pac-man {
-  border-radius: 50%;
-  margin: 0 auto;
-  margin-top: 5em;
-  border-radius: 100em 100em 0 0;
-  background: #f00;
-  transform-origin: bottom;
-  animation: eating-top .5s infinite;
-  z-index: 300;
-  
-  &, &::before {
-    width: 70px;
-    height: calc(70px/2);
-    background: #fed75a;
-  }
-  
-  &::before {
-    content: '';
-    display: block;
-    margin-top: calc(70px/2);
-    position: absolute;
-    transform-origin: top;
-    border-radius: 0 0 100em 100em;
-    transform: rotate(80deg);
-    animation: eating-bottom .5s infinite;
-  }
-  
-  &::after {
-    position: absolute;
-    border-radius: 100em;
-    content: '';
-    display: block;
-    height: 20px;
-    width: 20px;
-    margin-top: calc((70px / 2) - 10px);
-    margin-left: calc((70px / 2) - 10px);
-    transform-origin: center;
-    animation: 
-      center .5s infinite,
-      ball .5s -.33s infinite linear;
-  }
-}
-
-@keyframes eating-top{
-  0%{ transform: rotate(-40deg); }
-  50% { transform: rotate(0deg); }
-  100%{ transform: rotate(-40deg); }
-}
-
-@keyframes eating-bottom{
-  0%{ transform: rotate(80deg); }
-  50% { transform: rotate(0deg); }
-  100%{ transform: rotate(80deg); }
-}
-
-@keyframes center{
-  0%{ transform: rotate(40deg); }
-  50% { transform: rotate(0deg); }
-  100%{ transform: rotate(40deg); }
-}
-
-@keyframes ball{
-  0%{ 
-    opacity: .7;
-    box-shadow: 
-      70px 0 0 0 #fed75a,
-      120px 0 0 0 #fed75a,
-      170px 0 0 0 #fed75a,
-      220px 0 0 0 #fed75a
-    ;
-  }
-  100% { 
-    box-shadow: 
-      20px 0 0 0 #fed75a,
-      70px 0 0 0 #fed75a,
-      120px 0 0 0 #fed75a,
-      170px 0 0 0 #fed75a
-    ;
-  }
-  
+.jselfRight {
+  justify-self: flex-end;
 }
 
 .ProjectCarosol {
@@ -465,12 +392,52 @@ Canvas {
   flex-wrap: nowrap;
   justify-content: space-evenly;
   aspect-ratio: 5/4;
-  width: 50vh;
-  border-top-left-radius: 10%;
-  border-top-right-radius: 10%;
-  border-bottom-right-radius: 1%;
-  border-bottom-left-radius: 10%;
+  width: 45vh;
+  border-radius: 5%;
   padding: 5vh;
+  position: relative;
+  align-self: center;
+  margin-inline: 5%;
+}
+
+.footdesc {
+  max-width: fit-content;
+  margin-inline: 2vw;
+}
+
+.CloseBTNWrapper {
+  transition: 89ms ease-in-out;
   position: absolute;
-  bottom: 10%; right: 20%;
+  display: flex;
+  bottom: 0;
+  right: 0;
+  margin-right: 2vw;
+  margin-bottom: 2vh;
+  max-width: 120px;
+}
+
+.CloseBTN {
+  position: absolute;
+
+  min-height: 60px;
+  aspect-ratio: 1/1;
+  height: 4vh;
+  border-radius: 5%;
+  background-color: white;
+  z-index: 4831233;
+}
+
+#shape {
+  will-change: none;
+}
+#test {
+  height: 57px;
+  width: 24px;
+  -webkit-clip-path: url(#shape);
+  clip-path: url(#shape);
+  will-change: none;
+}
+
+@media all and (max-width: 600px) {
+
 }
