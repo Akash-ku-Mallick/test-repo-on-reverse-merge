@@ -36,16 +36,28 @@ export default function Intro({ ...props }) {
     init: {
       borderRadius: '23%',
       backgroundColor: 'black',
-      border: '1px solid white',
+      border: '3px solid',
+      borderColor: 'white',
     },
     hover: {
       borderRadius: '50%',
       backgroundColor: 'white',
-      scale: 1.2,
+      scale: 1.4,
       rotateZ: [0, 90, -45]
     },
     click: {
-      rotateZ: [-45, 90]
+      backgroundColor: 'white',
+      rotateZ: [-45, 90],
+      scale: 0.8,
+      transition: {duration: 0.2, ease: 'easeInOut'},
+    },
+    mobile: {
+      borderRadius: ['23%', '50%', '2%'],
+      backgroundColor: 'black',
+      border: '5px solid',
+      borderColor: 'white',
+      transition: {duration: 2, ease: 'easeInOut', yoyo: Infinity, repeat: Infinity},
+      rotateZ: [0, 90, -45],
     }
   }
 
@@ -76,6 +88,7 @@ export default function Intro({ ...props }) {
           
         </Canvas>
       </Suspense>
+
       <motion.div
         className="CloseBTNWrapper CloseBTN"
         variants={BtnAnimation}
@@ -86,8 +99,7 @@ export default function Intro({ ...props }) {
         transition={{ duration: 0.2, power: 4 }}
         onClick={() => {
           setClickEvent(!clickEvent);
-        }}
-      >
+        }}>
         <motion.div className="CloseBTAr" variants={BtnTxtAnim}
         initial='init'
         whileHover='click'>

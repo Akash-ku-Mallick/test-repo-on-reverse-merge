@@ -57,7 +57,7 @@ ___________________Bellow code can be written as a moduler formart
 
 
 export function Hero() {
-  
+  const contextOfHero = "Hi there! I'm Akash Kumar, a passionate developer with a love for creating engaging and interactive designs. I have honed my skills in front-end development, UX design, etc.. My goal is to create beautiful and functional websites that not only look great but also provide a seamless user experience. I believe in the power of design to solve problems and improve people's lives, and I'm always looking for new and innovative ways to push the boundaries of what's possible.When I'm not working on client projects, you can find me tinkering with new technologies, exploring the great outdoors, or sharing my knowledge and expertise through my blog. Thanks for stopping by, and I look forward to connecting with you soon!"
   return(
     <section id="Hero" className='Hero panel' >
       <div className='heroText'> 
@@ -71,10 +71,7 @@ export function Hero() {
       <span>{"/>"}</span>
       </span> 
       </div>
-      {/* <Canvas>
-      <OrbitControls />
-      <MetalBlob />
-      </Canvas> */}
+      <motion.div className='ContextOfhero'>{contextOfHero}</motion.div>
     </section>
   )
 }

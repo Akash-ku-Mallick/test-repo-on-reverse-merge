@@ -124,14 +124,21 @@ Canvas {
 
 .Hero {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  transition: all 2s ease-in-out;
+  width: 98vw;
+  height: 98vh;
+  transition: all 1s ease-in-out;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: #bd5050;
+  flex-direction: row;
+  justify-content: flex-start;
+  background: #00000000;
   padding-inline: 3vw;
+  margin-block: 2vh;
+  margin-inline: 1vw;
+  padding-block: 0;
+  padding-inline: 2vw;
+  overflow: hidden;
+  border: 2px whitesmoke solid;
+  border-radius: 3%;
 }
 
 .heroText svg{
@@ -153,26 +160,33 @@ Canvas {
 .heroText {
   color: aliceblue;
   font-family: "Jost", sans-serif, 'cursive';
-  font-size: 6vw;
+  font-size: 5vw;
   line-height: 9vh;
   transition: all 0.5s ease-in-out;
-  max-width: fit-content;
+  max-width: 50vw;
+  width: 50vw;
+  position: relative;
+  left: 0;
+  top: 25vh;
+  height: 75vh;
+  left: 0;
+  scale: 0.7;
 }
 
 .Heroline1 {
   letter-spacing: 1vw;
-  font-size: 6vw;
+  font-size: 5vw;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .Heroline2 {
   letter-spacing: 0.5vw;
-  font-size: 5vw;
+  font-size: 4vw;
 }
 
 .Heroline3 {
   letter-spacing: 1.2vw;
-  font-size: 5vw;
+  font-size: 4vw;
   font-weight: 700;
 }
 
@@ -195,12 +209,13 @@ Canvas {
 #CommentContainer {
   position: relative;
   height: 80%;
-  width: 40%;
+  width: 40vw;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
+  margin-inline: 5vw;
 }
 
 .commentUI {
@@ -438,6 +453,54 @@ Canvas {
   will-change: none;
 }
 
-@media all and (max-width: 600px) {
+.ContextOfhero {
+  display: flexbox;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  left: 50vw;
+  line-break: anywhere;
+  color: #ffffff;
+  font-size: 2.5vw;
+  font-family: 'Franklin Gothic thin', 'Arial Narrow', Arial, sans-serif;
+  word-wrap: break-word;
+  text-align: center;
+  max-width: fit-content;
+  top: 15vh;
+}
 
+@media all and (aspect-ratio < 1/1) {
+  .ContextOfhero {
+    font-size: 4vw;
+    left: 0;
+    margin-top: 40vh;
+
+  }
+
+  .Hero {
+    flex-direction: column;
+  }
+
+  .heroText {
+    scale: 1.4;
+    left: 10vw;
+  }
+
+  .SoLinkCol {
+    position: fixed;
+    left: 0;
+    top: 40%;
+    max-width: fit-content;
+  }
+
+  .Contact {
+    flex-direction: column;
+  }
+  
+  #CommentContainer {
+    width: 100vw;
+    overflow: hidden;
+    overflow-x: scroll;
+    margin-bottom: 2vh;
+  } 
 }

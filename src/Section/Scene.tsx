@@ -119,8 +119,8 @@ export default function Scene({ ...props }) {
   
   const [loaded, loadCheck] = useState(false)
   const [lockscreen, LSvsSet] = useState(true);
-  const [homescreen, HSvsSet] = useState(true);
-  const [lsActivity, LSAvsSet] = useState(true);
+  const [homescreen, HSvsSet] = useState(false);
+  const [lsActivity, LSAvsSet] = useState(false);
 
   const phoneObj = useRef(null)
   const phoneAnim = useAnimation()
@@ -973,6 +973,7 @@ export default function Scene({ ...props }) {
           </group>
           <motion.group
           variants={phoneAnimate}
+          initial="hidden"
           animate={HSvisibAnim} name="HomeScreen" position={[-1.35, 7.34, 20]}>
             <group name="Group 6" position={[0.25, -212.33, 0]}>
               <mesh
@@ -1344,6 +1345,7 @@ export default function Scene({ ...props }) {
             <motion.group
             variants={phoneAnimate}
             animate={ALSvisibAnim} 
+            initial="hidden"
             name="notification" position={[0.61, 33.8, -23]}>
               <group name="Components" position={[0, 53, -2]}>
                 <mesh
