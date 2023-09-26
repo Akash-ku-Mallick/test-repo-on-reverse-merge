@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Limelight&family=Rubik+Microbe&display=swap');
 
+
 html,
 body {
   margin: 0px;
@@ -13,11 +14,18 @@ body {
   height: auto;
   width: auto;
   background-color: whitesmoke;
-  background: rgb(131,58,180);
-  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-  
+  background: '#5C8374';
+
   overflow-x: hidden;
   overflow-y: hidden;
+ 
+  --bg-image1: url('../../assets/Heropic.jpg');
+  --bg-image2: url('../../assets/Heropic2.jpg');
+
+  --darkest: #040D12;
+  --dark: #183D3D;
+  --light: #5C8374;
+  --lightest: #93B1A6;
 }
 
 
@@ -26,18 +34,19 @@ button {
   height: 7vh;
   min-width: 45px;
   max-width: 85px;
-  background-color: rgba(177, 177, 177, 0.733);
+  background-color: var(--light);
   border-radius: 6%;
   font-size: 2vh;
   transition: all 125ms ease-in-out;
   text-align: center;
   border: 0em rgba(255, 255, 255, 0);
+  color: var(--lightest);
 }
 
 button:hover {
   scale: 110%;
-  background-color: rgb(255, 255, 255);
-  color: rgb(48, 31, 31);
+  background-color: var(--lightest);
+  color: var(--darkest);
   border: 2px solid rgb(48, 31, 31);
 }
 
@@ -53,22 +62,35 @@ button:hover {
   font-size: 2vh;
   font-family: 'Limelight', 'Rubik Microbe', "Jost", sans-serif, cursive;
   background-color: rgb(5, 2, 21);
-
 }
 
 .container {
   max-height: 100vh;
-	overflow-y: scroll;
+	overflow-y: auto;
   scroll-snap-type: y mandatory;
   overflow-x: hidden;
   transition: 40ms ease-in-out;
   scroll-behavior: smooth;
 }
 
+.container::-webkit-scrollbar {
+  background-color: #6a6a6a00;
+  color: #6a6a6a00;
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: '#183D3D';
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #93B1A6;
+
+}
+
+
 .panel {
   scroll-snap-align: start;
   height: 100vh;
-  
 }
 
 
@@ -87,10 +109,12 @@ button:hover {
 .HeaderLogo {
   margin: 5px;
   cursor: pointer;
+  height: 110%;
+  
 }
 
 .HeaderLogo:hover {
-  scale: 1.05;
+  scale: 1.2;
   transition: 120ms ease-in-out;
 }
 
@@ -103,16 +127,16 @@ button:hover {
 
 .Navbar{
   width: 100%;
-  height: 10vh;
+  height: 8vh;
   display: inline-flex;
   flex-direction: row;
   align-items: last baseline;
   flex-wrap: nowrap;
   justify-content: space-around;
   position: fixed;
-  top: 5vh;
+  top: 0;
   z-index: 12;
-  background-color: #ececec4a;
+  background-color: var(--dark);
 }
 
 Canvas {
@@ -124,77 +148,25 @@ Canvas {
 
 .Hero {
   position: relative;
-  width: 98vw;
-  height: 98vh;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 2vh;
   transition: all 1s ease-in-out;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  background: #00000000;
-  padding-inline: 3vw;
-  margin-block: 2vh;
-  margin-inline: 1vw;
-  padding-block: 0;
-  padding-inline: 2vw;
+  justify-content: space-around;
+  align-items: center;
+  background: transparent;
+  color: #ffffff;
   overflow: hidden;
-  border: 2px whitesmoke solid;
-  border-radius: 3%;
 }
 
-.heroText svg{
-  width: 8vw;
-  height: 8vw;
-  animation: wave 1920ms 20ms infinite ease-in;
+.Hero p {
+  color: rgb(255, 255, 255);
+  font: 3vw sans-serif;
 }
 
-.heroText svg:hover{
-  animation: none;
-}
 
-@keyframes wave {
-  0%{ transform: rotateX(1deg) rotateZ(10deg); }
-  45%{ transform: rotateX(-1deg) rotateZ(-20deg) scale(0.9) }
-  100%{ transform: rotateX(1deg) rotateZ(10deg); }
-}
 
-.heroText {
-  color: aliceblue;
-  font-family: "Jost", sans-serif, 'cursive';
-  font-size: 5vw;
-  line-height: 9vh;
-  transition: all 0.5s ease-in-out;
-  max-width: 50vw;
-  width: 50vw;
-  position: relative;
-  left: 0;
-  top: 25vh;
-  height: 75vh;
-  left: 0;
-  scale: 0.7;
-}
-
-.Heroline1 {
-  letter-spacing: 1vw;
-  font-size: 5vw;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.Heroline2 {
-  letter-spacing: 0.5vw;
-  font-size: 4vw;
-}
-
-.Heroline3 {
-  letter-spacing: 1.2vw;
-  font-size: 4vw;
-  font-weight: 700;
-}
-
-.Context {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-}
 
 .Contact {
   position: relative;
@@ -365,31 +337,7 @@ Canvas {
   justify-self: flex-end;
 }
 
-.ProjectCarosol {
-  height: 100vh;
-  width: max-content;
-  background-color: rgb(164, 112, 43);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow-x: hidden;
-}
 
-
-.blueDiv, .redDiv , .greenDiv {
-  height: 90vh;
-  width: 100vw;
- }
-.blueDiv {
-  background-color: rgb(30, 169, 169);
-}
-
-.redDiv {
-  background-color: rgb(169, 93, 30);
-}
-.greenDiv {
-  background-color: rgb(93, 175, 84);
-}
 
 .prjs {
   width: 50vh;
@@ -453,22 +401,6 @@ Canvas {
   will-change: none;
 }
 
-.ContextOfhero {
-  display: flexbox;
-  flex-direction: column;
-  flex-wrap: wrap;
-  position: absolute;
-  left: 50vw;
-  line-break: anywhere;
-  color: #ffffff;
-  font-size: 2.5vw;
-  font-family: 'Franklin Gothic thin', 'Arial Narrow', Arial, sans-serif;
-  word-wrap: break-word;
-  text-align: center;
-  max-width: fit-content;
-  top: 15vh;
-}
-
 @media all and (aspect-ratio < 1/1) {
   .ContextOfhero {
     font-size: 4vw;
@@ -477,14 +409,7 @@ Canvas {
 
   }
 
-  .Hero {
-    flex-direction: column;
-  }
 
-  .heroText {
-    scale: 1.4;
-    left: 10vw;
-  }
 
   .SoLinkCol {
     position: fixed;
@@ -503,4 +428,136 @@ Canvas {
     overflow-x: scroll;
     margin-bottom: 2vh;
   } 
+}
+
+#TecchCanvas {
+  width: 100vw;
+  height: 100vh;
+}
+
+#introCanvas {
+  height: 100vh;
+  width: 100vw;
+}
+
+.cirlcle {
+  border-radius: 100em;
+  height: 25vw;
+  aspect-ratio: 1/1;
+  background-color: rgb(138, 209, 191);
+  margin: 2em;
+  background-size: cover;
+}
+
+.hrimg {
+  background-image: var(--bg-image1);
+  transition: 120ms ease-in-out;
+  animation: bganimate 10s ;
+}
+
+.hrimg:hover {
+  animation: none ;
+}
+
+@keyframes bganimate {
+  0% {
+    background-image: var(--bg-image1);
+  }
+  50% {
+    background-image: var(--bg-image2);
+  }
+}
+
+.glass{
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.input {
+  background-color: var(--lightest);
+  border-radius: 10px;
+  border: 1px solid var(--dark);
+  padding: 5px;
+  font-family: "Jost";
+  margin-bottom: 5px;
+}
+
+
+.Context {
+  position: relative;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.outlinedCircle {
+  position: absolute;
+  border-radius: 100%;
+  border: 1px solid radial-gradient(circle, rgba(238,174,202,1) 10%, rgba(91,191,185,1) 62%,  rgba(200,200,255,1) 108%);
+  z-index: 1;
+  opacity: 1;
+  aspect-ratio: 1/1;
+  justify-content: center;
+  max-height: max-content;
+  padding: 2%;
+}
+
+@keyframes ring {
+  0% {
+    border: 2px solid radial-gradient(circle, rgba(238,174,202,1) 10%, rgba(91,191,185,1) 62%,  rgba(200,200,255,1) 108%);
+  }
+  50% {
+    border: 2px solid radial-gradient(circle, rgba(200,200,255,1) 10%,  rgba(238,174,202,1) 62%,  rgba(91,191,185,1) 108%);
+  }
+  100% {
+    border: 2px solid radial-gradient(circle, rgba(91,191,185,1) 10%,  rgba(200,200,255,1) 62%,  rgba(238,174,202,1) 108%);
+  }
+}
+
+.outlinedCircle:hover {
+  transition: 60ms ease-in-out;
+  animation: ring 2s reverse linear ;
+}
+
+.Context > .rightBtn {
+  position: absolute;
+  right: 0;
+  margin-right: 2vw;
+  z-index: 1;
+  color: rgb(0, 255, 255);
+}
+
+.Context > .rightBtn:hover {
+  color: rgb(0, 0, 0);
+  transform: scale(1.1);
+  transition: 60ms ease-in-out;
+  
+}
+
+.Context > .leftBtn {
+  position: absolute;
+  left: 0;
+  margin-left: 1vw;
+  z-index: 1;
+}
+
+.item {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-image: url("https://unsplash.com/photos/ihIKOg_lHgI/download?force=true&w=1920");
+  background-size: cover;
+  z-index: 0;
+}
+
+.Context >.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
 }

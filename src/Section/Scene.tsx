@@ -1,95 +1,17 @@
 
 import useSpline from '@splinetool/r3f-spline'
-import { OrbitControls, PerspectiveCamera, Text } from '@react-three/drei'
+import { OrbitControls, OrthographicCamera, PerspectiveCamera, Text } from '@react-three/drei'
 
 
 import { motion } from 'framer-motion-3d'
-import { useEffect, useReducer, useRef, useState } from 'react'
-import { useAnimation, stagger } from 'framer-motion'
+import { Suspense, useEffect, useReducer, useRef, useState } from 'react'
+import { motion as motion2d, useAnimation, stagger } from 'framer-motion'
 
-/* <PerspectiveCamera
-          name="Camera"
-          makeDefault={true}
-          far={100000}
-          near={8}
-          fov={55}
-          position={[-46.33, 251.19, 814.62]}
-          rotation={[0, 0, 0]}
-        /> */
+import '@react-three/fiber'
 
-/*<OrthographicCamera
-          name="Camera"
-          makeDefault={true}
-          zoom={5.72}
-          far={100000}
-          near={-100000}
-          position={[-46.33, 251.19, 814.62]}
-          rotation={[0, 0, 0]}
-        /> */
+import { Canvas } from '@react-three/fiber'
+import '../pages/App.css'
 
-
-const phoneAnimate = {
-  init: {scale: 0},
-  phoneIntro: {
-    scale: [0, 0.4, 0.8, 0.9, 1.8, 1.4, 1],
-    x: [0, 0, 0, 0, 0, 0, 0],
-    y: [0, 0, 0, 0, 0, 0, 0],
-    z: [0, 0, 0, 0, 0, 0, 0],
-    rotateX: [0, -0.05, -0.1, -1.2, -0.1, 0, 0],
-    rotateY: [0, 0.2, 0.8, 0.9, 2, 4, 6.2],
-    rotateZ: [0, 0, 0, 0, 0, 0],
-    transition: {duration: 2, delay: 10}
-  },
-  final: {
-    scale: 1,
-    x: 0,
-    y: 0,
-    z: 0,
-    rotateX: 0,
-    rotateY: 6.2,
-    rotateZ: 0,
-    transition: {duration: 0.2}
-  },
-  horizontal: {
-    scale: 1,
-    x: 0,
-    y: 0,
-    z: 0,
-    rotateX: 0,
-    rotateY: 6.2,
-    rotateZ: 1.575,
-    transition: {duration: 0.8}
-  },
-  vertical: {
-
-  },
-  small: {
-    z: -40,
-  },
-  large: {
-    z: 40,
-  },
-  top: {
-
-  },
-  full: {
-
-  },
-  hidden: {
-    opacity: 0,
-    visible: false,
-    transition: {
-      duration: 0.12
-    }
-  },
-  visible: {
-    opacity: 1,
-    visible: true,
-    transition: {
-      duration: 0.12
-    }
-  }
-}
 
 type introUIActions = {
   type: string
@@ -118,44 +40,407 @@ export default function Scene({ ...props }) {
   const { nodes, materials } = useSpline('https://prod.spline.design/eqB7rgLL1IBZPM7S/scene.splinecode')
   
   const [loaded, loadCheck] = useState(false)
-  const [lockscreen, LSvsSet] = useState(true);
-  const [homescreen, HSvsSet] = useState(false);
-  const [lsActivity, LSAvsSet] = useState(false);
+  const [{h, w}, setSidebarSize] = useState({h: 0, w: 0})
+  const [clickEvent, setClickEvent] = useState(false);
 
+  const timeAnimate = {
+    hidden: {
+      visible: false,
+      y: 50,
+      transition: {
+        duration: 0.12
+      }
+    },
+    visible: {
+      y:  35,
+      visible: true,
+      transition: {
+        duration: 0.12
+      }
+    },
+    top: {
+      y: 110,
+      x: -90,
+      scale: 0.17,
+    },
+    middle: {
+      y: 0,
+      x: 0,
+      scale: 1,
+    }
+  }
+  
+  
+  const phoneAnimate = {
+    init: {scale: 0},
+    phoneIntro: {
+      scale: [0, 0.4, 0.8, 0.9, 1.8, 1.4, 1],
+      x: [0, 0, 0, 0, 0, 0, (props.props[1]/8*2)],
+      y: [0, 0, 0, 0, 0, 0, 0],
+      z: [0, 0, 0, 0, 0, 0, 0],
+      rotateX: [0, -0.05, -0.1, -1.2, -0.1, 0, 0],
+      rotateY: [0, 0.2, 0.8, 0.9, 2, 4, 6.2],
+      rotateZ: [0, 0, 0, 0, 0, 0],
+      transition: {duration: 2, delay: 10}
+    },
+    final: {
+      scale: 1,
+      x: (props.props[1]/8*2),
+      y: 0,
+      z: 0,
+      rotateX: 0,
+      rotateY: 6.2,
+      rotateZ: 0,
+      transition: {duration: 0.2}
+    },
+    horizontal: {
+      scale: 1,
+      x: (props.props[1]/8*3),
+      y: 0,
+      z: 0,
+      rotateX: 0,
+      rotateY: 6.2,
+      rotateZ: 1.575,
+      transition: {duration: 0.5}
+    },
+    vertical: {
+      scale: 1,
+      x: (props.props[1]/8*2),
+      y: 0,
+      z: 0,
+      rotateX: 0,
+      rotateY: 6.2,
+      rotateZ: 0,
+    },
+    small: {
+      z: -40,
+    },
+    large: {
+      z: 40,
+    },
+    top: {
+  
+    },
+    full: {
+  
+    },
+    hidden: {
+      visible: false,
+      transition: {
+        duration: 0.12
+      }
+    },
+    visible: {
+      visible: true,
+      transition: {
+        duration: 0.12
+      }
+    }
+  }
+
+  const BtnTxtAnim = {
+    init: {
+      opacity: 0,
+      scale: 0.5,
+    },
+    click: {
+      opacity: 0,
+      rotateZ: [0, 270],
+      scale: 0.5,
+    },
+    hover: {
+      opacity: 1,
+      rotateZ: [0, 90],
+      scale: 1.2,
+    }
+  }
+
+  const BtnAnimation = {
+    init: {
+      borderRadius: '23%',
+      backgroundColor: 'black',
+      border: '3px solid',
+      borderColor: 'white',
+    },
+    hover: {
+      borderRadius: '50%',
+      backgroundColor: 'white',
+      scale: 1.4,
+      rotateZ: [0, 90, -45]
+    },
+    click: {
+      backgroundColor: 'white',
+      rotateZ: [-45, 90],
+      scale: 0.8,
+      transition: {duration: 0.2, ease: 'easeInOut'},
+    },
+    mobile: {
+      borderRadius: ['23%', '50%', '2%'],
+      backgroundColor: 'black',
+      border: '5px solid',
+      borderColor: 'white',
+      transition: {duration: 2, ease: 'easeInOut', yoyo: Infinity, repeat: Infinity},
+      rotateZ: [0, 90, -45],
+    }
+  }
+
+  const sidebarRef = useRef(null)
   const phoneObj = useRef(null)
+  const timeObjRef = useAnimation()
+  const dateObjRef = useAnimation()
   const phoneAnim = useAnimation()
   const ALSvisibAnim = useAnimation()
   const DefLSvisibAnim = useAnimation()
   const HSvisibAnim = useAnimation()
+  // props.props[0] is width
+  // props.props[1] is height
 
 
+  useEffect(() => {let x=document.getElementById('sideBar');
+    console.log(x?.offsetHeight, x?.offsetWidth)}, [sidebarRef])
 
 
   function AboutEffect () {
-    HSvisibAnim.stop()
+    dateObjRef.start('visible')
+    timeObjRef.start('middle')
+    ALSvisibAnim.start('hidden')
+    HSvisibAnim.start('hidden')
+    DefLSvisibAnim.start('visible')
+    dateObjRef.start('visible')
   }
 
   function BlogsEffect () {
-    ALSvisibAnim.start(lsActivity?'visible':'hidden')
-    LSAvsSet(!lsActivity)
+    dateObjRef.start('visible')
+    timeObjRef.start('middle')
+    HSvisibAnim.start('hidden')
+    DefLSvisibAnim.start('hidden')
+    ALSvisibAnim.start('visible')
   }
 
   function ProjectsEffect () {
-    DefLSvisibAnim.start(lockscreen?'visible':'hidden');
-    LSvsSet(!lockscreen);
+    dateObjRef.start('visible')
+    timeObjRef.start('middle')
+    HSvisibAnim.start('hidden')
+    DefLSvisibAnim.start('hidden')
+    ALSvisibAnim.start('visible')
+    phoneAnim.start('horizontal')
   }
 
   function ContactMeEffect () {
-    HSvisibAnim.start(homescreen?'visible':'hidden')
-    HSvsSet(!homescreen)
-    
+    dateObjRef.start('hidden')
+    timeObjRef.start('top')
+    ALSvisibAnim.start('hidden')
+    DefLSvisibAnim.start('hidden')
+    HSvisibAnim.start('visible')
+    phoneAnim.start('vertical')
   }
 
   // useEffect(()=>{phoneAnim.start({animation=''})},[phoneObj])
   
   
   return (
-    <>
+    <motion2d.div
+      id="Intro"
+      initial={{
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "black",
+        position: "fixed",
+        top: 0,
+        zIndex: 12345,
+        alignSelf: "center",
+      }}
+      animate={{
+        animation: "ease-in-out",
+        top: clickEvent ? "-110vh" : 0,
+      }}
+      transition={{
+        duration: 1,
+      }}
+    >
+      {/* <Canvas id='cnv2'>
+      <color attach="background" args={['#000000']} />
+      <group {...props} dispose={null}>
+      <PerspectiveCamera
+          name="Camera"
+          makeDefault={true}
+          far={100000}
+          near={8}
+          fov={35}
+          position={[0, 0, 1500]}
+          rotation={[0, 0, 0]}
+        /> 
+        <group name="Enviroment" position={[160.29, 682.97, 1256.27]}>
+          <directionalLight
+            name="Directional Light 2"
+            castShadow
+            intensity={2.23}
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+            shadow-camera-near={-10000}
+            shadow-camera-far={100000}
+            shadow-camera-left={-1000}
+            shadow-camera-right={1000}
+            shadow-camera-top={1000}
+            shadow-camera-bottom={-1000}
+            position={[522.1, -71.64, 44.85]}
+            rotation={[-Math.PI, -0.37, -Math.PI]}
+            scale={[1.73, 1, 0.9]}
+          />
+        </group>
+
+        <motion.group variants={phoneAnimate}
+        initial="hidden"  name="Sidebar Instance" position={[-props.props[0]*3/4, (props.props[1]*1/4), -3.25]} scale={[0.40, 0.40, 0.89]}>
+          <group name="option11" position={[4.79, 119.8, -30]}>
+            <mesh
+              name="Text11"
+              geometry={nodes.Text11.geometry}
+              material={materials.optiontxt}
+              position={[0, -28.53, 0.46]}
+              scale={0.86}
+            />
+            <mesh
+              name="option12"
+              geometry={nodes.option12.geometry}
+              material={materials.optionbg}
+              position={[0, -3.57, -0.46]}
+              scale={0.92}
+            />
+          </group>
+          <group name="option1 Instance" position={[673.86, 119.8, -20]}>
+            <mesh
+              name="Text12"
+              geometry={nodes.Text12.geometry}
+              material={materials.optiontxt}
+              position={[0, -28.53, 0.46]}
+              scale={0.86}
+            />
+            <mesh
+              name="option13"
+              geometry={nodes.option13.geometry}
+              material={materials.optionbg}
+              position={[0, -3.57, -0.46]}
+              scale={0.92}
+            />
+          </group>
+          <group name="option1 Instance 2" position={[1342.93, 119.8, -10]}>
+            <mesh
+              name="Text13"
+              geometry={nodes.Text13.geometry}
+              material={materials.optiontxt}
+              position={[0, -28.53, 0.46]}
+              scale={0.86}
+            />
+            <mesh
+              name="option14"
+              geometry={nodes.option14.geometry}
+              material={materials.optionbg}
+              position={[0, -3.57, -0.46]}
+              scale={0.92}
+            />
+          </group>
+          <group name="option1 Instance 3" position={[2012, 119.8, 0]}>
+            <mesh
+              name="Text14"
+              geometry={nodes.Text14.geometry}
+              material={materials.optiontxt}
+              position={[0, -28.53, 0.46]}
+              scale={0.86}
+            />
+            <mesh
+              name="option15"
+              geometry={nodes.option15.geometry}
+              material={materials.optionbg}
+              position={[0, -3.57, -0.46]}
+              scale={0.92}
+            />
+          </group>
+        </motion.group>
+        {/* <motion.group 
+        variants={phoneAnimate}
+        initial="hidden"
+        animate="visible"
+        name="Sidebar" 
+        ref={sidebarRef}
+        position={[(-props.props[1]), -30, -10]} scale={[0.4, 0.4, 0.4]}>
+          <motion.group whileHover={{scale: 1.2}}
+          onClick={AboutEffect}
+           name="option16" position={[0, 507.26, 0]}>
+            <mesh
+              name="Text15"
+              geometry={nodes.Text15.geometry}
+              material={materials.optiontxt}
+              position={[0, -28.53, 0.46]}
+              scale={0.86}
+            />
+            <mesh
+              name="option17"
+              geometry={nodes.option17.geometry}
+              material={materials.optionbg}
+              position={[0, -3.57, -0.46]}
+              scale={0.92}
+            />
+          </motion.group>
+          <motion.group whileHover={{scale: 1.2}}
+          onClick={ProjectsEffect}
+          name="option1 Instance1" position={[0, 250.48, 0]}>
+            <mesh
+              name="Text16"
+              geometry={nodes.Text16.geometry}
+              material={materials.optiontxt}
+              position={[0, -28.53, 0.46]}
+              scale={0.86}
+            />
+            <mesh
+              name="option18"
+              geometry={nodes.option18.geometry}
+              material={materials.optionbg}
+              position={[0, -3.57, -0.46]}
+              scale={0.92}
+            />
+          </motion.group>
+          <motion.group whileHover={{scale: 1.2}}
+          onClick={BlogsEffect}
+          name="option1 Instance 21" position={[0, -6.3, 0]}>
+            <mesh
+              name="Text17"
+              geometry={nodes.Text17.geometry}
+              material={materials.optiontxt}
+              position={[0, -28.53, 0.46]}
+              scale={0.86}
+            />
+            <mesh
+              name="option19"
+              geometry={nodes.option19.geometry}
+              material={materials.optionbg}
+              position={[0, -3.57, -0.46]}
+              scale={0.92}
+            />
+          </motion.group>
+          <motion.group whileHover={{scale: 1.2}}
+          onClick={ContactMeEffect} name="option1 Instance 31" position={[0, -263.08, 0]}>
+            <mesh
+              name="Text18"
+              geometry={nodes.Text18.geometry}
+              material={materials.optiontxt}
+              position={[0, -28.53, 0.46]}
+              scale={0.86}
+            />
+            <mesh
+              name="option110"
+              geometry={nodes.option110.geometry}
+              material={materials.optionbg}
+              position={[0, -3.57, -0.46]}
+              scale={0.92}
+            />
+          </motion.group>
+        </motion.group> 
+        </group>
+      </Canvas> */}
+
+      <Suspense fallback={null}>
+        <Canvas id='introCanvas' shadows flat linear>
+      <>
       <color attach="background" args={['#000000']} />
       <group {...props} dispose={null}>
         <group
@@ -184,10 +469,10 @@ export default function Scene({ ...props }) {
           makeDefault={true}
           far={100000}
           near={8}
-          fov={55}
-          position={[-46.33, 0, 814.62]}
+          fov={35}
+          position={[0, 0, 1500]}
           rotation={[0, 0, 0]}
-        />
+        /> 
         <group name="Enviroment" position={[160.29, 682.97, 1256.27]}>
           <directionalLight
             name="Directional Light 2"
@@ -208,7 +493,7 @@ export default function Scene({ ...props }) {
         </group>
 
         <motion.group variants={phoneAnimate}
-        initial="hidden"  name="Sidebar Instance" position={[-574.72, 537.51, -3.25]} scale={[0.56, 0.56, 0.89]}>
+        initial="hidden"  name="Sidebar Instance" position={[-props.props[0]*3/4, (props.props[1]*1/4), -3.25]} scale={[0.40, 0.40, 0.89]}>
           <group name="option11" position={[4.79, 119.8, -30]}>
             <mesh
               name="Text11"
@@ -278,7 +563,9 @@ export default function Scene({ ...props }) {
         variants={phoneAnimate}
         initial="hidden"
         animate="visible"
-        name="Sidebar" position={[-640.5, 90, -100]} scale={[0.6, 0.6, 0.6]}>
+        name="Sidebar" 
+        ref={sidebarRef}
+        position={[(-props.props[1]), -30, -10]} scale={[0.4, 0.4, 0.4]}>
           <motion.group whileHover={{scale: 1.2}}
           onClick={AboutEffect}
            name="option16" position={[0, 507.26, 0]}>
@@ -354,7 +641,7 @@ export default function Scene({ ...props }) {
         
         <motion.group variants={phoneAnimate} ref={phoneObj}
         animate={phoneAnim}
-        name="iPhone 14 Pro" position={[0, 0, 0]}>
+        name="iPhone 14 Pro" position={[(props.props[1]/8*2), 0, 0]}>
           <mesh
             name="signal"
             geometry={nodes.signal.geometry}
@@ -1328,13 +1615,17 @@ export default function Scene({ ...props }) {
           </motion.group>
           <group name="LockScreen" position={[-1.12, 11.4, 43]} rotation={[0, 0, 0]} scale={[1.02, 1, 0.76]}>
             <group name="LcTxts" position={[1, 125.48, -28.67]}>
-              <mesh
+              <motion.mesh
                 name="LockScreenDate"
                 geometry={nodes.LockScreenDate.geometry}
                 material={materials['LockScreenDate Material']}
                 position={[0, 36.22, 1.19]}
+                animate={dateObjRef}
+                variants={timeAnimate}
               />
-              <mesh
+              <motion.mesh
+                animate={timeObjRef}
+                variants={timeAnimate}
                 name="LockScreenTime"
                 geometry={nodes.LockScreenTime.geometry}
                 material={materials['LockScreenTime Material']}
@@ -1471,5 +1762,56 @@ export default function Scene({ ...props }) {
         <hemisphereLight name="Default Ambient Light" intensity={-1.51} color="#dbdbdb" />
       </group>
     </>
+    </Canvas>
+      </Suspense>
+      {/* ---------From Here HTML elements are written which are not part of Three.Js object group----- */}
+      <motion2d.div
+        className="CloseBTNWrapper CloseBTN"
+        variants={BtnAnimation}
+        initial="init"
+        animate="init"
+        whileTap="click"
+        whileHover="hover"
+        transition={{ duration: 0.2, power: 4 }}
+        onClick={() => {
+          setClickEvent(!clickEvent);
+        }}>
+        <motion2d.div className="CloseBTAr" variants={BtnTxtAnim}
+        initial='init'
+        whileHover='click'>
+          <svg
+            width="0"
+            height="0"
+            viewBox="0 0 24 57"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <clipPath id="shape">
+                <path
+                  d="M10.9393 56.0697C11.5251 56.6555 12.4749 56.6555 13.0607 56.0697L22.6066 46.5238C23.1924 45.938 23.1924 44.9883 22.6066 44.4025C22.0208 43.8167 21.0711 43.8167 20.4853 44.4025L12 52.8878L3.51472 44.4025C2.92893 43.8167 1.97919 43.8167 1.3934 44.4025C0.807612 44.9883 0.807612 45.938 1.3934 46.5238L10.9393 56.0697ZM10.5 0L10.5 55.0091H13.5L13.5 0L10.5 0Z"
+                  fill="black"
+                  fill-opacity="0.77"
+                />
+              </clipPath>
+            </defs>
+          </svg>
+          <svg
+            id="test"
+            width="24"
+            height="57"
+            viewBox="0 0 24 57"
+            fill="black"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.9393 56.0697C11.5251 56.6555 12.4749 56.6555 13.0607 56.0697L22.6066 46.5238C23.1924 45.938 23.1924 44.9883 22.6066 44.4025C22.0208 43.8167 21.0711 43.8167 20.4853 44.4025L12 52.8878L3.51472 44.4025C2.92893 43.8167 1.97919 43.8167 1.3934 44.4025C0.807612 44.9883 0.807612 45.938 1.3934 46.5238L10.9393 56.0697ZM10.5 0L10.5 55.0091H13.5L13.5 0L10.5 0Z"
+              fill="white"
+              fill-opacity="0"
+            />
+          </svg>
+        </motion2d.div>
+      </motion2d.div>
+    </motion2d.div>
   )
 }
