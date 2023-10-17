@@ -1,14 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Cantora+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Rubik+Microbe&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Monoton&family=Quattrocento+Sans&display=swap');
 
+
+/* font-family: 'Anton', sans-serif;
+font-family: 'Bangers', cursive;
+font-family: 'Monoton', cursive;
+font-family: 'Quattrocento Sans', sans-serif; */
 
 html,
 body {
   margin: 0px;
-  font-family: "Jost", "Cantora One", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Quattrocento Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: auto;
@@ -60,12 +61,12 @@ button:hover {
   width: 100%;
   max-height: 10000vh;
   font-size: 2vh;
-  font-family: 'Limelight', 'Rubik Microbe', "Jost", sans-serif, cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   background-color: rgb(5, 2, 21);
 }
 
 .container {
-  max-height: 100vh;
+  height: 100vh;
 	overflow-y: auto;
   scroll-snap-type: y mandatory;
   overflow-x: hidden;
@@ -91,6 +92,7 @@ button:hover {
 .panel {
   scroll-snap-align: start;
   height: 100vh;
+  padding-top: 8vh;
 }
 
 
@@ -103,7 +105,7 @@ button:hover {
   flex-direction: row;
   justify-content: left;
   font-size: 2.5vh;
-  font-family: "Cantora One", sans-serif;
+  font-family: 'Quattrocento Sans', sans-serif;
 }
 
 .HeaderLogo {
@@ -130,13 +132,27 @@ button:hover {
   height: 8vh;
   display: inline-flex;
   flex-direction: row;
-  align-items: last baseline;
+  align-items: baseline;
   flex-wrap: nowrap;
   justify-content: space-around;
-  position: fixed;
+  align-content: center;
+  position: sticky;
   top: 0;
   z-index: 12;
   background-color: var(--dark);
+}
+
+.Navbar a {
+  color: var(--lightest);
+  text-decoration: none;
+  font-size: 2.1vh;
+  font-family: 'Quattrocento Sans', sans-serif;
+  transition: all 125ms ease-in-out;
+}
+
+.Navbar a:hover {
+  transform: translate(-1px, -2px);
+  color: aliceblue;
 }
 
 Canvas {
@@ -149,8 +165,6 @@ Canvas {
 .Hero {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  padding-top: 2vh;
   transition: all 1s ease-in-out;
   display: flex;
   justify-content: space-around;
@@ -170,9 +184,9 @@ Canvas {
 
 .Contact {
   position: relative;
-  height: 70vh;
-  width: 100vw;
-  padding-top: 10vh;
+  height: 50%;
+  width: 100%;
+  padding-top: 5vh;
   display: flex;
   flex-direction: row;
   margin-inline: 3%;
@@ -204,21 +218,17 @@ Canvas {
 
 .Footer {
   position: relative;
-  height: 100vh;
-  width: 100vw;
+
   bottom: 0;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: rgb(13, 13, 13);
   color: azure;
+  margin-bottom: 5vh;
 }
 
-
-.icon32 {
-  height: 32px; width: 32px;
-}
 
 
 .blankDiv {
@@ -229,18 +239,16 @@ Canvas {
 
 
 .ErrorPage {
-  height: 98vh;
-  width: 98vw;
-  margin-inline: 1vw;
-  margin-top: 1vh;
-  background-color: rgb(29, 21, 49);
+  height: 100vh;
+  width: 100vw;
+  padding: 2%;
+  background-color: var(--darkest);
   color: rgb(239, 227, 207);
   font-size: larger;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 5%;
 }
 
 .ErrorPage h1 {
@@ -255,20 +263,17 @@ Canvas {
   display: flex;
   flex-wrap: nowrap;
   gap: 5px;
-}
-
-.SoLinkRow{
   flex-direction: row;
   position: absolute;
-  right: 0; bottom: 0;
-  margin-bottom: 20px;
+  right: 0; bottom: 10;
 }
 
-.SoLinkCol{
+.Skills {
+  display: flex;
   flex-direction: column;
-  position: fixed;
-  right: 0; bottom: 0;
-  margin-right: 2.5vw;
+  font-family: 'Anton', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 
@@ -374,8 +379,8 @@ Canvas {
   display: flex;
   bottom: 0;
   right: 0;
-  margin-right: 2vw;
-  margin-bottom: 2vh;
+  margin-right: 40vw;
+  margin-bottom: -7vh;
   max-width: 120px;
 }
 
@@ -418,9 +423,6 @@ Canvas {
     max-width: fit-content;
   }
 
-  .Contact {
-    flex-direction: column;
-  }
   
   #CommentContainer {
     width: 100vw;
@@ -428,11 +430,20 @@ Canvas {
     overflow-x: scroll;
     margin-bottom: 2vh;
   } 
+
+  .CloseBTNWrapper {
+    right: 0;
+    top: 0;
+    margin-right: 20px;
+    background-color: rgb(255, 255, 255);
+  }
+
 }
 
 #TecchCanvas {
   width: 100vw;
-  height: 100vh;
+  height: 90%;
+
 }
 
 #introCanvas {
@@ -482,17 +493,18 @@ Canvas {
   border-radius: 10px;
   border: 1px solid var(--dark);
   padding: 5px;
-  font-family: "Jost";
+  font-family: 'Quattrocento Sans', sans-serif;
   margin-bottom: 5px;
 }
 
 
 .Context {
   position: relative;
-  width: 100vw;
   align-items: center;
   justify-content: center;
+  align-content: center;
   display: flex;
+  background-color: var(--darkest);
 }
 
 .outlinedCircle {
@@ -524,40 +536,145 @@ Canvas {
   animation: ring 2s reverse linear ;
 }
 
-.Context > .rightBtn {
-  position: absolute;
-  right: 0;
-  margin-right: 2vw;
-  z-index: 1;
-  color: rgb(0, 255, 255);
-}
 
-.Context > .rightBtn:hover {
-  color: rgb(0, 0, 0);
-  transform: scale(1.1);
-  transition: 60ms ease-in-out;
-  
-}
-
-.Context > .leftBtn {
-  position: absolute;
-  left: 0;
-  margin-left: 1vw;
-  z-index: 1;
-}
 
 .item {
   position: relative;
   height: 100%;
   width: 100%;
-  background-image: url("https://unsplash.com/photos/ihIKOg_lHgI/download?force=true&w=1920");
-  background-size: cover;
   z-index: 0;
 }
 
-.Context >.container {
-  position: relative;
+.carosol_Wrapper {
   height: 100%;
   width: 100%;
-  z-index: 0;
+}
+
+.popup {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  padding: 5%;
+  margin: 5%;
+  transition: 120ms ease-in-out;
+  top: 0;
+  left: 0;
+}
+
+.popup-container {
+  position: relative;
+  height: 40vh;
+  width: 40vw;
+  z-index: 64;
+  background-color: rgb(10, 30, 26);
+  border-radius: 1rem;
+  border:1px solid rgb(11, 7, 7);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  color: #ffffff;
+  padding-inline: 2%;
+}
+
+.popupHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 30%;
+  padding-top: 4%;
+}
+
+.popupHeader button {
+  height: 50px;
+  aspect-ratio: 1/1;
+  border-bottom-left-radius: 6rem;
+  border-bottom-right-radius: 0.3rem;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0rem;
+  position: absolute;
+  top: 0; right: 0;
+  background-color: var(--dark);
+  align-items: center;
+}
+
+.popupHeader button:hover {
+  background-color: var(--light);
+}
+
+.scrollables {
+  height: 30%;
+  overflow-y: auto;
+}
+
+.scrollables p {
+  font-size: 0.7rem;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.popup_footer {
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup_footer .leftChild {
+  width: 60%;
+  overflow-x: auto; 
+  font-size: 0.8rem;
+  font-family: 'Quattrocento Sans', sans-serif;
+  border-right-color: #ffffff;
+  border-right-width: 2px;
+  justify-content: flex-start;
+}
+
+.popup_footer .rightChild {
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+}
+
+.percent {
+  width: 60px;
+  aspect-ratio: 1/1;
+  align-items: center;
+  justify-items: center;
+}
+
+.percent > svg {
+  width: 60px;
+}
+
+circle {
+  position: absolute;
+  fill: none;
+  stroke-width: 10;
+  transform: translate(10px, 10px); /* This is to position it in the center */
+  stroke-dasharray: 440;
+  stroke-linecap: round;
+}
+
+.number {
+  position: relative;
+  align-self: center;
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+.techstacksused {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }

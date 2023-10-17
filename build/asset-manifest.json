@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/Akash-Kumar/static/css/main.e15b310b.css",
-    "main.js": "/Akash-Kumar/static/js/main.174d6e92.js",
-    "static/js/856.218b7c6d.chunk.js": "/Akash-Kumar/static/js/856.218b7c6d.chunk.js",
-    "static/js/338.853658c3.chunk.js": "/Akash-Kumar/static/js/338.853658c3.chunk.js",
+    "main.css": "/Akash-Kumar/static/css/main.0e7b257d.css",
+    "main.js": "/Akash-Kumar/static/js/main.2b2f204f.js",
+    "static/js/856.50ab2b98.chunk.js": "/Akash-Kumar/static/js/856.50ab2b98.chunk.js",
+    "static/js/338.4af4c54d.chunk.js": "/Akash-Kumar/static/js/338.4af4c54d.chunk.js",
+    "static/media/Heropic.jpg": "/Akash-Kumar/static/media/Heropic.0e2df6c4972a62db68d7.jpg",
+    "static/media/Heropic2.jpg": "/Akash-Kumar/static/media/Heropic2.5a77a912f1d98072ed2a.jpg",
     "index.html": "/Akash-Kumar/index.html",
-    "main.e15b310b.css.map": "/Akash-Kumar/static/css/main.e15b310b.css.map",
-    "main.174d6e92.js.map": "/Akash-Kumar/static/js/main.174d6e92.js.map",
-    "856.218b7c6d.chunk.js.map": "/Akash-Kumar/static/js/856.218b7c6d.chunk.js.map",
-    "338.853658c3.chunk.js.map": "/Akash-Kumar/static/js/338.853658c3.chunk.js.map"
+    "main.0e7b257d.css.map": "/Akash-Kumar/static/css/main.0e7b257d.css.map",
+    "main.2b2f204f.js.map": "/Akash-Kumar/static/js/main.2b2f204f.js.map",
+    "856.50ab2b98.chunk.js.map": "/Akash-Kumar/static/js/856.50ab2b98.chunk.js.map",
+    "338.4af4c54d.chunk.js.map": "/Akash-Kumar/static/js/338.4af4c54d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e15b310b.css",
-    "static/js/main.174d6e92.js"
+    "static/css/main.0e7b257d.css",
+    "static/js/main.2b2f204f.js"
   ]
 }

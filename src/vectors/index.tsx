@@ -86,7 +86,7 @@ function LinkedIn() {
       <g
         id="Icons"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
       >
         <g

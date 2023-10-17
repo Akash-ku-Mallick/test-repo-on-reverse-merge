@@ -5,10 +5,10 @@ function ErrorPage () {
     return(
         <div id='ErrorPage' className="ErrorPage">
             <>
-            <h1>404</h1>
-            <h2>Error</h2>
+            <h1>We are sorry for this! </h1>
+            <h2>But an error has occoured during loading the page. Pleae go back to the home screen.</h2>
             </>
-            <Link to="/">Home</Link>
+            <p>Click here to redirect <Link to="/">Home</Link></p>
         </div>
     )
 }

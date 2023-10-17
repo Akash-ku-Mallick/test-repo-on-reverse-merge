@@ -1,11 +1,11 @@
 
 import useSpline from '@splinetool/r3f-spline'
-import { OrbitControls, OrthographicCamera, PerspectiveCamera, Text } from '@react-three/drei'
+import { PerspectiveCamera } from '@react-three/drei'
 
 
 import { motion } from 'framer-motion-3d'
-import { Suspense, useEffect, useReducer, useRef, useState } from 'react'
-import { motion as motion2d, useAnimation, stagger } from 'framer-motion'
+import { Suspense, useEffect, useRef, useState } from 'react'
+import { motion as motion2d, useAnimation } from 'framer-motion'
 
 import '@react-three/fiber'
 
@@ -13,34 +13,13 @@ import { Canvas } from '@react-three/fiber'
 import '../pages/App.css'
 
 
-type introUIActions = {
-  type: string
-}
 
-type introUIStates = {
-  previous: boolean,
-  next: boolean
-}
-
-const initialState = { previous: false, next: false }
-
-function reducer(state: introUIStates, action: introUIActions) {
-  switch (action.type) {
-    case 'option1':
-      return { ...state, option1: !state.next }
-    case 'option2':
-      return { ...state, option2: !state.next }
-    default:
-      throw new Error()
-}
-}
 
 
 export default function Scene({ ...props }) {
   const { nodes, materials } = useSpline('https://prod.spline.design/eqB7rgLL1IBZPM7S/scene.splinecode')
   
-  const [loaded, loadCheck] = useState(false)
-  const [{h, w}, setSidebarSize] = useState({h: 0, w: 0})
+  
   const [clickEvent, setClickEvent] = useState(false);
 
   const timeAnimate = {
@@ -258,185 +237,7 @@ export default function Scene({ ...props }) {
         duration: 1,
       }}
     >
-      {/* <Canvas id='cnv2'>
-      <color attach="background" args={['#000000']} />
-      <group {...props} dispose={null}>
-      <PerspectiveCamera
-          name="Camera"
-          makeDefault={true}
-          far={100000}
-          near={8}
-          fov={35}
-          position={[0, 0, 1500]}
-          rotation={[0, 0, 0]}
-        /> 
-        <group name="Enviroment" position={[160.29, 682.97, 1256.27]}>
-          <directionalLight
-            name="Directional Light 2"
-            castShadow
-            intensity={2.23}
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-            shadow-camera-near={-10000}
-            shadow-camera-far={100000}
-            shadow-camera-left={-1000}
-            shadow-camera-right={1000}
-            shadow-camera-top={1000}
-            shadow-camera-bottom={-1000}
-            position={[522.1, -71.64, 44.85]}
-            rotation={[-Math.PI, -0.37, -Math.PI]}
-            scale={[1.73, 1, 0.9]}
-          />
-        </group>
 
-        <motion.group variants={phoneAnimate}
-        initial="hidden"  name="Sidebar Instance" position={[-props.props[0]*3/4, (props.props[1]*1/4), -3.25]} scale={[0.40, 0.40, 0.89]}>
-          <group name="option11" position={[4.79, 119.8, -30]}>
-            <mesh
-              name="Text11"
-              geometry={nodes.Text11.geometry}
-              material={materials.optiontxt}
-              position={[0, -28.53, 0.46]}
-              scale={0.86}
-            />
-            <mesh
-              name="option12"
-              geometry={nodes.option12.geometry}
-              material={materials.optionbg}
-              position={[0, -3.57, -0.46]}
-              scale={0.92}
-            />
-          </group>
-          <group name="option1 Instance" position={[673.86, 119.8, -20]}>
-            <mesh
-              name="Text12"
-              geometry={nodes.Text12.geometry}
-              material={materials.optiontxt}
-              position={[0, -28.53, 0.46]}
-              scale={0.86}
-            />
-            <mesh
-              name="option13"
-              geometry={nodes.option13.geometry}
-              material={materials.optionbg}
-              position={[0, -3.57, -0.46]}
-              scale={0.92}
-            />
-          </group>
-          <group name="option1 Instance 2" position={[1342.93, 119.8, -10]}>
-            <mesh
-              name="Text13"
-              geometry={nodes.Text13.geometry}
-              material={materials.optiontxt}
-              position={[0, -28.53, 0.46]}
-              scale={0.86}
-            />
-            <mesh
-              name="option14"
-              geometry={nodes.option14.geometry}
-              material={materials.optionbg}
-              position={[0, -3.57, -0.46]}
-              scale={0.92}
-            />
-          </group>
-          <group name="option1 Instance 3" position={[2012, 119.8, 0]}>
-            <mesh
-              name="Text14"
-              geometry={nodes.Text14.geometry}
-              material={materials.optiontxt}
-              position={[0, -28.53, 0.46]}
-              scale={0.86}
-            />
-            <mesh
-              name="option15"
-              geometry={nodes.option15.geometry}
-              material={materials.optionbg}
-              position={[0, -3.57, -0.46]}
-              scale={0.92}
-            />
-          </group>
-        </motion.group>
-        {/* <motion.group 
-        variants={phoneAnimate}
-        initial="hidden"
-        animate="visible"
-        name="Sidebar" 
-        ref={sidebarRef}
-        position={[(-props.props[1]), -30, -10]} scale={[0.4, 0.4, 0.4]}>
-          <motion.group whileHover={{scale: 1.2}}
-          onClick={AboutEffect}
-           name="option16" position={[0, 507.26, 0]}>
-            <mesh
-              name="Text15"
-              geometry={nodes.Text15.geometry}
-              material={materials.optiontxt}
-              position={[0, -28.53, 0.46]}
-              scale={0.86}
-            />
-            <mesh
-              name="option17"
-              geometry={nodes.option17.geometry}
-              material={materials.optionbg}
-              position={[0, -3.57, -0.46]}
-              scale={0.92}
-            />
-          </motion.group>
-          <motion.group whileHover={{scale: 1.2}}
-          onClick={ProjectsEffect}
-          name="option1 Instance1" position={[0, 250.48, 0]}>
-            <mesh
-              name="Text16"
-              geometry={nodes.Text16.geometry}
-              material={materials.optiontxt}
-              position={[0, -28.53, 0.46]}
-              scale={0.86}
-            />
-            <mesh
-              name="option18"
-              geometry={nodes.option18.geometry}
-              material={materials.optionbg}
-              position={[0, -3.57, -0.46]}
-              scale={0.92}
-            />
-          </motion.group>
-          <motion.group whileHover={{scale: 1.2}}
-          onClick={BlogsEffect}
-          name="option1 Instance 21" position={[0, -6.3, 0]}>
-            <mesh
-              name="Text17"
-              geometry={nodes.Text17.geometry}
-              material={materials.optiontxt}
-              position={[0, -28.53, 0.46]}
-              scale={0.86}
-            />
-            <mesh
-              name="option19"
-              geometry={nodes.option19.geometry}
-              material={materials.optionbg}
-              position={[0, -3.57, -0.46]}
-              scale={0.92}
-            />
-          </motion.group>
-          <motion.group whileHover={{scale: 1.2}}
-          onClick={ContactMeEffect} name="option1 Instance 31" position={[0, -263.08, 0]}>
-            <mesh
-              name="Text18"
-              geometry={nodes.Text18.geometry}
-              material={materials.optiontxt}
-              position={[0, -28.53, 0.46]}
-              scale={0.86}
-            />
-            <mesh
-              name="option110"
-              geometry={nodes.option110.geometry}
-              material={materials.optionbg}
-              position={[0, -3.57, -0.46]}
-              scale={0.92}
-            />
-          </motion.group>
-        </motion.group> 
-        </group>
-      </Canvas> */}
 
       <Suspense fallback={null}>
         <Canvas id='introCanvas' shadows flat linear>
@@ -1779,7 +1580,8 @@ export default function Scene({ ...props }) {
         <motion2d.div className="CloseBTAr" variants={BtnTxtAnim}
         initial='init'
         whileHover='click'>
-          <svg
+          <span className="CloseBTArTxt">Close</span>
+          {/* <svg
             width="0"
             height="0"
             viewBox="0 0 24 57"
@@ -1809,7 +1611,7 @@ export default function Scene({ ...props }) {
               fill="white"
               fill-opacity="0"
             />
-          </svg>
+          </svg> */}
         </motion2d.div>
       </motion2d.div>
     </motion2d.div>
