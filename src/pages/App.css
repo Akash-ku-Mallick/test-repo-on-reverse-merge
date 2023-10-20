@@ -572,8 +572,9 @@ Canvas {
 
 .popup-container {
   position: relative;
-  height: 40vh;
-  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
   z-index: 64;
   background-color: rgb(10, 30, 26);
   border-radius: 1rem;
@@ -581,6 +582,9 @@ Canvas {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   color: #ffffff;
   padding-inline: 2%;
+  justify-self: center;
+  align-self: center;
+  margin-bottom: 5%;
 }
 
 .popupHeader {
@@ -598,7 +602,7 @@ Canvas {
   border-bottom-left-radius: 6rem;
   border-bottom-right-radius: 0.3rem;
   border-top-left-radius: 0.3rem;
-  border-top-right-radius: 0rem;
+  border-top-right-radius: 1rem;
   position: absolute;
   top: 0; right: 0;
   background-color: var(--dark);
@@ -620,11 +624,14 @@ Canvas {
 }
 
 .popup_footer {
-  height: 30%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  align-content: space-between;
+  gap: 2%;
+  height: 100px;
+  width: 100%;
 }
 
 .popup_footer .leftChild {
@@ -634,40 +641,37 @@ Canvas {
   font-family: 'Quattrocento Sans', sans-serif;
   border-right-color: #ffffff;
   border-right-width: 2px;
+  border-right-style: solid;
   justify-content: flex-start;
 }
 
 .popup_footer .rightChild {
+  padding: 2%;
+  right: 0;
   width: 40%;
+  width: 150px;
+  aspect-ratio: 1/1;
   align-items: center;
+  overflow: hidden;
   justify-content: center;
+  align-content: center;
 }
 
 .percent {
-  width: 60px;
+  width: 150px;
   aspect-ratio: 1/1;
   align-items: center;
   justify-items: center;
+  align-self: center;
 }
 
 .percent > svg {
-  width: 60px;
-}
-
-circle {
-  position: absolute;
-  fill: none;
-  stroke-width: 10;
-  transform: translate(10px, 10px); /* This is to position it in the center */
-  stroke-dasharray: 440;
-  stroke-linecap: round;
-}
-
-.number {
+  width: 100%;
+  height: 100%;
   position: relative;
-  align-self: center;
-  color: #fff;
+  z-index: 0;
 }
+
 
 .hidden {
   display: none;

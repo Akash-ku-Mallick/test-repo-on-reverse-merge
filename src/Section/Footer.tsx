@@ -96,10 +96,9 @@ import { LinkedIn, Outlook, Dribbble, Github, Gmail } from "../vectors";
       <div id='CommentContainer'>
         <div className='commentUI glass'>
           <div className='flexRow'> 
-            <img></img>
+            <img alt='profile'></img>
             <label>Anupam </label>
             <div className='jselfRight'>
-              <img></img>
               <StarBorderOutlinedIcon  />
             </div>
           </div>

@@ -1,7 +1,4 @@
-// import { alpha } from "@mui/material";
-import { Center } from '@react-three/drei';
-import { useAnimate } from 'framer-motion'
-import { useEffect, useRef } from 'react';
+
 
 function Dribbble() {
   return (

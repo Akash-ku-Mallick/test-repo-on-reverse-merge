@@ -5,6 +5,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrthographicCamera } from '@react-three/drei';
 import useSpline from '@splinetool/r3f-spline';
 import { motion as motion3d }  from 'framer-motion-3d';
+import { VictoryPie, VictoryLabel } from 'victory';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 const technologies = [
@@ -42,7 +43,7 @@ const technologies = [
     description:
       "Hypertext Markup Language, the standard language for creating web pages and web applications.",
     in_my_project: "I use it to create pages or to create jsx elements",
-    percentage: 55,
+    percentage: 59,
   },
   {
     id: 5,
@@ -51,7 +52,7 @@ const technologies = [
     description:
       "Cascading Style Sheets used to style and format web pages.",
     in_my_project: "In all my web applications and react native applications I used it for styling.",
-    percentage: 45,
+    percentage: 55,
   },
   {
     id: 6,
@@ -137,19 +138,39 @@ const technologies = [
 ];
 
 const RingChart = ( percentage: any ) => {
-  
+
+  const offset = 100 - percentage.percentage;
+
+  const data = [
+    { x: 1, y: percentage.percentage, color: "rgb(100, 225, 225)" },
+    { x: 2, y: offset, color: "rgb(224, 224, 224)" },
+  ];
 
   return (
     <div className="percent">
-      {/* <svg>
-        <circle cx="70" cy="70" r="70"></circle>
-        <circle cx="70" cy="70" r="70" style={{strokeDashoffset: `calc(440 - (440 * ${percentage}) / 100)`}} />
-      </svg> */}
-      <div className="number">
-        <h3>
-          {percentage.percentage}<span>%</span>
-        </h3>
-      </div>
+        <svg viewBox="0 0 200 200" width={200} height={200}>
+        <VictoryPie
+            width={200} height={200}
+            animate={{ duration: 500 }}
+            standalone={false}
+            data={data}
+            innerRadius={35}
+            cornerRadius={0}
+            labels={() => null}
+            style={{
+              data: { fill: ({ datum }) => {
+                return datum.color ;
+              }
+              }
+            }}
+          />
+          <VictoryLabel
+                  textAnchor="middle" verticalAnchor="middle"
+                  x={100} y={100}
+                  text={`${percentage.percentage}%`}
+                  style={{ fontSize: 22, fill: "rgb(100, 225, 225)", fontWeight: 70 }}
+                />
+        </svg>
     </div>
   );
 };
