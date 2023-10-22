@@ -1,0 +1,18 @@
+.Context {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    background-color: var(--darkest);
+    margin-top: 3.1rem;
+}
+
+.panel {
+  scroll-snap-align: start;
+  height: 100vh;
+}
+
+.carosol_Wrapper {
+    height: 100%;
+}

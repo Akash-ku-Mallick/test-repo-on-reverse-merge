@@ -37,7 +37,7 @@ button {
   max-width: 85px;
   background-color: var(--light);
   border-radius: 6%;
-  font-size: 2vh;
+  font-size: 1rem;
   transition: all 125ms ease-in-out;
   text-align: center;
   border: 0em rgba(255, 255, 255, 0);
@@ -60,7 +60,7 @@ button:hover {
   top: 0;
   width: 100%;
   max-height: 10000vh;
-  font-size: 2vh;
+  font-size: 1rem;
   font-family: 'Quattrocento Sans', sans-serif;
   background-color: rgb(5, 2, 21);
 }
@@ -92,21 +92,6 @@ button:hover {
 .panel {
   scroll-snap-align: start;
   height: 100vh;
-  padding-top: 8vh;
-}
-
-
-
-.Header {
-  position: relative;
-  width: 100%;
-  max-width: fit-content;
-  height: 10vh;
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: left;
-  font-size: 2.5vh;
-  font-family: 'Quattrocento Sans', sans-serif;
 }
 
 
@@ -114,17 +99,21 @@ button:hover {
   z-index: 12;
   height: 2rem;
   position: absolute;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  
-  margin-left: auto;
   margin-right: auto;
-  
+  margin-left: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4rem;
   padding: 2%;
   width: max-content;
   max-width: 60%;
+  min-width: 400px;
   gap: 1.2rem;
 }
 
@@ -137,9 +126,11 @@ button:hover {
 }
 
 .Navbar a:hover {
-  transform: translate(-1px, -2px);
   color: aliceblue;
+  box-shadow: #ffffff 0px 1px 3px 0px;
 }
+
+
 
 Canvas {
   height: 100%;
@@ -158,6 +149,7 @@ Canvas {
   background: transparent;
   color: #ffffff;
   overflow: hidden;
+  padding-bottom: 3rem;
 }
 
 .Hero p {
@@ -204,7 +196,6 @@ Canvas {
 
 .Footer {
   position: relative;
-
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -212,7 +203,7 @@ Canvas {
   justify-content: space-around;
   background-color: rgb(13, 13, 13);
   color: azure;
-  margin-bottom: 5vh;
+  padding-top: 3rem;
 }
 
 
@@ -238,7 +229,7 @@ Canvas {
 }
 
 .ErrorPage h1 {
-  font-size: 10vh;
+  font-size: 3rem;
 }
 
 .ErrorPage h2 {
@@ -260,6 +251,7 @@ Canvas {
   font-family: 'Anton', sans-serif;
   font-size: 20px;
   font-weight: 500;
+  margin-top: 3.5rem;
 }
 
 
@@ -394,7 +386,7 @@ Canvas {
 
 @media all and (aspect-ratio < 1/1) {
   .ContextOfhero {
-    font-size: 4vw;
+    font-size: 1rem;
     left: 0;
     margin-top: 40vh;
 
@@ -441,8 +433,7 @@ Canvas {
 
 #TecchCanvas {
   width: 100vw;
-  height: 90%;
-
+  height: 85vh;
 }
 
 #introCanvas {
@@ -482,10 +473,10 @@ Canvas {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 20px;
   border:1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
+
 
 .input {
   background-color: var(--lightest);
@@ -504,6 +495,7 @@ Canvas {
   align-content: center;
   display: flex;
   background-color: var(--darkest);
+  padding-top: 3.5rem;
 }
 
 .outlinedCircle {
@@ -535,14 +527,23 @@ Canvas {
   animation: ring 2s reverse linear ;
 }
 
-
-
-.item {
+.ItemContainer {
   position: relative;
   height: 100%;
   width: 100%;
   z-index: 0;
+  margin-inline: 10px;
 }
+
+.ItemImage {
+  height: 50%;
+  width: 90%;
+}
+
+.ItemImage img {
+  object-fit: fill;
+}
+
 
 .carosol_Wrapper {
   height: 100%;

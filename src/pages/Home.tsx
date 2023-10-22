@@ -21,8 +21,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 interface heroProps {
-  ifInView: boolean;
-  setIfInView: (ifInView: boolean) => void;
+  HeroRef: any;
 }
 
 interface navbarProps {
@@ -34,7 +33,16 @@ export default function Home() {
     window.innerWidth,
     window.innerHeight,
   ]);
-  const [heroInView, CheckHeroInView] = useState(false);
+  const heroRef = useRef(null);
+  const containerRef = useRef(null);
+  const appRef = useRef(null);
+
+  const IfHeroInView: boolean = useInView(heroRef, {margin: '50% 50% 50% 50%', amount: 0.5});
+
+  useEffect(() => {
+    console.log(IfHeroInView);
+  }, [IfHeroInView]);
+    
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -48,9 +56,9 @@ export default function Home() {
     };
   }, []);
 
-  const appRef = useRef(null)
+  
   const x = useInView(appRef, {margin: '90% 0% 0% 0%'})
-  useEffect(()=>{console.log(x)},[x])
+  useEffect(()=>{console.log(x)},[x]);
 
   
 
@@ -58,9 +66,9 @@ export default function Home() {
     <div className="App">
       {windowSize[0] > windowSize[1] && <Scene props={windowSize} />}
       {windowSize[0] < windowSize[1] && <Drawer />}
-      <div className="container">
-        {windowSize[0] > windowSize[1] && <Navbar ifInView={heroInView} />}
-        <Hero ifInView={heroInView} setIfInView={CheckHeroInView} />
+      <div className="container" ref={containerRef}>
+        {windowSize[0] > windowSize[1] && <Navbar ifInView={IfHeroInView} />}
+        <Hero HeroRef={heroRef} />
         <Context1 />
         <Context2 props={windowSize} />
         <Blogs />
@@ -75,16 +83,11 @@ export default function Home() {
 
 
 export function Hero(props: heroProps) {
-  const heroRef = useRef(null);
-  const IfHeroInView: boolean = useInView(heroRef, {margin: '30% 0% 50% 0%'})
-
-  useEffect(() => {
-    props.setIfInView(IfHeroInView);
-  }, [IfHeroInView, props.ifInView]);
+  
 
   const contextOfHero = "I am an immediate joiner, looking for better opportunity as a front-end developer"
   return(
-    <motion.section id="Hero" className='Hero panel' ref={heroRef}>
+    <motion.section id="Hero" className='Hero panel' ref={props.HeroRef}>
       <div className='cirlcle hrimg' />
       <p>{contextOfHero}</p>
     </motion.section>
@@ -97,6 +100,8 @@ function Navbar(props: navbarProps) {
   const motionVariants: Variants = {
     enter: {
       bottom: 0,
+      top: "auto",
+      opacity: [1, 0.5, 1],
       transition: {
         duration: 0.1,
         ease: [0.4, 0, 0.2, 1],
@@ -104,6 +109,8 @@ function Navbar(props: navbarProps) {
     },
     exit: {
       top: 0,
+      bottom: "auto",
+      opacity: [1, 0.5, 1],
       transition: {
         duration: 0.1,
         easings: "easeOut",
@@ -116,7 +123,8 @@ function Navbar(props: navbarProps) {
     <motion.div className="Navbar glass"
       variants={motionVariants}
       animate={props.ifInView ? "enter" : "exit"}
-      ref={navbarRef}>
+      ref={navbarRef}
+      >
       <a href="https://akash-ku-mallick.github.io/Akash-Kumar-Website/">
         About Me</a>
       <a href="#Context">Projects</a>

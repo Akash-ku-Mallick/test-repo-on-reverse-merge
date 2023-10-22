@@ -3,7 +3,7 @@ import { Carousel } from '@trendyol-js/react-carousel';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ProjectModal from '../Components/ProjectModal';
-
+import '../styles/projectStyles.css'
 
 const data = [
   {
@@ -107,49 +107,26 @@ export function Context1() {
     }
 
     return (
-      <div style={{marginInline: '10%'}}>
-        
+      <div className='ItemContainer' >
         <div >
-          <div>
-            <h2 style={{ color: "white" }}>{info.title}</h2>
-            <p style={{ color: "white" }}>{info.description}</p>
-          </div>
-          <a style={{color: 'rgba(180, 190, 190, 1)', fontSize: 10}} href={info.link} title="View Code">
-            View Code
-          </a>
+          <h2 style={{ color: "white" }}>{info.title}</h2>
+          <p style={{ color: "white" }}>{info.description}</p>
         </div>
-        <div>
+        <div className='ItemImage'>
             <img
               src={info.image}
               alt={info.image}
-              style={{ height: "90%", width: "90%" }}
             />
         </div>
         <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center', paddingInline: '2%'}}>
-          <div className="techstacksused">
-            {info.tech.map((item: any) => {
-              return (
-                <div
-                  style={{
-                    borderColor: "white",
-                    borderWidth: "4px",
-                    paddingInline: "2px",
-                  }}
-                >
-                  <span style={{ color: "white" }} key={item}>
-                    {" "}
-                    {item}{" "}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+          <a style={{color: 'rgba(180, 190, 190, 1)', fontSize: 10}} href={info.link} title="View Code">
+            View Code
+          </a>
           <button
             className="btn"
             onClick={(e) => {
               OnClickFunc(e);
-            }}
-          >
+            }}>
             Read More
           </button>
         </div>

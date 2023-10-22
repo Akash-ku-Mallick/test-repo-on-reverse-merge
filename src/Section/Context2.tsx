@@ -251,10 +251,6 @@ export default function Context2(props: any){
   
     return (
       <section id="Context2" className="Skills panel">
-
-        <span style={{ color: "white", textAlign: "center", zIndex: 10 }}>
-          T E C H S T A C K T H A T I W O R K E D O N
-        </span>
         <PopupUI />
         <Suspense fallback={null}>
           <Canvas id="TecchCanvas" ref={ref} shadows flat linear>
