@@ -1,5 +1,4 @@
 import './App.css';
-import { useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Scene from '../Section/Scene';
 
@@ -8,7 +7,7 @@ import {Context1} from '../Section/Context1';
 import Context2 from '../Section/Context2';
 import  Footer  from '../Section/Footer';
 
-import { motion } from 'framer-motion'
+import { motion, useInView, Variants } from 'framer-motion'
 
 
 import {gsap} from 'gsap';
@@ -16,15 +15,26 @@ import ScrollTrigger from 'gsap'
 import ScrollSmoother from 'gsap'
 
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+interface heroProps {
+  ifInView: boolean;
+  setIfInView: (ifInView: boolean) => void;
+}
+
+interface navbarProps {
+  ifInView: boolean;
+}
 
 export default function Home() {
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
     window.innerHeight,
   ]);
+  const [heroInView, CheckHeroInView] = useState(false);
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -47,9 +57,10 @@ export default function Home() {
   return (
     <div className="App">
       {windowSize[0] > windowSize[1] && <Scene props={windowSize} />}
-      {windowSize[0] > windowSize[1] ? <Navbar /> : <Drawer />}
+      {windowSize[0] < windowSize[1] && <Drawer />}
       <div className="container">
-        <Hero />
+        {windowSize[0] > windowSize[1] && <Navbar ifInView={heroInView} />}
+        <Hero ifInView={heroInView} setIfInView={CheckHeroInView} />
         <Context1 />
         <Context2 props={windowSize} />
         <Blogs />
@@ -63,38 +74,56 @@ export default function Home() {
 // _______________ Hero _________________   ------Start
 
 
-export function Hero() {
+export function Hero(props: heroProps) {
+  const heroRef = useRef(null);
+  const IfHeroInView: boolean = useInView(heroRef, {margin: '30% 0% 50% 0%'})
+
+  useEffect(() => {
+    props.setIfInView(IfHeroInView);
+  }, [IfHeroInView, props.ifInView]);
+
   const contextOfHero = "I am an immediate joiner, looking for better opportunity as a front-end developer"
   return(
-    <section id="Hero" className='Hero panel' >
+    <motion.section id="Hero" className='Hero panel' ref={heroRef}>
       <div className='cirlcle hrimg' />
       <p>{contextOfHero}</p>
-    </section>
+    </motion.section>
   )
 }
 
-// _______________ Hero _________________   ------End
+
+function Navbar(props: navbarProps) {
+  const navbarRef = useRef(null);
+  const motionVariants: Variants = {
+    enter: {
+      bottom: 0,
+      transition: {
+        duration: 0.1,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    },
+    exit: {
+      top: 0,
+      transition: {
+        duration: 0.1,
+        easings: "easeOut",
+      },
+    },
+  }
 
 
-
-function Header() {
-  return (
-    <section className="Header">
-      <a href="https://akash-ku-mallick.github.io/Akash-Kumar-Website/">
-        <h3>Akash Kumar</h3> </a>
-    </section>
-  );
-}
-
-function Navbar() {
   return(
-    <section className="Navbar">
-      <Header />
+    <motion.div className="Navbar glass"
+      variants={motionVariants}
+      animate={props.ifInView ? "enter" : "exit"}
+      ref={navbarRef}>
+      <a href="https://akash-ku-mallick.github.io/Akash-Kumar-Website/">
+        About Me</a>
       <a href="#Context">Projects</a>
       <a href="#Context2">Tech Stacks</a>
       <a href="#Blogs">Blogs</a>
-      <a href="#Contact">Join Me</a>
-      </section>
+      <a href="#Contact">Community</a>
+      </motion.div>
     )
 }
 
@@ -120,7 +149,7 @@ function Drawer () {
         initial={{
           width: "70vw",
           height: "100vh",
-          backgroundColor: "black",
+          backgroundColor: "rgb(255, 255, 255, 1)",
           position: "fixed",
           top: 0,
           right: "-100%",
@@ -134,19 +163,19 @@ function Drawer () {
           duration: 0.5,
         }}
       >
-        <div style={{width: '100%', background: '#5C8374'}}>
+        <div style={{width: '100%', background: '#5C8374', backgroundColor: 'rgb(255, 255, 255, 1)'}}>
         <button
           onClick={() => {
             setDrawerStatus(!drawerStatus);
           }}
           style={{position: "absolute", top: "0", right: "0"}}
         >
-          <MenuIcon fontSize="large" />
+          <CloseRoundedIcon fontSize="large" />
         </button>
         </div>
         <ul>
           <li>
-            <Header />
+            <a className="Header" href="https://akash-ku-mallick.github.io/Akash-Kumar-Website/">Akash Kumar</a>
           </li>
           <li>
             <a href="#Context">Projects</a>

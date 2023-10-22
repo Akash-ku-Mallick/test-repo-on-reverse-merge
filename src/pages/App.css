@@ -96,6 +96,7 @@ button:hover {
 }
 
 
+
 .Header {
   position: relative;
   width: 100%;
@@ -108,44 +109,29 @@ button:hover {
   font-family: 'Quattrocento Sans', sans-serif;
 }
 
-.HeaderLogo {
-  margin: 5px;
-  cursor: pointer;
-  height: 110%;
-  
-}
-
-.HeaderLogo:hover {
-  scale: 1.2;
-  transition: 120ms ease-in-out;
-}
-
-/* .icon:hover {
-  scale: 1.02;
-  transform: translateY(-5);
-  transition: 120ms ease-in-out;
-  animation-delay: 50ms;
-} */
 
 .Navbar{
-  width: 100%;
-  height: 8vh;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: baseline;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-content: center;
-  position: sticky;
-  top: 0;
   z-index: 12;
-  background-color: var(--dark);
+  height: 2rem;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+  margin-left: auto;
+  margin-right: auto;
+  
+  padding: 2%;
+  width: max-content;
+  max-width: 60%;
+  gap: 1.2rem;
 }
 
 .Navbar a {
-  color: var(--lightest);
+  color: rgb(255, 255, 255, 0.8);
   text-decoration: none;
-  font-size: 2.1vh;
+  font-size: 1rem;
   font-family: 'Quattrocento Sans', sans-serif;
   transition: all 125ms ease-in-out;
 }
@@ -438,6 +424,19 @@ Canvas {
     background-color: rgb(255, 255, 255);
   }
 
+  .container {
+    scroll-snap-type: both proximity;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: auto;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .panel {
+    scroll-snap-align: none;
+  }
+
 }
 
 #TecchCanvas {
@@ -677,8 +676,46 @@ Canvas {
   display: none;
 }
 
+.shown {
+  display: flex;
+}
+
 .techstacksused {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
 }
+
+#Intro ul {
+  list-style-type: none;
+  gap: 2%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 5%;
+}
+
+#Intro li {
+  color: #ffffff;
+  margin-block: 6px;
+  margin-inline: 4px;
+  height: 20px;
+  width: 50%;
+  border: 2px solid #ffffff;
+  border-radius: 5rem;
+  padding-inline: 5%;
+  padding-block: 2%;
+}
+
+#Intro a:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transition: 120ms ease-in-out;
+  border-color: #77d5da;
+}
+
+#Intro a {
+  color: #ffffff;
+}
+

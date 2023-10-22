@@ -1,0 +1,192 @@
+.Hw100 {
+    height: 95vh;
+    width: 95vw;
+}
+
+.TopCurve {
+    border-radius: 2rem 2rem 1.5rem 1.5rem;
+    margin-top: 2%;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 60;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(83, 83, 83, 0.799);
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.bgDark {
+    background-color: rgb(10, 30, 26);
+}
+
+.H100Header {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+    flex-direction: row;
+    background-color: rgb(109, 159, 149);
+    border-radius: 1.5rem 1.5rem 0 0;
+    
+}
+
+.H100HeaderIcon {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.H100HeaderIcon img {
+    height: 50px;
+    width: 50px;
+}
+
+.Hw100HeaderText {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: space-around;
+    padding-block: 10px;
+    gap: 0%;
+}
+
+
+.H100HeaderTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.H100HeaderDescription {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #d3d3d3;
+}
+
+.H100HeaderButton {
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    padding-inline: 2rem;
+    gap: 1rem;
+}
+
+.H100HeaderButton p {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+}
+
+.H100HeaderClose {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.H100HeaderClose button {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.H100HeaderClose button:hover {
+    color: #8c1f1f;
+}
+
+.H100BodyContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+    flex-direction: row;
+    background-color: rgb(10, 30, 26);
+    border-radius: 0 0 1.5rem 1.5rem;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.H100Body {
+    height: 90%;
+    max-height: max-content;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: space-between;
+    flex-direction: column;
+    overflow-y: auto;
+    gap: 20px;
+}
+
+.H100BodyCarousel {
+    height: 80%;
+}
+
+.H100BodyCarouselItem {
+    height: 100%;
+    object-fit: contain;
+    margin-left: 1%; 
+   user-select: none;
+   -moz-user-select: none;
+   -webkit-user-drag: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-zoom: none;
+}
+
+.H100BodyTechStacks {
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.H100BodyTechStacksItem {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.H100BodySummary {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.H100BodySummary p {
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+
