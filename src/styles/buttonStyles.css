@@ -1,3 +1,5 @@
+/* bn5 is button with gray color animation glow behind upon hover */
+
 .bn5 {
   padding: 0.6em 2em;
   border: none;
@@ -84,3 +86,118 @@
 }
 
 /* add 'bn5' to className */
+
+
+/* bn40 is button with underline */
+
+.bn40 {
+  border-radius: 4px;
+  font-weight: 300;
+  font-size: small;
+  padding: 4px 6px;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.bn40::after {
+  max-width: 100%;
+  height: 2px;
+  display: block;
+  content: "";
+  background: linear-gradient(-90deg, #ff9100 0%, #f10366 50%, #6173ff 100%);
+  opacity: 1;
+  margin-bottom: -4px;
+  margin-top: 1px;
+}
+
+.bn40:hover::after {
+  animation: glowingbn40 2s linear infinite
+}
+
+@keyframes glowingbn40 {
+  0% {
+      max-width: 100%;
+      height: 2px;
+      display: block;
+      content: "";
+      opacity: 1;
+      margin-bottom: -4px;
+      margin-top: 1px;
+      background: linear-gradient(0deg, #98ee57 0%, #f10366 50%, #6173ff 100%);
+    }
+  50% {
+    max-width: 100%;
+    height: 2px;
+    display: block;
+    content: "";
+    opacity: 1;
+    margin-bottom: -4px;
+    margin-top: 1px;
+    background: linear-gradient(90deg, #ff9100 0%, #f10366 50%, #6173ff 100%);
+  }
+  100% {
+    max-width: 100%;
+    height: 2px;
+    display: block;
+    content: "";
+    opacity: 1;
+    margin-bottom: -4px;
+    margin-top: 1px;
+    background: linear-gradient(1800deg, #ff9100 0%, #ffffff 50%, #6173ff 100%);
+  }
+}
+
+.bn40div {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .bn40 {
+    font-size: large;
+  }
+}
+
+/* bn40 will work if html is like the followings
+<div className="bn40div">
+    <a class="bn40" href="/">Button</a>
+</div> */
+
+/*  */
+
+.button-36 {
+  background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+  border-radius: 8px;
+  border-style: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: "Inter UI","SF Pro Display", "Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  height: 80%;
+  padding: 0 0.6rem;
+  text-align: center;
+  text-shadow: rgba(248, 248, 248, 1) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.button-36:hover {
+  box-shadow: rgba(255, 255, 255, 1) 0 1px 30px;
+  transition-duration: .1s;
+  border-color: transparent;
+  color: #FFFFFF;
+  transform: scale(1.02);
+}
+
+@media (min-width: 768px) {
+  .button-36 {
+    padding: 0 0.1rem;
+    font-size: 1rem;
+  }
+}
+
+/* <button class="button-36" role="button">Button 36</button> */

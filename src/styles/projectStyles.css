@@ -5,7 +5,7 @@
     align-content: center;
     display: flex;
     background-color: var(--darkest);
-    margin-top: 3.1rem;
+    padding-top: 2.5rem;
 }
 
 .panel {
@@ -13,6 +13,176 @@
   height: 100vh;
 }
 
+
 .carosol_Wrapper {
+  height: calc(100vh - 4rem);
+  width: 100%;
+  position: relative;
+  top: 0;
+}
+
+.carousel {
+  height: 100%;
+  width: 97%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.ItemContainer {
+  position: relative;
+  height: 98%;
+  width: 100%;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+/* comonent #1 of ItemContainer */
+.ItemHeader {
+  width: 100%;
+  height: 35%;
+  position: relative;
+  top: 0;
+  margin-bottom: 4%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  padding: auto;
+  user-select: none;
+  cursor: default;
+}
+
+.ItemHeader h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  padding-inline: 5%;
+}
+
+.ItemHeader p {
+  font-size: 0.75rem;
+  text-wrap: pretty;
+  padding-inline: 5%;
+}
+
+/* comonent #2 of ItemContainer */
+.ItemImage {
+  height: 45%;
+  width: 90%;
+  margin-inline: auto;
+  cursor: grab;
+}
+
+
+.ItemImage img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+
+/* comonent #3 of ItemContainer */
+.ItemBottomBar {
+  height: 15%;
+  width: 90%;
+  position: relative;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  align-content: center;
+  padding-block: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+
+@media screen and (max-width: 670px) {
+
+  .ItemContainer {
+    position: relative;
+    height: 98%;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    cursor: pointer;
+  }
+
+  .carosol_Wrapper {
+    height: calc(100vh - 4rem);
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+
+  .carousel {
     height: 100%;
+  }
+
+  .ItemContainer {
+    position: relative;
+    height: 98%;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    cursor: pointer;
+  }
+
+  .ItemImage {
+    height: 45%;
+    width: 90%;
+    margin-inline: auto;
+    cursor: grab;
+  }
+
+  .ItemImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .ItemBottomBar {
+    height: 25%;
+    width: 90%;
+    position: relative;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .ItemBottomBar button {
+    width: 100%;
+    height: 60%;
+  }
+
+  .ItemBottomBar div {
+    width: 100%;
+    height: 30%;
+  }
+  
+}
+
+.Arrow {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
 }

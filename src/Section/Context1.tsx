@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Carousel } from '@trendyol-js/react-carousel';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ProjectModal from '../Components/ProjectModal';
 import '../styles/projectStyles.css'
+import '../styles/buttonStyles.css'
 
 const data = [
   {
@@ -56,9 +57,48 @@ interface Info  {
 }
 
 
+
+const LeftArrow = () => {
+  return (
+    <div className='Arrow' style={{paddingLeft: '2px'}}>
+      <ArrowBackIosIcon htmlColor='white' />
+    </div>
+  );
+}
+
+const RightArrow = () => {
+  return (
+    <div className='Arrow'>
+      <ArrowForwardIosIcon htmlColor='white' />
+    </div>
+  );
+}
+
 export function Context1() {
   const [visibility, setVisibility] = useState(false);
   const [id , setId] = useState(0);
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
+  const [ifDesktop, setIfDesktop] = useState(true);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+
+  useEffect(() => {
+    setIfDesktop(windowSize[0] > windowSize[1]);
+  }, [windowSize]);
 
   
 
@@ -70,10 +110,10 @@ export function Context1() {
           setVisibility={setVisibility}
           id={id}/>
         <div className='carosol_Wrapper'>
-        <Carousel className='carousel' show={2} slide={1} swiping={true}
-         
-        leftArrow={<ArrowBackIosIcon htmlColor='white' sx={{marginInline: '20px', cursor: 'pointer'}} />}
-        rightArrow={<ArrowForwardIosIcon htmlColor='white' sx={{marginBlock: '20px'}} />}
+        <Carousel className='carousel' show={ifDesktop ? 2 : 1} slide={1} swiping={true}
+        
+        leftArrow={<LeftArrow/>}
+        rightArrow={<RightArrow />}
         responsive={true}>
           {data.map((item) => {
             return (
@@ -108,7 +148,7 @@ export function Context1() {
 
     return (
       <div className='ItemContainer' >
-        <div >
+        <div className='ItemHeader'>
           <h2 style={{ color: "white" }}>{info.title}</h2>
           <p style={{ color: "white" }}>{info.description}</p>
         </div>
@@ -118,12 +158,11 @@ export function Context1() {
               alt={info.image}
             />
         </div>
-        <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center', paddingInline: '2%'}}>
-          <a style={{color: 'rgba(180, 190, 190, 1)', fontSize: 10}} href={info.link} title="View Code">
-            View Code
-          </a>
-          <button
-            className="btn"
+        <div className='ItemBottomBar'>
+          <div className="bn40div" style={{height: '100%', maxWidth: '40%'}}>
+            <a href={info.link} className='bn40' title="View Code">View Code</a>
+          </div>
+          <button className='button-36' style={{maxWidth: '40%'}}
             onClick={(e) => {
               OnClickFunc(e);
             }}>

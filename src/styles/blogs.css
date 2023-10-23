@@ -1,0 +1,105 @@
+h2, p {
+    color: white;
+}
+
+img {
+    height: 200px;
+    width: 300px;
+    object-fit: contain;
+}
+
+.panel {
+    width: 100vw;
+    height: 100vh;
+}
+
+.blogs {
+    padding-top: 3rem;
+}
+
+.header {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    margin-left: 2rem;
+    align-items: flex-start;
+}
+
+.header h2 {
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+}
+
+
+.header img {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+    border-radius: 20rem;
+}
+
+.crouselContainer {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.crouselStyle {
+    width: 97%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.Arrow {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+.itemContainer {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.itemContainer img {
+    height: 40%;
+    width: 90%;
+    object-fit: cover;
+}
+
+.itemDetails {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemTextContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemBtn {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

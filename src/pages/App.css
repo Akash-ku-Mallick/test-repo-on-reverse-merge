@@ -97,7 +97,7 @@ button:hover {
 
 .Navbar{
   z-index: 12;
-  height: 2rem;
+  height: 1.4rem;
   position: absolute;
   left: 0;
   right: 0;
@@ -110,7 +110,8 @@ button:hover {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border-radius: 4rem;
-  padding: 2%;
+  padding-inline: 2%;
+  padding-block: 1%;
   width: max-content;
   max-width: 60%;
   min-width: 400px;
@@ -488,16 +489,6 @@ Canvas {
 }
 
 
-.Context {
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  display: flex;
-  background-color: var(--darkest);
-  padding-top: 3.5rem;
-}
-
 .outlinedCircle {
   position: absolute;
   border-radius: 100%;
@@ -527,28 +518,18 @@ Canvas {
   animation: ring 2s reverse linear ;
 }
 
-.ItemContainer {
+
+.Context {
   position: relative;
-  height: 100%;
-  width: 100%;
-  z-index: 0;
-  margin-inline: 10px;
-}
-
-.ItemImage {
-  height: 50%;
-  width: 90%;
-}
-
-.ItemImage img {
-  object-fit: fill;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+  background-color: var(--darkest);
+  padding-top: 3.5rem;
 }
 
 
-.carosol_Wrapper {
-  height: 100%;
-  width: 100%;
-}
 
 .popup {
   position: absolute;
