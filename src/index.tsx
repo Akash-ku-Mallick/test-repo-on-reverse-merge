@@ -5,6 +5,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 
 import Home from './pages/Home';
+import Resume from './pages/Resume';
 
 import ErrorPage from './pages/ErrorPage';
 
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
     element: <Home />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/Akash-Kumar/my-resume",
+    element: <Resume />,
+    errorElement: <ErrorPage />,
+  }
 ]);
 
 const root = ReactDOM.createRoot(

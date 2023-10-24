@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Carousel } from '@trendyol-js/react-carousel';
 import '../styles/blogs.css'
-import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIos from '@mui/icons-material/ArrowBackIos';
 
 interface properties {
   title: string;
@@ -44,21 +41,7 @@ const data = [
   },
 ]
 
-const LeftArrow = () => {
-  return (
-    <div className='Arrow' style={{paddingLeft: '3px'}}>
-      <ArrowBackIos htmlColor='white'/>
-    </div>
-  )
-}
 
-const RightArrow = () => {
-  return (
-    <div className='Arrow'>
-      <ArrowForwardIos htmlColor='white'/>
-    </div>
-  )
-}
 
 export default function Blogs() {
 
@@ -70,25 +53,7 @@ export default function Blogs() {
               <h2>Profile Name</h2>
             </div>
             <div className='crouselContainer'>
-              <Carousel
-              className='crouselStyle'
-              show={3}
-              infinite
-              responsive={true}
-              slide={1} swiping={true}
-              leftArrow={<LeftArrow />}
-              rightArrow={<RightArrow />}>
-                {data.map((item) => {
-                  return (
-                    <BlogItem
-                      key={item.id}
-                      title={item.title}
-                      description={item.description}
-                      image={item.image}
-                    />
-                  );
-                })}
-              </Carousel>
+              
             </div>
           </div>
       </section>

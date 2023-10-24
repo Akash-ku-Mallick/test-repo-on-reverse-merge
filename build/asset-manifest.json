@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/Akash-Kumar/static/css/main.4db28242.css",
-    "main.js": "/Akash-Kumar/static/js/main.f4f7c8b6.js",
+    "main.css": "/Akash-Kumar/static/css/main.0f04eb6b.css",
+    "main.js": "/Akash-Kumar/static/js/main.cfba8d46.js",
     "static/js/856.50ab2b98.chunk.js": "/Akash-Kumar/static/js/856.50ab2b98.chunk.js",
     "static/js/338.4af4c54d.chunk.js": "/Akash-Kumar/static/js/338.4af4c54d.chunk.js",
     "static/media/Heropic.jpg": "/Akash-Kumar/static/media/Heropic.0e2df6c4972a62db68d7.jpg",
     "static/media/Heropic2.jpg": "/Akash-Kumar/static/media/Heropic2.5a77a912f1d98072ed2a.jpg",
     "index.html": "/Akash-Kumar/index.html",
-    "main.4db28242.css.map": "/Akash-Kumar/static/css/main.4db28242.css.map",
-    "main.f4f7c8b6.js.map": "/Akash-Kumar/static/js/main.f4f7c8b6.js.map",
+    "main.0f04eb6b.css.map": "/Akash-Kumar/static/css/main.0f04eb6b.css.map",
+    "main.cfba8d46.js.map": "/Akash-Kumar/static/js/main.cfba8d46.js.map",
     "856.50ab2b98.chunk.js.map": "/Akash-Kumar/static/js/856.50ab2b98.chunk.js.map",
     "338.4af4c54d.chunk.js.map": "/Akash-Kumar/static/js/338.4af4c54d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4db28242.css",
-    "static/js/main.f4f7c8b6.js"
+    "static/css/main.0f04eb6b.css",
+    "static/js/main.cfba8d46.js"
   ]
 }

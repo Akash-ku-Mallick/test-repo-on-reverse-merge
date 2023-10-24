@@ -119,11 +119,11 @@ export default function Scene({ ...props }) {
 
   const BtnTxtAnim = {
     init: {
-      opacity: 0,
-      scale: 0.5,
+      opacity: 1,
+      scale: 0.8,
     },
     click: {
-      opacity: 0,
+      opacity: 1,
       rotateZ: [0, 270],
       scale: 0.5,
     },
@@ -1581,37 +1581,6 @@ export default function Scene({ ...props }) {
         initial='init'
         whileHover='click'>
           <span className="CloseBTArTxt">Close</span>
-          {/* <svg
-            width="0"
-            height="0"
-            viewBox="0 0 24 57"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <clipPath id="shape">
-                <path
-                  d="M10.9393 56.0697C11.5251 56.6555 12.4749 56.6555 13.0607 56.0697L22.6066 46.5238C23.1924 45.938 23.1924 44.9883 22.6066 44.4025C22.0208 43.8167 21.0711 43.8167 20.4853 44.4025L12 52.8878L3.51472 44.4025C2.92893 43.8167 1.97919 43.8167 1.3934 44.4025C0.807612 44.9883 0.807612 45.938 1.3934 46.5238L10.9393 56.0697ZM10.5 0L10.5 55.0091H13.5L13.5 0L10.5 0Z"
-                  fill="black"
-                  fill-opacity="0.77"
-                />
-              </clipPath>
-            </defs>
-          </svg>
-          <svg
-            id="test"
-            width="24"
-            height="57"
-            viewBox="0 0 24 57"
-            fill="black"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10.9393 56.0697C11.5251 56.6555 12.4749 56.6555 13.0607 56.0697L22.6066 46.5238C23.1924 45.938 23.1924 44.9883 22.6066 44.4025C22.0208 43.8167 21.0711 43.8167 20.4853 44.4025L12 52.8878L3.51472 44.4025C2.92893 43.8167 1.97919 43.8167 1.3934 44.4025C0.807612 44.9883 0.807612 45.938 1.3934 46.5238L10.9393 56.0697ZM10.5 0L10.5 55.0091H13.5L13.5 0L10.5 0Z"
-              fill="white"
-              fill-opacity="0"
-            />
-          </svg> */}
         </motion2d.div>
       </motion2d.div>
     </motion2d.div>

@@ -1,5 +1,8 @@
 import './App.css';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
+
 import Scene from '../Section/Scene';
 
 import Blogs from '../Section/Blogs';
@@ -16,6 +19,7 @@ import ScrollSmoother from 'gsap'
 
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import ArticleIcon from '@mui/icons-material/Article';
 
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -83,11 +87,20 @@ export default function Home() {
 
 
 export function Hero(props: heroProps) {
+  const navigate = useNavigate();
   
+  const ResumeBtnClick = () => {
+    console.log('ResumeBtnClick');
+    navigate("/Akash-Kumar/my-resume");
+  }
 
   const contextOfHero = "I am an immediate joiner, looking for better opportunity as a front-end developer"
   return(
     <motion.section id="Hero" className='Hero panel' ref={props.HeroRef}>
+      <div className='dwBtn glass' onClick={ResumeBtnClick}>
+        <ArticleIcon htmlColor='white' fontSize='small' />
+        <p>My Resume</p>
+      </div>
       <div className='cirlcle hrimg' />
       <p>{contextOfHero}</p>
     </motion.section>
