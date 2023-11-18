@@ -1,10 +1,11 @@
-
+import React, { Suspense, useEffect, useRef, useState } from 'react'
+import { Icon } from '@iconify/react';
 import useSpline from '@splinetool/r3f-spline'
 import { PerspectiveCamera } from '@react-three/drei'
 
 
 import { motion } from 'framer-motion-3d'
-import { Suspense, useEffect, useRef, useState } from 'react'
+
 import { motion as motion2d, useAnimation } from 'framer-motion'
 
 import '@react-three/fiber'
@@ -15,12 +16,26 @@ import '../pages/App.css'
 
 
 
-
 export default function Scene({ ...props }) {
-  const { nodes, materials } = useSpline('https://prod.spline.design/eqB7rgLL1IBZPM7S/scene.splinecode')
-  
-  
+
+  const { nodes, materials } = useSpline('https://prod.spline.design/eqB7rgLL1IBZPM7S/scene.splinecode');
+
+  // const [nodes, setNode] = useState<Record<string, any>>({});
+  // const [materials, setMaterial] = useState<Record<string, any>>({});
+
   const [clickEvent, setClickEvent] = useState(false);
+  const [ifLoading, setIfLoading] = useState(true);
+  
+
+  useEffect(() => {
+    if (nodes && materials) {
+      setTimeout(() => {
+        setIfLoading(false);
+      }, 1000);
+    }
+  });
+
+
 
   const timeAnimate = {
     hidden: {
@@ -175,8 +190,6 @@ export default function Scene({ ...props }) {
   // props.props[1] is height
 
 
-  useEffect(() => {let x=document.getElementById('sideBar');
-    console.log(x?.offsetHeight, x?.offsetWidth)}, [sidebarRef])
 
 
   function AboutEffect () {
@@ -228,6 +241,8 @@ export default function Scene({ ...props }) {
         top: 0,
         zIndex: 12345,
         alignSelf: "center",
+        justifySelf: "center",
+        display: "flex",
       }}
       animate={{
         animation: "ease-in-out",
@@ -239,6 +254,12 @@ export default function Scene({ ...props }) {
     >
 
 
+      {ifLoading &&
+      <div className="loading" >
+        <Icon icon="svg-spinners:3-dots-fade" color="white" width="200" height="200" />
+        <div className="loadingText">Loading</div>
+        </div>}
+      {ifLoading?null:
       <Suspense fallback={null}>
         <Canvas id='introCanvas' shadows flat linear>
       <>
@@ -1564,7 +1585,7 @@ export default function Scene({ ...props }) {
       </group>
     </>
     </Canvas>
-      </Suspense>
+      </Suspense>}
       {/* ---------From Here HTML elements are written which are not part of Three.Js object group----- */}
       <motion2d.div
         className="CloseBTNWrapper CloseBTN"

@@ -1,0 +1,118 @@
+.techPanel {
+    padding-top: 2rem;
+    height: calc(100vh - 2rem);
+    overflow: hidden;
+    bottom: 0;
+    width: 100%;
+}
+
+.techHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 1.5rem 'Roboto', sans-serif;
+    font-weight: 600;
+    height: 20%;
+    color: white;
+    padding-top: 2%;
+}
+
+hr {
+    width: 30%;
+}
+
+.techBody {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 80%;
+}
+
+.techRow {
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+}
+
+.techCol {
+    width: 30%;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+}
+
+.ColHead {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font: 1.1rem 400 'Roboto', sans-serif;
+    color: white;
+}
+
+.verticalLine {
+    height: 100%;
+    width: 1px;
+    background-color: rgba(177, 171, 171, 0.723);
+    margin-inline: 1rem;
+}
+
+.techsContainerRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 2rem;
+    width: 100%;
+    margin-block: 1rem;
+}
+
+.techs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1rem;
+    border-radius: 2rem;
+    /* background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)); */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border:0px solid rgba(135, 126, 126, 0);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin-inline: 0.5rem;
+    transition: all .5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: max-content;
+}
+
+.techs h3 {
+    margin-inline: 0.2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: white;
+}
+
+.techs:hover h3 {
+    text-shadow: rgba(248, 248, 248, 1) 0 3px 10px;
+}
+
+.techs:hover {
+    box-shadow: rgba(255, 255, 255, 1) 0 1px 30px;
+    transition-duration: .1s;
+    border-color: transparent;
+    transform: scale(1.02);
+}

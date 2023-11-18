@@ -1,0 +1,175 @@
+.Contact {
+    height: calc(50% - 3rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+#CommentContainer {
+    position: relative;
+    height: 50%;
+    width: 100%; 
+}
+
+.carousel {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* comment container */
+
+.commentUI {
+    position: relative;
+    height: 90%;
+    border-radius: 40rem;
+    max-width: calc(100vw - 4rem);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* comment contents */
+
+.commentGrid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    max-height: 90%;
+}
+
+
+.commentImg {
+    height: 40px;
+    width: 40px;
+    border-radius: 15rem;
+    object-fit: cover;
+}
+
+.commentText {
+    background-color: transparent;
+}
+
+.topSection {
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.commentText h3 {
+    font: 1rem 'Anton', sans-serif;
+    font-weight: 500;
+}
+
+.commentText p {
+    font: 0.8rem 'Roboto', sans-serif;
+    font-weight: 300;
+    text-overflow: clip;
+    text-wrap: nowrap;
+    overflow: hidden;
+    padding: 2;
+}
+
+.Footer {
+    position: relative;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    justify-self: flex-end;
+    align-self: flex-end;
+    background-color: transparent;
+    color: azure;
+}
+
+
+.footerBody {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+.footerHead {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footerLinks {
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.footerLink {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerLink a {
+    text-decoration: none;
+    font-weight: 1000;
+    font-size: 1rem;
+    color: rgb(35, 52, 204);
+}
+
+
+.footerLink:hover a {
+    color: rgb(54, 164, 219);
+}
+
+.footerLink:hover .footerIcon {
+    fill: rgb(137, 192, 247);
+}
+
+.copyright {
+    background-color: rgba(22, 28, 35, 0.668);
+    color: rgb(255, 255, 255);
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    height: 17%;
+    position: relative;
+    bottom: 0;
+    justify-self: flex-end;
+  }
+
+  .Socials {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .Socials svg {
+    padding: 4px;
+    fill: bisque;
+  }
+  
+  
+  .Socials svg:hover {
+    scale: 1.1;
+    background: #ececec4a;
+    background-blend-mode: color-dodge;
+    border-radius: 10%;
+    transition: all 0.2 ease-in-out;
+    fill:rgb(174, 184, 248)
+  }

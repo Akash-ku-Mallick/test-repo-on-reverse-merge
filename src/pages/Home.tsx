@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 
-import Scene from '../Section/Scene';
+// import Scene from '../Section/Scene';
 
 import Blogs from '../Section/Blogs';
 import {Context1} from '../Section/Context1';
-import Context2 from '../Section/Context2';
 import  Footer  from '../Section/Footer';
+import { TechStackWithName } from '../Section/TechStack';
 
 import { motion, useInView, Variants } from 'framer-motion'
 
@@ -39,14 +39,9 @@ export default function Home() {
   ]);
   const heroRef = useRef(null);
   const containerRef = useRef(null);
-  const appRef = useRef(null);
 
   const IfHeroInView: boolean = useInView(heroRef, {margin: '50% 50% 50% 50%', amount: 0.5});
 
-  useEffect(() => {
-    console.log(IfHeroInView);
-  }, [IfHeroInView]);
-    
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -61,20 +56,18 @@ export default function Home() {
   }, []);
 
   
-  const x = useInView(appRef, {margin: '90% 0% 0% 0%'})
-  useEffect(()=>{console.log(x)},[x]);
 
   
 
   return (
     <div className="App">
-      {windowSize[0] > windowSize[1] && <Scene props={windowSize} />}
+      {/* {windowSize[0] > windowSize[1] && <Scene props={windowSize} />} */}
       {windowSize[0] < windowSize[1] && <Drawer />}
       <div className="container" ref={containerRef}>
         {windowSize[0] > windowSize[1] && <Navbar ifInView={IfHeroInView} />}
         <Hero HeroRef={heroRef} />
         <Context1 />
-        <Context2 props={windowSize} />
+        <TechStackWithName />
         <Blogs />
         <Footer />
       </div>
@@ -97,6 +90,9 @@ export function Hero(props: heroProps) {
   const contextOfHero = "I am an immediate joiner, looking for better opportunity as a front-end developer"
   return(
     <motion.section id="Hero" className='Hero panel' ref={props.HeroRef}>
+      <div className='headText'>Akash 
+      <span>Kumar</span>
+      </div>
       <div className='dwBtn glass' onClick={ResumeBtnClick}>
         <ArticleIcon htmlColor='white' fontSize='small' />
         <p>My Resume</p>
@@ -114,18 +110,18 @@ function Navbar(props: navbarProps) {
     enter: {
       bottom: 0,
       top: "auto",
-      opacity: [1, 0.5, 1],
+      opacity: [0.3, 0.5, 1],
       transition: {
-        duration: 0.1,
+        duration: 0.35,
         ease: [0.4, 0, 0.2, 1],
       },
     },
     exit: {
       top: 0,
       bottom: "auto",
-      opacity: [1, 0.5, 1],
+      opacity: [0.3, 1, 0.5],
       transition: {
-        duration: 0.1,
+        duration: 0.34,
         easings: "easeOut",
       },
     },
@@ -137,13 +133,14 @@ function Navbar(props: navbarProps) {
       variants={motionVariants}
       animate={props.ifInView ? "enter" : "exit"}
       ref={navbarRef}
+      whileHover={{opacity: 1}}
       >
       <a href="https://akash-ku-mallick.github.io/Akash-Kumar-Website/">
         About Me</a>
       <a href="#Context">Projects</a>
-      <a href="#Context2">Tech Stacks</a>
+      <a href="#Context2">Skills</a>
       <a href="#Blogs">Blogs</a>
-      <a href="#Contact">Community</a>
+      <a href="#Contact">Hire Me</a>
       </motion.div>
     )
 }

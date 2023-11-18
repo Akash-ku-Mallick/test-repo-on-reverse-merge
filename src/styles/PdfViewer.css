@@ -9,7 +9,7 @@
 
 .pdfheader {
     width: 100%;
-    height: 10vh;
+    height: 10%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -73,11 +73,11 @@
 
 .pdfFrame {
     width: 100%;
-    height: 90vh;
+    height: 90%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
 }

@@ -183,7 +183,6 @@ export default function Context2(props: any){
     const [techCode, setTechCode] = useState(null);
 
     useEffect(() => {
-      console.log(techCode);
       
       return () => {
         setPopup(true);

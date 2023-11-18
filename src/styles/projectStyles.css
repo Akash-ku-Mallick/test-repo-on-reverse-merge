@@ -4,31 +4,98 @@
     justify-content: center;
     align-content: center;
     display: flex;
-    background-color: var(--darkest);
-    padding-top: 2.5rem;
+    color: white;
+    flex-direction: column;
+    padding-top: 2rem;
+    height: calc(100% - 2rem);
 }
 
 .panel {
   scroll-snap-align: start;
-  height: 100vh;
 }
 
 
 .carosol_Wrapper {
-  height: calc(100vh - 4rem);
+  height: 50%;
   width: 100%;
   position: relative;
   top: 0;
 }
 
 .carousel {
-  height: 100%;
+  height: 50%;
   width: 97%;
   display: flex;
   flex-direction: row;
   gap: 1rem;
 }
 
+.TopProjects {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.BottomSection {
+  height: 35%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  overflow-y: auto;
+}
+
+
+.BottomSection a {
+  text-decoration: none;
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: 300ms all ease-in-out;
+  cursor: pointer;
+}
+
+.BottomSection a:hover {
+  text-decoration-color: #00ff00;
+}
+
+.BottomSection::-webkit-scrollbar {
+  width: 0.1rem;
+  background-color: #6a6a6a00;
+  color: #6a6a6a00;
+}
+
+.BottomSection::-webkit-scrollbar-track {
+  background-color: '#183D3D';
+}
+
+.BottomSection::-webkit-scrollbar-thumb {
+  background-color: #818181aa;
+
+}
+
+.catagorised {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: flex-start;
+  align-content: start;
+}
+
+.vr {
+  height: 90%;
+  width: 1px;
+  background-color: white;
+  margin-inline: 1%;
+  margin-top: 1%;
+}
+
+/*  */
 .ItemContainer {
   position: relative;
   height: 98%;
