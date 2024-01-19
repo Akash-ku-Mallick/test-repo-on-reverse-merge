@@ -26,12 +26,16 @@
 
 .commentUI {
     position: relative;
-    height: 90%;
-    border-radius: 40rem;
-    max-width: calc(100vw - 4rem);
+    height: 95%;
+    border-radius: 1rem;
+    max-width: 100%;
+    margin-right: 2rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 /* comment contents */
@@ -39,9 +43,10 @@
 .commentGrid {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: stretch;
-    max-height: 90%;
+    max-height: 100%;
+    width: 100%;
 }
 
 
@@ -67,13 +72,16 @@
     font-weight: 500;
 }
 
-.commentText p {
-    font: 0.8rem 'Roboto', sans-serif;
+.comment {
+    font: 0.9rem 'Roboto', sans-serif;
     font-weight: 300;
     text-overflow: clip;
     text-wrap: nowrap;
     overflow: hidden;
     padding: 2;
+    justify-self: flex-start;
+    align-self: flex-start;
+    text-align: left;
 }
 
 .Footer {

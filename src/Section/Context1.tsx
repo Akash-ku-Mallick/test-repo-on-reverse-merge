@@ -92,16 +92,14 @@ interface Info  {
   catagory: string,
   status: string,
   images: string[],
-  visibility: boolean,
   setVisibility: (visibility: boolean) => void,
   setId: (id: number) => void,
 }
 
-interface PrjTooltipProps {
-  visibility: boolean,
+interface modaltools {
   setVisibility: (visibility: boolean) => void,
+  setID: (id: number) => void,
   id: number,
-  data: any,
 }
 
 
@@ -123,7 +121,7 @@ const RightArrow = () => {
 
 export function Context1() {
   const [visibility, setVisibility] = useState(false);
-  const [id , setId] = useState(0);
+  const [id , setId] = useState(1);
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
     window.innerHeight,
@@ -153,34 +151,15 @@ export function Context1() {
     return (
       <section id='Context' className='panel'>
         <div className='Context'>
-          <TopProjects />
+          <TopProjects setVisibility={setVisibility} setID={setId} id={id} />
           <BottomSection />
         </div>
-          
-        {/* <div className='carosol_Wrapper'>
-        <Carousel className='carousel' show={ifDesktop ? 2 : 1} slide={1} swiping={true}
-        
-        leftArrow={<LeftArrow/>}
-        rightArrow={<RightArrow />}
-        responsive={true}>
-          {data.map((item) => {
-            return (
-              <ItemTemplate
-                key={item.id}
-                title={item.title}
-                description={item.description}
-                link={item.viewcode}
-                image={item.image}
-                tech={item.techstacksused}
-                id={item.id}
-                visibility={visibility}
-                setVisibility={setVisibility}
-                setId={setId}
-              />
-            );
-          })}
-        </Carousel>
-        </div> */}
+        {
+          visibility ? <ProjectModal
+          setVisibility={setVisibility}
+          id={id}
+          /> : null
+        }
       </section>
     );
   }
@@ -189,13 +168,13 @@ export function Context1() {
 
     
 
-    const OnClickFunc = (e: any) => {
+    const OnClickFunc = () => {
       info.setId(info.id);
-      info.setVisibility(true);
+      info.setVisibility(true);  
     }
 
     return (
-      <div className='ItemContainer' >
+      <div onClick={OnClickFunc} className='ItemContainer' >
         
         <div className='ItemImage'>
             <img
@@ -206,27 +185,16 @@ export function Context1() {
         <div className='ItemHeader'>
           <h2 style={{ color: "white" }}>{info.title}</h2>
         </div>
-        {/* <div className='ItemBottomBar'>
-          <div className="bn40div" style={{height: '100%', maxWidth: '40%'}}>
-            <a href={info.link} className='bn40' title="View Code">View Code</a>
-          </div>
-          <button className='button-36' style={{maxWidth: '40%'}}
-            onClick={(e) => {
-              OnClickFunc(e);
-            }}>
-            Read More
-          </button>
-        </div> */}
       </div>
     );
   }
   
-const TopProjects: React.FC = () => {
+const TopProjects: React.FC<modaltools> = ( Tools ) => {
   return (
     <div className='TopProjects'>
       <h1 className='ContextTitle'>Projects</h1>
       <div className='carosol_Wrapper'>
-        <Carousel className='carousel' show={2} slide={1} swiping={true}
+        <Carousel  show={2} slide={1} swiping={true}
         
         leftArrow={<LeftArrow/>}
         autoSwipe={300}
@@ -242,9 +210,8 @@ const TopProjects: React.FC = () => {
                 image={item.image}
                 tech={item.techstacksused}
                 id={item.id}
-                visibility={false}
-                setVisibility={() => {}}
-                setId={() => {}}
+                setVisibility={Tools.setVisibility}
+                setId={Tools.setID}
                 type = 'string'
                 catagory= 'string'
                 status= 'string'
@@ -264,18 +231,11 @@ const BottomSection: React.FC = () => {
     <div className='BottomSection'>
       <div className='catagorised'>
         <span>Apps</span>
-        <a>Hourly Home</a>
-        <a>Task Tracker</a>
-        <a>CAlculator</a>
-        <a>Unlimit</a>
+        
       </div>
       <div className='vr' />
       <div>
         <span>websites</span>
-      </div>
-      <div className='vr' />
-      <div>
-        <span>Games</span>
       </div>
       <div className='vr' />
       <div>
@@ -285,10 +245,3 @@ const BottomSection: React.FC = () => {
   );
 }
 
-const ProjectToolTip = () => {
-  return (
-    <div className='ProjectToolTip'>
-      
-    </div>
-  );
-}

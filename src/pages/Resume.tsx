@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ContentLoader from 'react-content-loader';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
-import { FREBASE_APP}  from "../Configs/Firebase";
+import { FREBASE_APP}  from "../Configs/FirebaseConfig";
 
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -15,8 +15,8 @@ import '../styles/PdfViewer.css';
 export default function Resume() {
 
     const [resume, setResume] = useState("");
-    const storage = getStorage(FREBASE_APP, "gs://akash-portfolio-1.appspot.com");
-    const storageRef = ref(storage, "Akash Kumar Mallick.pdf");
+    const storage = getStorage(FREBASE_APP, "gs://akash-my-portfolio.appspot.com");
+    const storageRef = ref(storage, "Resume.pdf");
 
   
     useEffect(() => {

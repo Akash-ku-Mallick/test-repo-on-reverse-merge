@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../pages/App.css';
 import '../styles/ComponentsStyle.css';
 import '../styles/buttonStyles.css';
@@ -59,28 +59,30 @@ const data = [
   ];
 
 interface Props {
-    visibility: boolean;
-    setVisibility: (visibility: boolean) => void;
-    id: number;
+  setVisibility: (visibility: boolean) => void,
+  id: number,
 }
 
 const ProjectModal: React.FC<Props> = (props) => {
 
-    if (!props.visibility) return null;
+    const [id, setId] = useState(1);
 
-    const id = props.id;
+    const [SelectedData, setData] = useState(data.filter((item) => item.id === id)[0]);
+    
+    const [icon, setIcon] = useState(SelectedData.icon);
+    const [title, setTitle] = useState(SelectedData.title);
+    const [description, setDesctiption] = useState(SelectedData.description);
+    const [techstacksused, setTechstacksused] = useState(SelectedData.techstacksused);
+    const [viewcode, setViewcode] = useState(SelectedData.viewcode);
+    const [screenshots, setScreenshots] = useState(SelectedData.screenshots);
+    const [summary, setSummary] = useState(SelectedData.summary);
 
-    const SelectedData = data.filter((item) => item.id === id)[0];
-
-    const icon = SelectedData.icon;
-    const title = SelectedData.title;
-    const description = SelectedData.description;
-    const techstacksused = SelectedData.techstacksused;
-    const viewcode = SelectedData.viewcode;
-    const screenshots = SelectedData.screenshots;
-    const summary = SelectedData.summary;
-
-
+    useEffect(() => {
+      
+      console.log(props.id);
+      setId(props.id);
+      setData(data.filter((item) => item.id === props.id)[0]);
+    }, [props.id]);
     
 
     return (
