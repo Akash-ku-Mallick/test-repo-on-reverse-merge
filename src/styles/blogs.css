@@ -1,105 +1,163 @@
-h2, p {
-    color: white;
-}
-
-img {
-    height: 200px;
-    width: 300px;
-    object-fit: contain;
-}
-
 .panel {
     width: 100%;
     height: 100vh;
 }
 
-.blogs {
-    padding-top: 3rem;
-}
-
-.header {
+.Half_Section {
     width: 100%;
-    height: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: baseline;
-    margin-left: 2rem;
-    align-items: flex-start;
-}
-
-.header h2 {
-    color: white;
-    font-size: medium;
-    font-weight: bold;
-}
-
-
-.header img {
-    height: 50px;
-    width: 50px;
-    object-fit: contain;
-    border-radius: 20rem;
-}
-
-.crouselContainer {
-    width: 100%;
-    height: 70%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.crouselStyle {
-    width: 97%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-}
-
-.Arrow {
-    width: 100%;
-    height: 100%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    align-content: center;
 }
 
-.itemContainer {
-    width: 60%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.itemContainer img {
-    height: 40%;
+.Grid_container {
     width: 90%;
-    object-fit: cover;
+    height: 95%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.itemDetails {
+@media screen and (max-width: 600px) {
+    .Grid_container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    
+}
+
+.Grid_container::-webkit-scrollbar {
+    width: 0.5rem;
+    background-color: #6a6a6a00;
+    color: #6a6a6a00;
+  }
+  
+  .Grid_container::-webkit-scrollbar-track {
+    background-color: '#183D3D';
+  }
+  
+  .Grid_container::-webkit-scrollbar-thumb {
+    background-color: #818181aa;
+  
+  }
+
+.Grid_container div {
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(236, 239, 238);
+    transition: 300ms ease-in-out;
+    cursor: pointer;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.Grid_container div img {
     width: 100%;
-    height: 40%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.Grid_container div:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 0px 10px rgb(236, 239, 238));
+}
+
+
+.Link_TXT {
+    height: 4%;
+    justify-self: flex-end;
+    align-self: flex-end;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    padding-inline: 1rem;
+    margin-bottom: 1%;
 }
 
-.itemTextContainer {
+.Link_TXT p {
+    color: rgb(255, 255, 255);
+    transition: 300ms ease-in-out;
+}
+
+.Link_TXT:hover {
+    filter: drop-shadow(0px 0px 10px rgb(236, 239, 238));
+}
+
+.Link_TXT:hover p {
+    color: rgb(62, 231, 197);
+}
+
+.Skeleton {
+    transition: 300ms ease-in-out;
+    background: linear-gradient(45deg, rgb(133, 133, 133), rgb(205, 205, 205), rgb(133, 133, 133));
+    background-size: 400% 400%;
+    animation: skeleton 800ms infinite linear;
+}
+
+@keyframes skeleton {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 50% 0%;
+    }
+
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+.Modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
-}
-
-.itemBtn {
-    width: 100%;
-    height: 10%;
-    display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    z-index: 20;
+}
+
+.Modal_img {
+    height: 80%;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.Modal_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.Close {
+    cursor: pointer;
+    border-radius: 10rem;
+    aspect-ratio: 1/1;
+    background-color: rgb(187, 187, 187);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    transition: 400ms ease-in-out;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.Close:hover {
+    background-color: rgb(169, 246, 231);
+    color: black;
 }

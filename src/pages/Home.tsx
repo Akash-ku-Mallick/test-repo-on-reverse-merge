@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 // import Scene from '../Section/Scene';
@@ -17,8 +17,8 @@ import {gsap} from 'gsap';
 import ScrollTrigger from 'gsap'
 import ScrollSmoother from 'gsap'
 
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArticleIcon from '@mui/icons-material/Article';
 
 
@@ -80,25 +80,73 @@ export default function Home() {
 
 
 export function Hero(props: heroProps) {
+
+
+  const [ifPhone, setIfPhone] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      if (window.innerWidth < window.innerHeight) {
+        setIfPhone(true);
+      } else {
+        setIfPhone(false);
+      }
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+
+  
+
   const navigate = useNavigate();
   
   const ResumeBtnClick = () => {
-    console.log('ResumeBtnClick');
     navigate("/Akash-Kumar/my-resume");
   }
 
-  const contextOfHero = "I am an immediate joiner, looking for better opportunity as a front-end developer"
+  const title = "I am Akash Kumar Mallick";
+  const Desccrption = "I am an immediate joiner, looking for better opportunity as a front-end developer";
+
+  
+
+
   return(
     <motion.section id="Hero" className='Hero panel' ref={props.HeroRef}>
-      <div className='headText'>Akash 
-      <span>Kumar</span>
+      <div 
+      className={ifPhone?'heroHeader heroHeader_mobile':'heroHeader'}
+      onClick={()=>{alert("will redirect to Github page")}}>
+        <div className='headText'>
+          <span className='span_1'>Akash</span>
+          <span className='span_2'>Kumar</span>
+        </div>
+        <div className='dwBtn glass' onClick={ResumeBtnClick}>
+          <ArticleIcon htmlColor='white' fontSize='small' />
+          <p>My Resume</p>
+        </div>
       </div>
-      <div className='dwBtn glass' onClick={ResumeBtnClick}>
-        <ArticleIcon htmlColor='white' fontSize='small' />
-        <p>My Resume</p>
+      
+      <div className={ifPhone?'HeroBody HeroBody_mobile':'HeroBody HeroBody_desktop'}>
+        <div className='img_container'>
+            <div id='image' />
+        </div>
+        <div className='text'>
+          <div className='title'>
+            {title}
+          </div>
+          <div className='description glass'>
+            {Desccrption}
+          </div>
+        </div>
       </div>
-      <div className='cirlcle hrimg' />
-      <p>{contextOfHero}</p>
+
+      {/* <div className='cirlcle hrimg' />
+        <p>{contextOfHero}</p> */}
+      
     </motion.section>
   )
 }
@@ -149,64 +197,54 @@ function Navbar(props: navbarProps) {
 function Drawer () {
   const [drawerStatus, setDrawerStatus] = useState(false);
 
-
-
+  const ScrollToTop = () => {
+    window.scrollTo(0, 0);
+  }
 
   return (
     <>
-      <button
-        onClick={() => {
-          setDrawerStatus(!drawerStatus);
-        }}
-        style={{position: "absolute", top: "0", right: "0", zIndex: "12"}}
-      >
-        <MenuIcon fontSize="large"  style={{color: 'white'}} />
-      </button>
       <motion.div
         id="Intro"
         initial={{
           width: "70vw",
           height: "100vh",
-          backgroundColor: "rgb(255, 255, 255, 1)",
           position: "fixed",
           top: 0,
-          right: "-100%",
+          right: "-70vw",
           zIndex: 123,
+          backgroundColor: "rgba(0, 0, 0, 0.1)",
         }}
         animate={{
           animation: "ease-in-out",
-          right: drawerStatus ? 0 : "-110vw" ,
+          right: drawerStatus ? 0 : "-70vw" ,
         }}
         transition={{
-          duration: 0.5,
+          duration: 0.65,
         }}
       >
-        <div style={{width: '100%', background: '#5C8374', backgroundColor: 'rgb(255, 255, 255, 1)'}}>
-        <button
-          onClick={() => {
-            setDrawerStatus(!drawerStatus);
-          }}
-          style={{position: "absolute", top: "0", right: "0"}}
-        >
-          <CloseRoundedIcon fontSize="large" />
-        </button>
+        <div className='drawer_container'>
+        <div
+        className="drawer_btn"
+        onClick={() => {
+          setDrawerStatus(!drawerStatus);
+        }}
+        style={{position: drawerStatus ? "relative":"absolute", top: "0",left: drawerStatus?0:"-45px", zIndex: "12"}}
+      >
+        {!drawerStatus?
+        <MenuRoundedIcon fontSize="large"  style={{color: 'white'}} />
+        :<ArrowBackIosNewRoundedIcon fontSize="large"  style={{color: 'white'}} />}
+      </div>
+        
+        <div className='drawer_body'>
+        <div className='headText' onClick={ScrollToTop}>
+          <span className='span_1'>Akash</span>
+          <span className='span_2'>Kumar</span>
         </div>
-        <ul>
-          <li>
-            <a className="Header" href="https://akash-ku-mallick.github.io/Akash-Kumar-Website/">Akash Kumar</a>
-          </li>
-          <li>
-            <a href="#Context">Projects</a>
-          </li>
-
-          <li>
-            <a href="#Blogs">Blogs</a>
-          </li>
-
-          <li>
-            <a href="#Contact">Join Me</a>
-          </li>
-        </ul>
+        <a className="drawer_link" href="#Context">Projects</a>
+          <a className="drawer_link" href="#Blogs">Blogs</a>
+          <a className="drawer_link" href="#Contact">Join Me</a>
+        </div>
+        </div>
       </motion.div>
     </>
   );

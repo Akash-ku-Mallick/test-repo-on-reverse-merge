@@ -1,83 +1,85 @@
-// import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/blogs.css'
 
-// interface properties {
-//   title: string;
-//   description: string;
-//   image: string;
-//   key: number;
-// }
-
-// const data = [
-//   {
-//     id: 1,
-//     title: 'Blog Title 1',
-//     description: 'Blog Description 1',
-//     image: 'https://picsum.photos/600',
-//   },
-//   {
-//     id: 2,
-//     title: 'Blog Title 2',
-//     description: 'Blog Description 2',
-//     image: 'https://picsum.photos/600',
-//   },
-//   {
-//     id: 3,
-//     title: 'Blog Title 3',
-//     description: 'Blog Description 3',
-//     image: 'https://picsum.photos/600',
-//   },
-//   {
-//     id: 4,
-//     title: 'Blog Title 4',
-//     description: 'Blog Description 4',
-//     image: 'https://picsum.photos/600',
-//   },
-//   {
-//     id: 5,
-//     title: 'Blog Title 5',
-//     description: 'Blog Description 5',
-//     image: 'https://picsum.photos/600',
-//   },
-// ]
-
-
+import { getCertificateList } from '../utils/Apis'
 
 export default function Blogs() {
 
-    return(
-      <section id='Blogs' className='blogs panel'>
-          <div>
-            <div className='header'>
-              <img src={'https://picsum.photos/200'} alt='' />
-              <h2>Profile Name</h2>
-            </div>
-            <div className='crouselContainer'>
-              
-            </div>
-          </div>
-      </section>
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [Certificates, setCertificates] = useState<any[]>([]);
+  const [loadingC, setLoadingC] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [selected, setSelected] = useState<string>("");
+  
+
+  useEffect(() => {
+    getCertificateList().then((res) => {
+      setCertificates(res);
+      setLoadingC(false);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
+
+  useEffect(() => {
+    if (Certificates.length > 0) {
+      console.log(Certificates);
+      
+    }
+  }, [Certificates])
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, index: string) => {
+    setSelected(index);
+    setModal(true);
+  };
+
+  
+
+  const Modal = () => {
+    return (
+      <div className='Modal'>
+        <div className='Close' onClick={() => setModal(false)}>X</div>
+        <div className='Modal_img'>
+          <img src={selected} alt='Certificates' />
+        </div>
+      </div>
     )
   }
 
-// const BlogItem = (props: properties) => {
+  return (
+    <section id='Blogs' className='panel'>
+      <div className='Half_Section'>
+        <div className='Grid_container'>
+          {loading ? <><Skeleton /><Skeleton /><Skeleton /><Skeleton /><Skeleton /><Skeleton /></> : null}
+        </div>
+        <div className='Link_TXT'>
+          <p>Read more </p>
+        </div>
+      </div>
+      <div className='Half_Section'>
+        <div className='Grid_container'>
+          {
+            loadingC ? <><Skeleton /><Skeleton /><Skeleton /><Skeleton /><Skeleton /><Skeleton /></>
+            : Certificates.map((item, index) => {
+              if (index < 6) {
+                return (
+                  <div key={index} onClick={(e)=>{handleClick(e, item.image)}} >
+                    <img src={item.image} alt={item.image} />
+                  </div>
+                )
+              }
+            })
+          }
+        </div>
+        <div className='Link_TXT'>
+          <p>{" "} </p>
+        </div>
+      </div>
+      {modal ? <Modal /> : null}
+    </section>
+  )
+}
 
-//   const ClickHandler = (e: string) => {
-//     console.log(e);
-//   }
-//   return(
-//     <div className='itemContainer' >
-//       <img src={props.image} alt='' />
-//       <div className='itemDetails'>
-//         <div className='itemTextContainer'>
-//           <h2>{props.title}</h2>
-//           <p>{props.description}</p>
-//         </div>
-//         <div className='itemBtn'
-//         onClick={()=> {ClickHandler(props.title)}}>
-//           <p>Read More</p>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
+const Skeleton = () => {return(<div className='Skeleton' />)}
+

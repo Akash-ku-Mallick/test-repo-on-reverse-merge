@@ -1,7 +1,7 @@
 .Context {
     position: relative;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     align-content: center;
     display: flex;
     color: white;
@@ -15,77 +15,89 @@
 }
 
 
-.carosol_Wrapper {
-  height: 50%;
-  width: 100%;
-  position: relative;
-  justify-self: flex-end;
-  align-self: flex-end;
-}
-
-.carousel {
-  height: 50%;
-  width: 97%;
-  align-self: center;
-  justify-self: center;
-}
-
-
-.TopProjects {
-  width: 100%;
-  height: 65%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  align-content: center;
-}
-
 .BottomSection {
   height: 35%;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  overflow-y: auto;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+}
+
+.child{
+  flex: 2;
 }
 
 
-.BottomSection a {
-  text-decoration: none;
-  color: white;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  transition: 300ms all ease-in-out;
-  cursor: pointer;
-}
-
-.BottomSection a:hover {
-  text-decoration-color: #00ff00;
-}
-
-.BottomSection::-webkit-scrollbar {
+.BottomSection_body::-webkit-scrollbar {
   width: 0.1rem;
   background-color: #6a6a6a00;
   color: #6a6a6a00;
 }
 
-.BottomSection::-webkit-scrollbar-track {
+.BottomSection_body::-webkit-scrollbar-track {
   background-color: '#183D3D';
 }
 
-.BottomSection::-webkit-scrollbar-thumb {
+.BottomSection_body::-webkit-scrollbar-thumb {
   background-color: #818181aa;
-
 }
 
-.catagorised {
+.BottomSection_heading {
+  height: 10%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.BottomSection_heading > p {
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.BottomSection_heading p {
+  color: #ffffff;
+}
+
+.BottomSection_body {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.content {
+  width: 100%;
+  height: 2rem;
+  display: flex;
   align-items: flex-start;
-  align-content: start;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+  transition: 300ms all ease-in-out;
+}
+
+.content p {
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  padding-block: 2%;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  text-overflow: ellipsis;
+}
+
+.content:hover p{
+  color: blueviolet;
 }
 
 .vr {
@@ -96,32 +108,54 @@
   margin-top: 1%;
 }
 
+.TopProjects {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+
+}
+.TopProjectsTitle {
+  align-self: flex-start;
+  margin-left: 5%;
+  height: 5%;
+}
+
+.carosol_Wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  justify-self: center;
+  align-self: flex-end;
+  display: flex;
+}
+
 /*  */
 .ItemContainer {
   position: relative;
-  height: 98%;
   width: 100%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-items: center;
   align-content: center;
-  cursor: pointer;
+  height: 99%;
 }
 
-/* comonent #1 of ItemContainer */
+/*  #1 of ItemContainer */
+
 .ItemHeader {
   width: 100%;
-  height: 35%;
+  height: 25%;
+  margin-bottom: 5%;
   position: relative;
   top: 0;
-  margin-bottom: 4%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-align: left;
-  align-items: center;
-  justify-items: center;
-  align-content: center;
-  padding: auto;
+  display: flex;
+  flex-direction: row;
   user-select: none;
   cursor: default;
 }
@@ -133,49 +167,94 @@
   padding-inline: 5%;
 }
 
-.ContextTitle {
-  align-self: flex-start;
-  margin-left: 5%;
-}
 
-.ItemHeader p {
-  font-size: 0.75rem;
-  text-wrap: pretty;
-  padding-inline: 5%;
-}
-
-/* comonent #2 of ItemContainer */
+/*  #2 of ItemContainer */
 .ItemImage {
-  height: 45%;
-  width: 90%;
   margin-inline: auto;
-  cursor: grab;
+  height: 60%;
+  width: 90%;
+  cursor: pointer;
+  margin-block: 5%;
+  box-shadow: #6a6a6a 0px 0px 0px 0px;
 }
 
+.ItemContainer:hover .ItemImage {
+  transform: scale(1.05);
+  transition: 300ms all ease-in-out;
+  box-shadow: #d6d6d6 0px 0px 15px 0px;
+}
 
 .ItemImage img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit:fill;
 }
 
-
-
-/* comonent #3 of ItemContainer */
-.ItemBottomBar {
-  height: 15%;
-  width: 90%;
-  position: relative;
-  bottom: 0;
+.LoadingImgSkeleton {
+  height: 70%;
+  width: 95%;
+  border-radius: 10px;
+  background-color: #6a6a6a;
+  animation: loading 1s infinite ease-in-out;
+  margin-block: 5%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: baseline;
-  align-content: center;
-  padding-block: 2%;
-  padding-left: 5%;
-  padding-right: 5%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+.LoadingImgSkeletontxt {
+  height: 20%;
+  margin-block: 5%;
+  width: 95%;
+  border-radius: 15px;
+  background-color: #6a6a6a;
+  animation: loading 0.5s infinite ease-in-out;
+}
+
+.LoadingImgSkeletonItemContainer {
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: wait;
+}
+
+
+.LoadingImgSkeleton svg {
+  margin: auto;
+  padding: auto;
+  justify-self: center;
+  align-self: center;
+}
+
+.TextSkeleton {
+  width: 60%;
+  height: 1rem;
+  padding-inline: 5%;
+  border-radius: 15px 0px 15px 0px;
+  margin-bottom: 5%;
+  animation: loading 700ms infinite ease-in-out;
+}
+
+@keyframes loading {
+  0% {
+    background-color: #6a6a6a;
+  }
+  50% {
+    background-color: #8a8a8a;
+  }
+  100% {
+    background-color: #6a6a6a;
+  }
+}
+
+
+
+
 
 
 @media screen and (max-width: 670px) {
@@ -201,51 +280,17 @@
     height: 100%;
   }
 
-  .ItemContainer {
-    position: relative;
-    height: 98%;
-    width: 100%;
-    align-items: center;
-    justify-items: center;
-    align-content: center;
-    cursor: pointer;
-  }
-
   .ItemImage {
     height: 45%;
     width: 90%;
     margin-inline: auto;
-    cursor: grab;
+    cursor: pointer;
   }
 
   .ItemImage img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-  }
-
-  .ItemBottomBar {
-    height: 25%;
-    width: 90%;
-    position: relative;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-
-  .ItemBottomBar button {
-    width: 100%;
-    height: 60%;
-  }
-
-  .ItemBottomBar div {
-    width: 100%;
-    height: 30%;
   }
   
 }
@@ -258,4 +303,14 @@
   justify-content: space-around;
   align-items: center;
   align-content: center;
+  cursor: pointer;
+  background: rgb(111,111,111);
+  background: radial-gradient(circle,rgba(0, 0, 0, 0.4) 0%, rgba(30,30,30,0.5) 100%);
+  transition: 800ms all ease-in-out;
 }
+
+.Arrow:hover {
+  background: rgb(31, 31, 31);
+  background: radial-gradient(circle, rgba(71,71,71,0.7) 0%, rgba(30,30,30,0.5) 100%);
+}
+

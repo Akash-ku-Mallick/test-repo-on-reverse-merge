@@ -168,17 +168,18 @@ function Contact() {
         </div>}
         <div>
           {enable ? 
-          <form>
+          <form id="commentBox">
             <div className="flexRow">
-              <input type="text" placeholder="Name" name="name" value={name} id="name" disabled={!enable} onChange={updateName} />
-              <input type="email" placeholder="Email" name="mail" id="mail" value={mail} disabled={!enable} onChange={updateMail} />
+              <input className="textInp" type="text" placeholder="Name" name="name" value={name} id="name" disabled={!enable} onChange={updateName} />
+              <input className="textInp" type="email" placeholder="Email" name="mail" id="mail" value={mail} disabled={!enable} onChange={updateMail} />
             </div>
-            <input type="text" name="comment" id="comment" placeholder="Comment" value={comment} onChange={updateComment} disabled={!enable} />
-            <input type="submit" value="Submit" onClick={(e)=>{sendForm(e)}} />
+            <input className="text2Inp" type="text" name="comment" id="comment" placeholder="Comment" value={comment} onChange={updateComment} disabled={!enable} />
+            <input className="btnInp" type="submit" value="Submit" onClick={(e)=>{sendForm(e)}} />
           </form>
           :
-          <div className="flexRow">
-            <h3>Submitting...</h3>
+          <div className="flexRow justCenterItems">
+            <h3>Submitting</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><circle cx="4" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsBounce0" attributeName="cy" begin="0;svgSpinners3DotsBounce1.end+0.25s" calcMode="spline" dur="0.6s" keySplines=".33,.66,.66,1;.33,0,.66,.33" values="12;6;12"/></circle><circle cx="12" cy="12" r="3" fill="white"><animate attributeName="cy" begin="svgSpinners3DotsBounce0.begin+0.1s" calcMode="spline" dur="0.6s" keySplines=".33,.66,.66,1;.33,0,.66,.33" values="12;6;12"/></circle><circle cx="20" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsBounce1" attributeName="cy" begin="svgSpinners3DotsBounce0.begin+0.2s" calcMode="spline" dur="0.6s" keySplines=".33,.66,.66,1;.33,0,.66,.33" values="12;6;12"/></circle></svg>
             {/* loading */}
           </div>
           }
@@ -196,12 +197,12 @@ function Contact() {
         <div className='commentGrid'>
           <div className='commentText'>
             <div className="flexRow topSection">
-              <Icon icon="mingcute:user-4-fill" color="white" />
+              <Icon icon="mingcute:user-4-fill" style={{color: "rgb(138, 43, 227)", fontSize: '2rem'}} />
               <h3>{props.name}</h3>
             </div>
               <Rating name="read-only" size="small" value={props.rating} readOnly />
           </div>
-            <p className="comment">{props.comment}</p>
+            <p className="comment">{"\" "}{props.comment}{" \""}</p>
         </div>
       </div>
     )
@@ -223,7 +224,7 @@ function Contact() {
             <div className="footerHead">
               <div className="footerLinks">
                 <div className="footerLink">
-                  <Icon icon="majesticons:mail" color="white" className="footerIcon" />
+                  <Icon icon="majesticons:mail" />
                   
                   <p>
                     {"Let's connect on"}
@@ -233,7 +234,7 @@ function Contact() {
                     </a>
                   </div>
                 <div className="footerLink">
-                  <Icon icon="ion:call" color="white" className="footerIcon"/>
+                  <Icon icon="ion:call" />
                   <p>
                     {"Let's talk on"}
                   </p>

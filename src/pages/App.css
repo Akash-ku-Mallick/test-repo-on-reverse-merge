@@ -23,6 +23,10 @@ body {
   --bg-image1: url('../../assets/Heropic.jpg');
   --bg-image2: url('../../assets/Heropic2.jpg');
 
+  --bg-myself: url('../../assets/my_picture.png');
+
+  --bg-loading: url('../../assets/loading.gif');
+
   --darkest: #040D12;
   --dark: #183D3D;
   --light: #5C8374;
@@ -45,7 +49,6 @@ button {
 }
 
 button:hover {
-  scale: 110%;
   background-color: var(--lightest);
   color: var(--darkest);
   border: 2px solid rgb(48, 31, 31);
@@ -168,11 +171,11 @@ Canvas {
   width: 100%;
   transition: all 1s ease-in-out;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
   background: transparent;
   color: #ffffff;
   overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .Hero p {
@@ -180,42 +183,168 @@ Canvas {
   font: 1.7rem 'Quattrocento Sans', sans-serif;
 }
 
+.heroHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.heroHeader_mobile {
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  padding-block: 1%;
+  height: 30%;
+  align-items: baseline;
+}
+
+.heroHeader_mobile div {
+  width: 50%;
+}
+
+.heroHeader_mobile > .dwBtn {
+  max-width: fit-content;
+}
+
+.heroHeader div {
+  margin-inline: 2%;
+}
+
+.HeroBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  padding-block: 1rem;
+}
+
+.HeroBody_desktop {
+  flex-direction: row;
+}
+
+.HeroBody_mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.HeroBody > div {
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.img_container {
+  height: 100%;
+  width: 100%;
+}
+
+#image {
+  aspect-ratio: 1/1;
+  background: var(--bg-myself) no-repeat center center/cover;
+  border: none;
+  filter: contrast(0.9) brightness(1);
+  z-index: 6;
+  width: 250px;
+  transition: 120ms ease-in-out;
+  filter: drop-shadow(0 0 1rem rgba(255, 217, 220, 0.5));
+}
+
+#image:hover {
+  filter: drop-shadow(0 0 0.75rem rgb(255, 250, 220));
+}
+
+.text {
+  color: rgb(255, 255, 255);
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+  width: 80%;
+  text-align: center;
+  user-select: none;
+  -moz-user-select: none;
+}
+
+.title {
+  font: 2em sans-serif;
+  width: 100%;
+}
+
+.description {
+  font: 1em sans-serif;
+  border: #ffffffc6 solid;
+  border-width: 0.2px 1px 1px 0.2px;
+  border-radius: 0.4em;
+  margin-inline: 2%;
+  width: 300px;
+  text-wrap: wrap;
+  height: 4rem;
+  padding: 2%;
+  text-overflow:clip;
+  overflow: hidden;
+  box-shadow: #93B1A6 0px 0px 1px 0px;
+  transition: all 600ms ease-in-out;
+}
+
+.description:hover {
+  
+  box-shadow: #93B1A6 0px 0px 103px 0px;
+}
+
+
+/*  */
+
 .headText {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: fit-content;
+  gap: 1rem;
+  transition: 120ms ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  text-decoration: none;
+
+  /* font of spans */
   font-size: 1.6rem;
   font-family: 'Monoton', sans-serif;
   color: rgb(255, 255, 255);
-  margin-left: 5%;
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 4%;
-
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
 }
 
-.headText span {
-  font: 1.7rem 'Monoton', sans-serif;
-  color: rgb(64, 67, 233);
+.headText:hover {
+  text-shadow: 0px 0px 20px rgba(240, 236, 161, 0.841);
+  background-color: none;
+}
+
+
+.headText > .span_1 {
+  color: rgb(255, 255, 255);
+}
+
+.headText > .span_2 {
+  color: rgb(46, 118, 212);
 }
 
 
 .dwBtn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-right: 5%;
-  margin-top: 5%;
-  height: 50px;
-  width: 150px;
+  padding: 1%;
+  max-height: 40px;
+  min-width: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 5rem;
+  border-radius: 1.05rem;
   cursor: pointer;
 }
 
@@ -318,6 +447,12 @@ Canvas {
 
 .jselfRight {
   justify-self: flex-end;
+}
+
+.justCenterItems{
+  justify-items: center;
+  align-items: center;
+  text-align: center;
 }
 
 
@@ -435,34 +570,6 @@ Canvas {
 #introCanvas {
   height: 100vh;
   width: 100vw;
-}
-
-.cirlcle {
-  border-radius: 100em;
-  height: 20vh;
-  aspect-ratio: 1/1;
-  background-color: rgb(138, 209, 191);
-  margin: 2em;
-  background-size: cover;
-}
-
-.hrimg {
-  background-image: var(--bg-image1);
-  transition: 120ms ease-in-out;
-  animation: bganimate 10s ;
-}
-
-.hrimg:hover {
-  animation: none ;
-}
-
-@keyframes bganimate {
-  0% {
-    background-image: var(--bg-image1);
-  }
-  50% {
-    background-image: var(--bg-image2);
-  }
 }
 
 .glass{
@@ -686,3 +793,53 @@ Canvas {
   color: #ffffff;
 }
 
+.drawer_container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(102, 102, 102, 0.516);
+  border-radius: 5% 0% 0% 5%;
+  backdrop-filter: blur(2px);
+}
+
+.drawer_body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  height: 50%;
+  width: 100%;
+  gap: 5%;
+}
+
+.drawer_btn {
+  color: #ffffff;
+  transition: 120ms ease-in-out;
+  justify-self: flex-end;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  aspect-ratio: 1/1;
+  height: 45px;
+}
+
+.drawer_btn:hover {
+  color: rgb(92, 189, 241);
+}
+
+.drawer_link {
+  width: 99%;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-family: 'Quattrocento Sans', sans-serif;
+  text-decoration: none;
+  transition: 120ms ease-in-out;
+  padding-block: 4%;
+  text-align: center;
+}
+
+.drawer_link:hover {
+  color: rgb(92, 189, 241);
+}

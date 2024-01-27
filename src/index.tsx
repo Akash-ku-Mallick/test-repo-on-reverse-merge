@@ -6,6 +6,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Resume from './pages/Resume';
+import Project from './pages/Project';
 
 import ErrorPage from './pages/ErrorPage';
 
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
   {
     path: "/Akash-Kumar/my-resume",
     element: <Resume />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/Akash-Kumar/my-projects/:id",
+    element: <Project />,
     errorElement: <ErrorPage />,
   }
 ]);

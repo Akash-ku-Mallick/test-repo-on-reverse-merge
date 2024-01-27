@@ -1,0 +1,17 @@
+Compiled with warnings.
+
+[eslint]
+src\Configs\FirebaseConfig.ts
+  Line 19:7:  'analytics' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+src\Section\Blogs.tsx
+  Line 8:10:   'blogs' is assigned a value but never used                                         @typescript-eslint/no-unused-vars
+  Line 8:17:   'setBlogs' is assigned a value but never used                                      @typescript-eslint/no-unused-vars
+  Line 9:19:   'setLoading' is assigned a value but never used                                    @typescript-eslint/no-unused-vars
+  Line 64:46:  Array.prototype.map() expects a value to be returned at the end of arrow function  array-callback-return
+
+src\Section\Context1.tsx
+ dependency array                         react-hooks/exhaustive-deps
+  Line 97:6:   React Hook useEffect has a missing dependency: 'SelectData'. Either include it or remove the dependency array                      react-hooks/exhaustive-deps
+  Line 109:6:  React Hook useEffect has missing dependencies: 'GetCoevrURL' and 'getIconUrl'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  Line 124:7:  React Hook useEffect has a missing dependency: 'getSsUris'. Either include it or remove the dependency array                       react-hooks/exhaustive-deps
