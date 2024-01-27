@@ -38,10 +38,10 @@ export default function Blogs() {
 
   const Modal = () => {
     return (
-      <div className='Modal'>
+      <div className='Modal' onClick={() => setModal(false)} >
         <div className='Close' onClick={() => setModal(false)}>X</div>
-        <div className='Modal_img'>
-          <img src={selected} alt='Certificates' />
+        <div className='Modal_img' >
+          <img loading="lazy" src={selected} alt='Certificates' />
         </div>
       </div>
     )
@@ -65,7 +65,7 @@ export default function Blogs() {
               if (index < 6) {
                 return (
                   <div key={index} onClick={(e)=>{handleClick(e, item.image)}} >
-                    <img src={item.image} alt={item.image} />
+                    <img loading="lazy" src={item.image} alt={item.image} />
                   </div>
                 )
               }

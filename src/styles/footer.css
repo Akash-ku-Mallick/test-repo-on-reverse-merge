@@ -47,7 +47,7 @@
     justify-content: space-evenly;
     align-items: stretch;
     max-height: 100%;
-    width: 100%;
+    width: 90%;
 }
 
 
@@ -268,6 +268,20 @@
     border: 2px solid rgb(138, 43, 227);
     border-radius: 1rem;
     padding: 1rem;
+    font: 1rem 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+#commentBox div {
+    justify-self: space-around;
+}
+
+#commentBox div span {
+    font: 0.8rem 'Roboto', sans-serif;
+    color: rgb(194, 104, 39);
+    text-align: center;
+    align-self: center;
 }
 
 #commentBox:hover {
@@ -292,4 +306,69 @@
     background-color: rgba(127, 255, 212, 0.473);
     transform: scale(1.1);
     transition: all 130ms ease-in;
+}
+
+@media (pointer: coarse)  {
+	/* mobile device */
+    .commentText h3 {
+        font-size: var(--font-p-normal);
+    }
+    .comment {
+        font-size: var(--font-p-normal);
+    }
+    .footerLink a {
+        font-size: var(--font-p-normal);
+    }
+    .footerLink svg{
+        font-size: var(--font-p-normal);
+    }
+    .textInp {
+        font-size: var(--font-p-normal);
+    }
+    .text2Inp {
+        font-size: var(--font-p-normal);
+    }
+    #Contact > div { flex: 1;}
+
+    #commentBoxContainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #commentBox {
+        width: 70%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    ::placeholder {
+        font-size: var(--font-p-normal);
+    }
+
+    .btnInp {
+        font-size: var(--font-p-normal);
+    }
+
+    #commentBox div span {
+        width: 100%;
+        font-size: var(--font-p-small);
+    }
+
+    #commentBox > div {
+        justify-content: space-evenly;
+    }
+
+    .Socials svg {
+        font-size: var(--font-p-normal);
+    }
+
+    .copyright {
+        font-size: var(--font-p-small);
+    }
 }

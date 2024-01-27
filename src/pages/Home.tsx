@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 // import Scene from '../Section/Scene';
@@ -125,7 +125,7 @@ export function Hero(props: heroProps) {
           <span className='span_2'>Kumar</span>
         </div>
         <div className='dwBtn glass' onClick={ResumeBtnClick}>
-          <ArticleIcon htmlColor='white' fontSize='small' />
+          <ArticleIcon htmlColor='white' />
           <p>My Resume</p>
         </div>
       </div>
@@ -142,11 +142,7 @@ export function Hero(props: heroProps) {
             {Desccrption}
           </div>
         </div>
-      </div>
-
-      {/* <div className='cirlcle hrimg' />
-        <p>{contextOfHero}</p> */}
-      
+      </div>  
     </motion.section>
   )
 }
@@ -210,13 +206,13 @@ function Drawer () {
           height: "100vh",
           position: "fixed",
           top: 0,
-          right: "-70vw",
+          right: "-71vw",
           zIndex: 123,
           backgroundColor: "rgba(0, 0, 0, 0.1)",
         }}
         animate={{
           animation: "ease-in-out",
-          right: drawerStatus ? 0 : "-70vw" ,
+          right: drawerStatus ? 0 : "-71vw" ,
         }}
         transition={{
           duration: 0.65,
@@ -228,11 +224,11 @@ function Drawer () {
         onClick={() => {
           setDrawerStatus(!drawerStatus);
         }}
-        style={{position: drawerStatus ? "relative":"absolute", top: "0",left: drawerStatus?0:"-45px", zIndex: "12"}}
+        style={{position: drawerStatus ? "relative":"absolute", top: 0,left: drawerStatus?'2%': -75, zIndex: "12"}}
       >
         {!drawerStatus?
-        <MenuRoundedIcon fontSize="large"  style={{color: 'white'}} />
-        :<ArrowBackIosNewRoundedIcon fontSize="large"  style={{color: 'white'}} />}
+        <MenuRoundedIcon />
+        :<ArrowBackIosNewRoundedIcon />}
       </div>
         
         <div className='drawer_body'>
@@ -240,9 +236,9 @@ function Drawer () {
           <span className='span_1'>Akash</span>
           <span className='span_2'>Kumar</span>
         </div>
-        <a className="drawer_link" href="#Context">Projects</a>
-          <a className="drawer_link" href="#Blogs">Blogs</a>
-          <a className="drawer_link" href="#Contact">Join Me</a>
+        <a className="drawer_link" onClick={()=>{setDrawerStatus(!drawerStatus)}} href="#Context">Projects</a>
+          <a className="drawer_link" onClick={()=>{setDrawerStatus(!drawerStatus)}} href="#Blogs">Blogs</a>
+          <a className="drawer_link" onClick={()=>{setDrawerStatus(!drawerStatus)}} href="#Contact">Join Me</a>
         </div>
         </div>
       </motion.div>

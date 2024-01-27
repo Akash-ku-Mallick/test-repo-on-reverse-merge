@@ -131,18 +131,23 @@ function Contact() {
     setName(event.target.value);
   }
   
-  const labels: { [index: string]: string } = {
-    1: 'Useless',
-    2: 'Poor',
-    3: 'Ok',
-    4: 'Good',
-    5: 'Excellent',
-  };
 
   function Comments() {
+    const [isDesktop, setDesktop] = useState(window.innerWidth > window.innerHeight);
+
+    useEffect(() => {
+      function updateScreen() {
+        setDesktop(window.innerWidth > window.innerHeight);
+      }
+      window.addEventListener("resize", updateScreen);
+      return () => window.removeEventListener("resize", updateScreen);
+    }, []);
+
+
+
     return (
       <div id='CommentContainer'>
-        <Carousel className='carousel' show={1.2} slide={1} swiping={true}
+        <Carousel className='carousel' show={isDesktop?3:1} slide={1} swiping={true}
         autoSwipe={9000}
         leftArrow={<div style={{width: 20}}/>}
         rightArrow={<div style={{width: 20}}/>}
@@ -166,15 +171,20 @@ function Contact() {
           <h3>Fetching Comments...</h3>
           {/* loading */}
         </div>}
-        <div>
+        <div id="commentBoxContainer">
           {enable ? 
           <form id="commentBox">
             <div className="flexRow">
               <input className="textInp" type="text" placeholder="Name" name="name" value={name} id="name" disabled={!enable} onChange={updateName} />
               <input className="textInp" type="email" placeholder="Email" name="mail" id="mail" value={mail} disabled={!enable} onChange={updateMail} />
             </div>
-            <input className="text2Inp" type="text" name="comment" id="comment" placeholder="Comment" value={comment} onChange={updateComment} disabled={!enable} />
-            <input className="btnInp" type="submit" value="Submit" onClick={(e)=>{sendForm(e)}} />
+            <div className="flexRow">
+              <input className="text2Inp" type="text" name="comment" id="comment" placeholder="Comment" value={comment} onChange={updateComment} disabled={!enable} />
+              <input className="btnInp" type="submit" value="Submit" onClick={(e)=>{sendForm(e)}} />
+            </div>
+            <div><span>
+              {" *Please be cautious with what you share with us. "}
+              </span></div>
           </form>
           :
           <div className="flexRow justCenterItems">
@@ -243,7 +253,7 @@ function Contact() {
                     </a>
                 </div>
               </div>
-              <div className="Socials ">
+              <div className="Socials">
                 <SocialLinks />
               </div>
             </div>

@@ -5,13 +5,31 @@ src\Configs\FirebaseConfig.ts
   Line 19:7:  'analytics' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
 src\Section\Blogs.tsx
-  Line 8:10:   'blogs' is assigned a value but never used                                         @typescript-eslint/no-unused-vars
-  Line 8:17:   'setBlogs' is assigned a value but never used                                      @typescript-eslint/no-unused-vars
-  Line 9:19:   'setLoading' is assigned a value but never used                                    @typescript-eslint/no-unused-vars
+  Line 8:10:   'blogs' is assigned a value but never used                                    
+     @typescript-eslint/no-unused-vars
+  Line 8:17:   'setBlogs' is assigned a value but never used                                 
+     @typescript-eslint/no-unused-vars
+  Line 9:19:   'setLoading' is assigned a value but never used                               
+     @typescript-eslint/no-unused-vars
   Line 64:46:  Array.prototype.map() expects a value to be returned at the end of arrow function  array-callback-return
 
 src\Section\Context1.tsx
- dependency array                         react-hooks/exhaustive-deps
+  Line 86:6:    React Hook useEffect has a missing dependency: 'dataRef'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 226:21:  'setLoading' is assigned a value but never used                              
+                               @typescript-eslint/no-unused-vars
+
+src\Section\Footer.tsx
+  Line 38:6:   React Hook useEffect has a missing dependency: 'coll'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 134:9:  'labels' is assigned a value but never used                                   
+                           @typescript-eslint/no-unused-vars
+
+src\pages\Home.tsx
+  Line 3:10:  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+src\pages\Project.tsx
+  Line 54:49:  Array.prototype.map() expects a return value from arrow function              
+                                                     array-callback-return
+  Line 93:6:   React Hook useEffect has a missing dependency: 'getData'. Either include it or remove the dependency array                         react-hooks/exhaustive-deps
   Line 97:6:   React Hook useEffect has a missing dependency: 'SelectData'. Either include it or remove the dependency array                      react-hooks/exhaustive-deps
   Line 109:6:  React Hook useEffect has missing dependencies: 'GetCoevrURL' and 'getIconUrl'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
-  Line 124:7:  React Hook useEffect has a missing dependency: 'getSsUris'. Either include it or remove the dependency array                       react-hooks/exhaustive-deps
+  Line 124:7:  React Hook useEffect has a missing dependency: 'getSsUris'. Either 

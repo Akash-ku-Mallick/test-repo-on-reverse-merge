@@ -9,6 +9,7 @@ function ErrorPage () {
             <h2>But an error has occoured during loading the page. Pleae go back to the home screen.</h2>
             </>
             <p>Click here to redirect <Link to="/">Home</Link></p>
+            <a href="mailto:akashkumarmallick@outlook.com">Mail me with this isuue if possible.</a>
         </div>
     )
 }

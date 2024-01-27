@@ -24,13 +24,6 @@
     overflow-x: hidden;
 }
 
-@media screen and (max-width: 600px) {
-    .Grid_container {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: 1fr 1fr 1fr;
-    }
-    
-}
 
 .Grid_container::-webkit-scrollbar {
     width: 0.5rem;
@@ -133,6 +126,7 @@
     height: 80%;
     width: 80%;
     border-radius: 10px;
+    z-index: 20;
 }
 
 .Modal_img img {
@@ -160,4 +154,20 @@
 .Close:hover {
     background-color: rgb(169, 246, 231);
     color: black;
+}
+
+@media (pointer: coarse)  {
+	/* mobile device */
+    .Grid_container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    .Close {
+        font-size: var(--font-p-medium);
+    }
+
+    .Link_TXT p {
+        font-size: var(--font-p-normal);
+    }
 }
