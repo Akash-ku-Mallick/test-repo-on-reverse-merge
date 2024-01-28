@@ -14,8 +14,6 @@ const getCertificateList = async () => {
         data.forEach(async (doc) => {
             let temp = doc.data();
             temp.image = await getCertificateImage(temp.image);
-            console.log(temp.id);
-            console.log(temp);
             list.push(temp);
         });
 
@@ -36,7 +34,7 @@ const getCertificateImage = async (path) => {
             getDownloadURL(storageRef).then((url) => {
                 resolve(url);
             }).catch((error) => {
-                resolve("error");
+                reject("error");
             });
         });
 

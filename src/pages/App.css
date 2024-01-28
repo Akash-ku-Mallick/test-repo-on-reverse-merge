@@ -908,4 +908,14 @@ Canvas {
   .drawer_container {
     border-radius: 5rem 0rem 0rem 5rem;
   }
+
+  .container {
+    scroll-snap-type:none;
+  }
+
+  .panel {
+    scroll-snap-align: none;
+  }
+
+  
 }

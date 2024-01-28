@@ -81,11 +81,9 @@ export default function Home() {
 
 export function Hero(props: heroProps) {
 
+  const [ifPhone, setIfPhone] = useState<boolean>(window.innerWidth < window.innerHeight);
 
-  const [ifPhone, setIfPhone] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleWindowResize = () => {
+  const handleWindowResize: () => void = () => {
       if (window.innerWidth < window.innerHeight) {
         setIfPhone(true);
       } else {
@@ -93,6 +91,7 @@ export function Hero(props: heroProps) {
       }
     };
 
+  useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
 
     return () => {
@@ -132,16 +131,26 @@ export function Hero(props: heroProps) {
       
       <div className={ifPhone?'HeroBody HeroBody_mobile':'HeroBody HeroBody_desktop'}>
         <div className='img_container'>
-            <div id='image' />
+          <motion.div
+           id='image'
+           initial={{ opacity: 0, y: -100}}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{duration: 0.5}}
+          viewport={{ once: false }} />
         </div>
-        <div className='text'>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0}}
+          transition={{duration: 0.5}}
+          viewport={{ once: false }}
+           className='text'>
           <div className='title'>
             {title}
           </div>
           <div className='description glass'>
             {Desccrption}
           </div>
-        </div>
+        </motion.div>
       </div>  
     </motion.section>
   )
@@ -212,34 +221,41 @@ function Drawer () {
         }}
         animate={{
           animation: "ease-in-out",
-          right: drawerStatus ? 0 : "-71vw" ,
+          right: drawerStatus ? 0 : "-71vw",
         }}
         transition={{
           duration: 0.65,
         }}
       >
         <div className='drawer_container'>
-        <div
-        className="drawer_btn"
-        onClick={() => {
-          setDrawerStatus(!drawerStatus);
-        }}
-        style={{position: drawerStatus ? "relative":"absolute", top: 0,left: drawerStatus?'2%': -75, zIndex: "12"}}
-      >
-        {!drawerStatus?
-        <MenuRoundedIcon />
-        :<ArrowBackIosNewRoundedIcon />}
-      </div>
-        
-        <div className='drawer_body'>
-        <div className='headText' onClick={ScrollToTop}>
-          <span className='span_1'>Akash</span>
-          <span className='span_2'>Kumar</span>
-        </div>
-        <a className="drawer_link" onClick={()=>{setDrawerStatus(!drawerStatus)}} href="#Context">Projects</a>
-          <a className="drawer_link" onClick={()=>{setDrawerStatus(!drawerStatus)}} href="#Blogs">Blogs</a>
-          <a className="drawer_link" onClick={()=>{setDrawerStatus(!drawerStatus)}} href="#Contact">Join Me</a>
-        </div>
+          <motion.div
+            className="drawer_btn"
+            onClick={() => {
+              setDrawerStatus(!drawerStatus);
+            }}
+            style={{ position: "absolute", top: 0, left: -75, zIndex: "12", opacity: drawerStatus ? 0 : 1, transition: '0.5s' }}
+          >
+            <MenuRoundedIcon />
+          </motion.div>
+          <div
+            className="drawer_btn"
+            onClick={() => {
+              setDrawerStatus(!drawerStatus);
+            }}
+            style={{ position: "relative", top: 0, marginTop: '2%', left: '2%', zIndex: "12", opacity: drawerStatus ? 1 : 0, transition: '0.2s' }}
+          >
+            <ArrowBackIosNewRoundedIcon />
+          </div>
+
+          <div className='drawer_body'>
+            <div className='headText' onClick={ScrollToTop}>
+              <span className='span_1'>Akash</span>
+              <span className='span_2'>Kumar</span>
+            </div>
+            <a className="drawer_link" onClick={() => { setDrawerStatus(!drawerStatus) }} href="#Context">Projects</a>
+            <a className="drawer_link" onClick={() => { setDrawerStatus(!drawerStatus) }} href="#Blogs">Blogs</a>
+            <a className="drawer_link" onClick={() => { setDrawerStatus(!drawerStatus) }} href="#Contact">Join Me</a>
+          </div>
         </div>
       </motion.div>
     </>

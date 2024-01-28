@@ -11,6 +11,7 @@ import { db } from '../Configs/FirebaseConfig';
 
 import '../styles/footer.css';
 import '../pages/App.css';
+import { motion } from "framer-motion";
 
 
 
@@ -171,7 +172,12 @@ function Contact() {
           <h3>Fetching Comments...</h3>
           {/* loading */}
         </div>}
-        <div id="commentBoxContainer">
+        <motion.div
+         id="commentBoxContainer"
+         initial={{ opacity: 0, y: 100}}
+          whileInView={{ opacity: 1, y: 0}}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut"}}
+          viewport={{ once: false }}>
           {enable ? 
           <form id="commentBox">
             <div className="flexRow">
@@ -193,7 +199,7 @@ function Contact() {
             {/* loading */}
           </div>
           }
-        </div>
+        </motion.div>
         
       </div>
     );

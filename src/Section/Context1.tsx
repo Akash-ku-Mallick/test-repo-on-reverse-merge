@@ -13,6 +13,7 @@ import '../styles/buttonStyles.css'
 
 
 import { db, FREBASE_APP } from '../Configs/FirebaseConfig';
+import { motion } from 'framer-motion';
 
 const storage = getStorage(FREBASE_APP, "gs://akash-my-portfolio.appspot.com");
 
@@ -69,7 +70,6 @@ export function Context1() {
   }
 
   useEffect(() => {
-    setLoading(true);
     const getData = async () => {
       
       let arr: any[] = [];
@@ -191,7 +191,12 @@ export function Context1() {
 
     return (
       <div className='BottomSection'>
-        <div className='child'>
+        <motion.div
+          className='child'
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: false }}>
           <div className='BottomSection_heading'>
             <p>Applications</p>
           </div>
@@ -199,8 +204,13 @@ export function Context1() {
             loadingText ? <TextSkeleton /> :
             <OutputFormated dataCategory={1} />
           }
-        </div>
-        <div className='child'>
+        </motion.div>
+        <motion.div 
+        className='child'
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: false }}>
           <div className='BottomSection_heading'>
             <p>Websites</p>
           </div>
@@ -208,8 +218,12 @@ export function Context1() {
             loadingText ? <TextSkeleton /> :
             <OutputFormated dataCategory={2} />
           }
-        </div>
-        <div className='child'>
+        </motion.div>
+        <motion.div className='child'
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: false }}>
           <div className='BottomSection_heading'>
             <p>Other</p>
           </div>
@@ -217,7 +231,7 @@ export function Context1() {
             loadingText ? <TextSkeleton /> :
             <OutputFormated dataCategory={3} />
           }
-        </div>
+        </motion.div>
       </div>
     );
   }
@@ -232,20 +246,30 @@ export function Context1() {
     }
 
     return (
-      <div onClick={OnClickFunc} className='ItemContainer' >
-        {loading?
-            <LoadingImgSkeleton />
-            :
+      <motion.div
+       initial={{ opacity: 0.5 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut"}}
+        viewport={{ once: false }}
+        exit={{ opacity: 0 }}
+       onClick={OnClickFunc} className='ItemContainer' >
+      
+        {loading && <LoadingImgSkeleton />}
+            
         <div className='ItemImage'>
             <img
               src={info.image}
               alt='not available'
+              loading='lazy'
+              onLoad={() => {
+                setLoading(false);
+              }}
             />
-        </div>}
+        </div>
         <div className='ItemHeader'>
           <h2 style={{ color: "white" }}>{info.title}</h2>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
