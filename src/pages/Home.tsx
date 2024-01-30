@@ -104,7 +104,7 @@ export function Hero(props: heroProps) {
   }
 
   const title = "I am Akash Kumar Mallick";
-  const Desccrption = "I am an immediate joiner, looking for better opportunity as a front-end developer";
+  const Desccrption = "I am a front-end developer and a UI/UX designer. I love to design and develop websites and web apps.";
 
 
 

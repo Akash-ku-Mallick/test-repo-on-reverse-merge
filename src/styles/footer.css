@@ -271,6 +271,11 @@
     font: 1rem 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
+    z-index: 5;
+    background-color: rgba(22, 28, 35, 0.668);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
 }
 
 #commentBox div {
@@ -285,7 +290,20 @@
 }
 
 #commentBox:hover {
-    border-color: cadetblue;
+    animation: borderAnimation 1s infinite;
+}
+
+@keyframes borderAnimation {
+    0% {
+        border-color: rgba(230, 190, 233, 1.0);
+     }
+    50% {
+        border-color: rgba(172, 99, 228, 1.0);
+    }
+    100% {
+        border-color: rgb(231, 223, 231);
+    }
+    
 }
 
 .btnInp {

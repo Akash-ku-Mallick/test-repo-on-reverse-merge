@@ -22,6 +22,7 @@ function Contact() {
   const [rating, setRating] = useState<number>(4);
   const [enable, setEnable] = useState<boolean>(true);
   const [commentsData, setCommentsData] = useState<any[]>([]); // [name, comment, rating
+  const [responceText, setResponce] = useState<string>(''); 
 
   const coll = collection(db, "comments");
 
@@ -39,7 +40,12 @@ function Contact() {
   }, [])
 
   const CustPopupAlert = (msg: string) => {
-    alert(msg);
+    setResponce(msg);
+    setTimeout(() => {
+      ResetFeeds();
+      setEnable(true);
+      setResponce("");
+    }, 3000);
   }
 
   const ResetFeeds = () => {
@@ -50,19 +56,23 @@ function Contact() {
   }
 
   const CreateUser = async () => {
-    try {
-      const docRef = await addDoc(coll, {
-        Name: name,
-        Mail: mail,
-        Comment: comment,
-        Rating: rating
-      });
-      console.log("Document written with ID: ", docRef.id);
-      return true;
-    } catch (e) {
-      console.error("Error adding document: ", e);
-      return false;
+    const reply = new Promise<boolean>((resolve, reject) => {
+      try {
+        const docRef = addDoc(coll, {
+          Name: name,
+          Mail: mail,
+          Comment: comment,
+          Rating: rating
+        });
+        resolve(true);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+        reject(false);
+      }
     }
+    )
+    return reply;
+
   }
 
   const CheckEmail = async () => {
@@ -81,40 +91,58 @@ function Contact() {
       }
     };
 
-    return axios.request(options).then(function (response) {
-      console.log("you"); console.log(response.data);
-      return true;
-    }).catch(function (error) {
-      console.error(error);
-      return false;
-    });
-
-
+    var reply = new Promise<boolean>((resolve, reject) => {
+      axios.request(options).then(function (response) {
+        var score = 0;
+        if (response.data.Records[0].DeliverabilityConfidenceScore)
+        {
+          var score = parseInt(response.data.Records[0].DeliverabilityConfidenceScore);
+        }
+        
+        if ( score < 1) {
+          reject(false);
+        }
+        else {
+          resolve(true);
+        }
+      }
+      ).catch(function (error) {
+        reject(false);
+      })
+    })
+    return reply;
   }
 
   const sendForm = async (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     e.preventDefault();
+    setEnable(false);
+    setResponce("Checking Details");
 
     if (name === '' || mail === '' || comment === '') {
-      CustPopupAlert("😁Please fill all the fields");
+      CustPopupAlert("Please fill all the fields");
     }
     else {
-      setEnable(false);
-      let check = await CheckEmail();
-      setEnable(true);
-      if (check) {
-        let user = await CreateUser();
-        if (user) {
-          ResetFeeds();
-          CustPopupAlert("😁Thank You for your feedback");
-        }
-        else {
+      setResponce("Checking Email");
+      CheckEmail().then((response) => {
+      setResponce("Submitting");
+      if (response) {
+        CreateUser().then((response) => {
+          if (response) {
+            CustPopupAlert("😁Thank You for your feedback");
+          }
+          else {
+            CustPopupAlert("😁Something went wrong");
+          }
+        }).catch((err) => {
           CustPopupAlert("😁Something went wrong");
-        }
+        })
       }
       else {
         CustPopupAlert("😁Please enter a valid email");
     }
+    }).catch((err) => {
+      CustPopupAlert("😁Please enter a valid email");
+    });
   }
 }
 
@@ -174,10 +202,18 @@ function Contact() {
         </div>}
         <motion.div
          id="commentBoxContainer"
-         initial={{ opacity: 0, y: 100}}
-          whileInView={{ opacity: 1, y: 0}}
-          transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut"}}
-          viewport={{ once: false }}>
+         initial={{ 
+          opacity: 0.5, 
+          y: 20,
+          filter: "blur(15px)",
+        }}
+          whileInView={{ 
+            opacity: 1, 
+            y: 0,
+            filter: "none",
+          }}
+          transition={{ ease: 'easeOut', duration: 0.3, delay: 0.3, staggerChildren: 1, when: "beforeChildren"}}
+          viewport={{ once: true }}>
           {enable ? 
           <form id="commentBox">
             <div className="flexRow">
@@ -189,14 +225,16 @@ function Contact() {
               <input className="btnInp" type="submit" value="Submit" onClick={(e)=>{sendForm(e)}} />
             </div>
             <div><span>
-              {" *Please be cautious with what you share with us. "}
+              {" *Please be responsible with the information you share. "}
               </span></div>
           </form>
           :
-          <div className="flexRow justCenterItems">
-            <h3>Submitting</h3>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><circle cx="4" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsBounce0" attributeName="cy" begin="0;svgSpinners3DotsBounce1.end+0.25s" calcMode="spline" dur="0.6s" keySplines=".33,.66,.66,1;.33,0,.66,.33" values="12;6;12"/></circle><circle cx="12" cy="12" r="3" fill="white"><animate attributeName="cy" begin="svgSpinners3DotsBounce0.begin+0.1s" calcMode="spline" dur="0.6s" keySplines=".33,.66,.66,1;.33,0,.66,.33" values="12;6;12"/></circle><circle cx="20" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsBounce1" attributeName="cy" begin="svgSpinners3DotsBounce0.begin+0.2s" calcMode="spline" dur="0.6s" keySplines=".33,.66,.66,1;.33,0,.66,.33" values="12;6;12"/></circle></svg>
-            {/* loading */}
+          <div className="flexcol justCenterItems">
+            <h3>{responceText}</h3>
+            <div className="flexRow justCenterItems">
+              <h3>{"Please wait "}</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><circle cx="4" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsBounce0" attributeName="cy" begin="0;svgSpinners3DotsBounce1.end+0.25s" calcMode="spline" dur="0.6s" keySplines=".33,.66,.66,1;.33,0,.66,.33" values="12;6;12"/></circle><circle cx="12" cy="12" r="3" fill="white"><animate attributeName="cy" begin="svgSpinners3DotsBounce0.begin+0.1s" calcMode="spline" dur="0.6s" keySplines=".33,.66,.66,1;.33,0,.66,.33" values="12;6;12"/></circle><circle cx="20" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsBounce1" attributeName="cy" begin="svgSpinners3DotsBounce0.begin+0.2s" calcMode="spline" dur="0.6s" keySplines=".33,.66,.66,1;.33,0,.66,.33" values="12;6;12"/></circle></svg>
+            </div>
           </div>
           }
         </motion.div>

@@ -118,6 +118,7 @@ export function Context1() {
           rightArrow={<RightArrow />}
           responsive={true}>
           {Data.map((item) => {
+                
                 return (
                   <ItemTemplate
                     key={item.id}
