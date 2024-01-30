@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Monoton&family=Quattrocento+Sans&display=swap');
 
 
-/* font-family: 'Anton', sans-serif;
-font-family: 'Bangers', cursive;
-font-family: 'Monoton', cursive;
-font-family: 'Quattrocento Sans', sans-serif; */
+/* 
+font-family: 'Anton', sans-serif; Anton is edgy and cool
+font-family: 'Bangers', cursive;  Bangers is unorthodox and fun
+font-family: 'Monoton', cursive;  Monoton is retro and made of lines
+font-family: 'Quattrocento Sans', 'Roboto', sans-serif; Quattrocento Sans is eligent and simple
+
+ */ 
 
 html,
 body {
   margin: 0px;
-  font-family: 'Quattrocento Sans', sans-serif;
+  font-family: 'Quattrocento Sans', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: auto;
@@ -769,7 +772,7 @@ Canvas {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   aspect-ratio: 1/1;
   height: 45px;
   padding-right: 5%;
@@ -903,7 +906,8 @@ Canvas {
   .popup_footer .leftChild {font-size: var(--font-p-small);}
   .drawer_link {font-size: var(--font-p-medium);}
   #image {width: 80%;}
-  .drawer_btn svg {font-size: var(--font-p-large);}
+  .drawer_btn svg {font-size: var(--font-p-medium);}
+  .bg_blur svg {font-size: var(--font-p-medium);}
 
   .drawer_container {
     border-radius: 5rem 0rem 0rem 5rem;
@@ -917,5 +921,35 @@ Canvas {
     scroll-snap-align: none;
   }
 
-  
+}
+
+.bg_blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: 80ms ease-in-out;
+  border-radius: 3rem;
+}
+
+.bg_blur svg {
+  font-size: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: 220ms ease-in-out;
+}
+
+.bg_blur:hover {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 1.3rem;
+}
+
+.bg_blur:hover svg {
+  transform: scale(0.9);
 }

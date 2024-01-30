@@ -22,6 +22,7 @@ interface Info  {
   title: string, 
   image: string,
   id: number,
+  url: string,
 }
 
 interface Props {
@@ -123,6 +124,7 @@ export function Context1() {
                     title={item.title}
                     image={item.image}
                     id={item.id}
+                    url={item.viewcode}
                   />);
             })}
           </Carousel>
@@ -138,7 +140,7 @@ export function Context1() {
     const [ResData, setResData] = useState<any[]>([]);
 
 
-    const CatagorisedDataSet = () => {
+    const CatagorisedDataSet = async () => {
       let arr1: any[] = [];
       let arr2: any[] = [];
       let arr3: any[] = [];
@@ -167,20 +169,35 @@ export function Context1() {
     }, []);
 
     const OutputFormated = (D: Props) => {
-      let index = D.dataCategory;
-      const nav = useNavigate();
-      const OnClickFunc = (link: String) => {
-        nav("/Akash-Kumar/my-projects/" + index);
+      let key = D.dataCategory;
+      // const nav = useNavigate();
+      const OnClickFunc = (link: string) => {
+        // nav("/Akash-Kumar/my-projects/" + index);
+        window.open(link, '_blank');
       }
       return (
         <div className='BottomSection_body'>
         {
-            ResData[index-1].map((item: any) => {
+            ResData[key-1].map((item: any, index: number) => {
 
             return (
-              <div className='content' onClick={()=>{OnClickFunc(item.viewcode)}}>
+              <motion.div 
+              initial={{ 
+                opacity: 0.1,
+                y: 5,
+                scale: 0.5,
+               }}
+              whileInView={{ 
+                opacity: 1,
+                y: 0,
+                scale: 1,
+               }}
+              transition={{ duration: 0.2, delay: index/10, ease: "easeInOut", staggerChildren: 0.1}}
+              viewport={{ once: true }}
+              className='content' 
+              onClick={()=>{OnClickFunc(item.viewcode)}}>
                 <p>{item.title}</p>
-              </div>
+              </motion.div>
             )
           })
         }
@@ -193,17 +210,14 @@ export function Context1() {
       <div className='BottomSection'>
         <motion.div
           className='child'
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.5 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: false }}>
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}>
           <div className='BottomSection_heading'>
             <p>Applications</p>
           </div>
-          {
-            loadingText ? <TextSkeleton /> :
-            <OutputFormated dataCategory={1} />
-          }
+          {loadingText?null:<OutputFormated dataCategory={1} />}
         </motion.div>
         <motion.div 
         className='child'
@@ -214,10 +228,7 @@ export function Context1() {
           <div className='BottomSection_heading'>
             <p>Websites</p>
           </div>
-          {
-            loadingText ? <TextSkeleton /> :
-            <OutputFormated dataCategory={2} />
-          }
+          {loadingText?null:<OutputFormated dataCategory={2} />}
         </motion.div>
         <motion.div className='child'
           initial={{ opacity: 0 }}
@@ -226,11 +237,7 @@ export function Context1() {
           viewport={{ once: false }}>
           <div className='BottomSection_heading'>
             <p>Other</p>
-          </div>
-          {
-            loadingText ? <TextSkeleton /> :
-            <OutputFormated dataCategory={3} />
-          }
+          </div>{loadingText?null:<OutputFormated dataCategory={3} />}
         </motion.div>
       </div>
     );
@@ -239,10 +246,11 @@ export function Context1() {
   const ItemTemplate: React.FC<Info> = ( info ) => {
     const [loading, setLoading] = useState<boolean>(true);
     
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const OnClickFunc = () => {
-      navigate("/Akash-Kumar/my-projects/" + info.id);
+      // navigate("/Akash-Kumar/my-projects/" + info.id);
+      window.open(info.url, '_blank');
     }
 
     return (
@@ -296,12 +304,4 @@ const LoadingImgSkeleton: React.FC = () => {
       <div className='ItemHeader LoadingImgSkeletontxt'></div>
     </div>
   );
-}
-
-const TextSkeleton: React.FC = () => {
-  return (
-    <div className='BottomSection_body'>
-      <div className='TextSkeleton'/><div className='TextSkeleton'/><div className='TextSkeleton'/>
-      <div className='TextSkeleton'/><div className='TextSkeleton'/><div className='TextSkeleton'/>
-    </div>)
 }

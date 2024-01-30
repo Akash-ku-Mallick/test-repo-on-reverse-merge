@@ -4,6 +4,7 @@ import '../styles/blogs.css'
 import { getCertificateList } from '../utils/Apis'
 import getArticles from '../Configs/DevBlogsConfig';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function Blogs() {
 
@@ -53,7 +54,8 @@ export default function Blogs() {
   }
 
   const FollowToCertificates = () => {
-    navigate('/Akash-Kumar/certificates')
+    alert('Coming Soon');
+    // navigate('/Akash-Kumar/certificates')
   }
 
   return (
@@ -62,7 +64,7 @@ export default function Blogs() {
         <div id='blog' className='Grid_container'>
           {loading ? <><Skeleton /><Skeleton /><Skeleton /><Skeleton /><Skeleton /><Skeleton /></> 
           : blogs.map((item, index) => {
-              return (<Blog_content key={index} data={item} />)
+            if (index < 6) { return (<Blog_content key={index} data={item} />) }
             }) 
           }
         </div>
@@ -92,11 +94,19 @@ export default function Blogs() {
 const Content = (item: Prop) => {
   const [loading, setLoading] = useState(true);
   return (
-    <>{loading ? <Skeleton /> : null}
-      <div onClick={(e) => { item.handleClick(e, item.item.image) }} className={loading ? 'hidden' : 'visible'}>
+    // <>{loading ? <Skeleton /> : null}
+    <motion.div
+    className='child'
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+    viewport={{ once: false }} onClick={(e) => { item.handleClick(e, item.item.image) }} 
+      // className={loading ? 'hidden' : 'visible'}
+      >
         <img onLoad={() => { setLoading(false); }} loading="lazy"
           src={item.item.image} alt={item.item.image} />
-      </div></>
+      </motion.div>
+    // </>
   )
 }
 
@@ -111,11 +121,16 @@ const Blog_content = (data: blog) => {
     // <>
     // {
     //    loading ? <Skeleton /> : null}
-      <div onClick={FollowTheLink}>
+    <motion.div
+    className='child'
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 1 }}
+    viewport={{ once: false }} onClick={FollowTheLink}>
         {/* className={loading ? 'hidden' : 'visible'} */}
         <img src={data.data.cover_image} alt={data.data.title} onLoad={() => { setLoading(false); }} />
         <p>{data.data.title}</p>
-      </div>
+      </motion.div>
     // </>
   )
 }

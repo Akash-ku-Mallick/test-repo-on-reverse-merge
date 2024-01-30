@@ -32,6 +32,10 @@ const router = createBrowserRouter([
     path: "/Akash-Kumar/certificates",
     element: <Certificates />,
   },
+  {
+    path: "*",
+    element: <ErrorPage />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(

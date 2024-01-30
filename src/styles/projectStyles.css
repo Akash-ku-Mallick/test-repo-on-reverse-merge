@@ -55,12 +55,12 @@
 }
 
 .BottomSection_heading > p {
-  text-decoration: underline;
-  text-underline-offset: 0.2rem;
+  text-decoration: none;
+  font-weight: 900;
 }
 
 .BottomSection_heading p {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.961);
 }
 
 .BottomSection_body {
@@ -86,7 +86,7 @@
 }
 
 .content p {
-  color: #ffffff;
+  color: #c7c7c7;
   margin: 0;
   padding: 0;
   padding-block: 2%;
@@ -187,7 +187,7 @@
 .ItemImage img {
   height: 100%;
   width: 100%;
-  object-fit:fill;
+  object-fit: contain;
 }
 
 .LoadingImgSkeleton {
