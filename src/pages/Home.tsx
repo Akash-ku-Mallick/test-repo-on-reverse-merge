@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-// import Scene from '../Section/Scene';
+import Scene from '../Section/Scene';
 
 import Blogs from '../Section/Blogs';
 import { Context1 } from '../Section/Context1';
@@ -56,7 +56,7 @@ export default function Home() {
 
   return (
     <div className="App">
-      {/* {windowSize[0] > windowSize[1] && <Scene props={windowSize} />} */}
+      {windowSize[0] > windowSize[1] && <Scene props={windowSize} />}
       {windowSize[0] < windowSize[1] && <Drawer />}
       <div className="container" ref={containerRef}>
         {windowSize[0] > windowSize[1] && <Navbar ifInView={IfHeroInView} />}
