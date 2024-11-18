@@ -16,7 +16,6 @@ const router = createBrowserRouter([
   {
     path: "/Akash-Kumar/",
     element: <Home />,
-    errorElement: <ErrorPage />,
   },
   {
     path: "/Akash-Kumar/my-resume",
